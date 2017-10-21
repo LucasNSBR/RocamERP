@@ -2,7 +2,7 @@
 
 namespace RocamERP.Models
 {
-    public class Cheques
+    public class Cheque
     {
         public int ChequeId { get; set; }
 
@@ -20,7 +20,7 @@ namespace RocamERP.Models
 
         public DateTime DataRecebimento { get; set; }
         public DateTime DataVencimento { get; set; }
-        public DateTime DataPagamento { get; set; }
+        public DateTime? DataPagamento { get; set; }
         public decimal Valor { get; set; }
     }
 

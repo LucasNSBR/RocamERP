@@ -10,7 +10,7 @@ namespace RocamERP.Models
 
         public virtual ICollection<Endereco> Enderecos { get; set; }
         public virtual ICollection<Contato> Contatos { get; set; }
-        public virtual ICollection<Cheques> Cheques { get; set; }
+        public virtual ICollection<Cheque> Cheques { get; set; }
 
         public override string ToString()
         {
@@ -21,7 +21,7 @@ namespace RocamERP.Models
         {
             Enderecos = new List<Endereco>();
             Contatos = new List<Contato>();
-            Cheques = new List<Cheques>();
+            Cheques = new List<Cheque>();
         }
     }
 }

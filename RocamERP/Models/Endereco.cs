@@ -14,9 +14,20 @@
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 
+        public TipoEndereco TipoEndereco { get; set; }
+
         public override string ToString()
         {
             return $"{Rua}, {Numero}, {Bairro} em {Cidade}";
         }
     }
+
+    public enum TipoEndereco
+    {
+        Comercial,
+        Residencial,
+        Rural,
+        Outro, 
+    }
+
 }
