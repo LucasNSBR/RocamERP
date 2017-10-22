@@ -53,7 +53,7 @@ namespace RocamERP.DAL
 
         private static void ConfigureEstadoEntity(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Estado>().HasKey(e => e.EstadoId);
+            modelBuilder.Entity<Models.Estado>().HasKey(e => e.Nome);
 
             #region Properties
             modelBuilder.Entity<Models.Estado>()
@@ -65,7 +65,7 @@ namespace RocamERP.DAL
 
         private static void ConfigureCidadeEntiy(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Cidade>().HasKey(c => c.CidadeId);
+            modelBuilder.Entity<Models.Cidade>().HasKey(c => c.Nome);
 
             #region Properties
             modelBuilder.Entity<Models.Cidade>()
@@ -131,12 +131,12 @@ namespace RocamERP.DAL
 
         private static void ConfigureBancoEntity(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Banco>().HasKey(b => b.BancoId);
+            modelBuilder.Entity<Models.Banco>().HasKey(b => b.Nome);
 
             #region Properties
             modelBuilder.Entity<Models.Banco>()
                 .Property(b => b.Nome)
-                .HasMaxLength(20)
+                .HasMaxLength(100)
                 .IsRequired();
             #endregion
         }

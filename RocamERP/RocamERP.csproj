@@ -147,10 +147,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BancosController.cs" />
+    <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\RocamDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710212300063_Initial.cs" />
+    <Compile Include="Migrations\201710212300063_Initial.Designer.cs">
+      <DependentUpon>201710212300063_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710212343473_PKChanges.cs" />
+    <Compile Include="Migrations\201710212343473_PKChanges.Designer.cs">
+      <DependentUpon>201710212343473_PKChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710212351369_PropertyChanges-Banco-Column-Length.cs" />
+    <Compile Include="Migrations\201710212351369_PropertyChanges-Banco-Column-Length.Designer.cs">
+      <DependentUpon>201710212351369_PropertyChanges-Banco-Column-Length.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Banco.cs" />
@@ -202,11 +217,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Bancos\Create.cshtml" />
+    <Content Include="Views\Bancos\Delete.cshtml" />
+    <Content Include="Views\Bancos\Details.cshtml" />
+    <Content Include="Views\Bancos\Edit.cshtml" />
+    <Content Include="Views\Bancos\Index.cshtml" />
+    <Content Include="Views\Estados\Create.cshtml" />
+    <Content Include="Views\Estados\Delete.cshtml" />
+    <Content Include="Views\Estados\Details.cshtml" />
+    <Content Include="Views\Estados\Edit.cshtml" />
+    <Content Include="Views\Estados\Index.cshtml" />
+    <Content Include="Views\Shared\_SidebarMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cheques\" />
-    <Folder Include="Views\Cheque\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -222,6 +247,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710212300063_Initial.resx">
+      <DependentUpon>201710212300063_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710212343473_PKChanges.resx">
+      <DependentUpon>201710212343473_PKChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710212351369_PropertyChanges-Banco-Column-Length.resx">
+      <DependentUpon>201710212351369_PropertyChanges-Banco-Column-Length.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

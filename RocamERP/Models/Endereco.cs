@@ -8,7 +8,7 @@
         public int Numero { get; set; }
         public string Complemento { get; set; }
         
-        public int CidadeId { get; set; }
+        public string CidadeId { get; set; }
         public Cidade Cidade { get; set; }
         
         public int ClienteId { get; set; }

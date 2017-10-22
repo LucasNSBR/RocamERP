@@ -6,7 +6,7 @@ namespace RocamERP.Models
     {
         public int ChequeId { get; set; }
 
-        public int BancoId { get; set; }
+        public string BancoId { get; set; }
         public Banco Banco { get; set; }
         
         public string Agencia { get; set; }
