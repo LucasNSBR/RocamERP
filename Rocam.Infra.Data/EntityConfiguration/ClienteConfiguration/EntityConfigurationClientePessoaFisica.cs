@@ -7,6 +7,8 @@ namespace RocamERP.Infra.Data.EntityConfiguration.ClienteConfiguration
     {
         public EntityConfigurationClientePessoaFisica() : base()
         {
+            ToTable("PessoaFisica");
+
             Property(pf => pf.CPF)
                     .HasMaxLength(11)
                     .IsOptional();

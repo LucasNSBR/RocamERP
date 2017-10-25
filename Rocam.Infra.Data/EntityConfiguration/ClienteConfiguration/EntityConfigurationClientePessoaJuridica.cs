@@ -7,6 +7,8 @@ namespace RocamERP.Infra.Data.EntityConfiguration.ClienteConfiguration
     {
         public EntityConfigurationClientePessoaJuridica() : base()
         {
+            ToTable("PessoaJuridica");
+
             Property(pj => pj.CNPJ)
                 .HasMaxLength(14)
                 .IsOptional();

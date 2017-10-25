@@ -58,6 +58,8 @@
     <Compile Include="EntityConfiguration\EntityConfigurationEndereco.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEstado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\EstadoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rocam.Domain\RocamERP.Domain.csproj">
