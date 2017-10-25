@@ -9,116 +9,111 @@ using System.Web.Mvc;
 using RocamERP.DAL;
 using RocamERP.Models;
 
-namespace RocamERP.Controllers
+namespace RocamERP.Areas.Plataforma.Controllers
 {
-    public class EstadosController : Controller
+    public class CidadesController : Controller
     {
         private RocamDbContext db = new RocamDbContext();
 
-        // GET: Estados
+        // GET: Plataforma/Cidades
         public ActionResult Index()
         {
-            return View(db.Estados.ToList());
+            var cidades = db.Cidades.Include(c => c.Estado);
+            return View(cidades.ToList());
         }
 
-        // GET: Estados/Details/5
+        // GET: Plataforma/Cidades/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estado estado = db.Estados.Find(id);
-            if (estado == null)
+            Cidade cidade = db.Cidades.Find(id);
+            if (cidade == null)
             {
                 return HttpNotFound();
             }
-            return View(estado);
+            return View(cidade);
         }
 
-        // GET: Estados/Create
+        // GET: Plataforma/Cidades/Create
         public ActionResult Create()
         {
+            ViewBag.EstadoId = new SelectList(db.Estados, "Nome", "Nome");
             return View();
         }
 
-        // POST: Estados/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome")] Estado estado)
+        public ActionResult Create([Bind(Include = "Nome,CEP,EstadoId")] Cidade cidade)
         {
-            var val = new Validators.EstadoValidator();
-            var result = val.Validate(estado);
-
-            if (result.IsValid)
+            if (ModelState.IsValid)
             {
-                db.Estados.Add(estado);
+                db.Cidades.Add(cidade);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            else
-            {
-                result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.PropertyName, e.ErrorMessage));
-            }
 
-            return View(estado);
+            ViewBag.EstadoId = new SelectList(db.Estados, "Nome", "Nome", cidade.EstadoId);
+            return View(cidade);
         }
 
-        // GET: Estados/Edit/5
+        // GET: Plataforma/Cidades/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estado estado = db.Estados.Find(id);
-            if (estado == null)
+            Cidade cidade = db.Cidades.Find(id);
+            if (cidade == null)
             {
                 return HttpNotFound();
             }
-            return View(estado);
+            ViewBag.EstadoId = new SelectList(db.Estados, "Nome", "Nome", cidade.EstadoId);
+            return View(cidade);
         }
 
-        // POST: Estados/Edit/5
+        // POST: Plataforma/Cidades/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Nome")] Estado estado)
+        public ActionResult Edit([Bind(Include = "Nome,CEP,EstadoId")] Cidade cidade)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(estado).State = EntityState.Modified;
+                db.Entry(cidade).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(estado);
+            ViewBag.EstadoId = new SelectList(db.Estados, "Nome", "Nome", cidade.EstadoId);
+            return View(cidade);
         }
 
-        // GET: Estados/Delete/5
+        // GET: Plataforma/Cidades/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estado estado = db.Estados.Find(id);
-            if (estado == null)
+            Cidade cidade = db.Cidades.Find(id);
+            if (cidade == null)
             {
                 return HttpNotFound();
             }
-            return View(estado);
+            return View(cidade);
         }
 
-        // POST: Estados/Delete/5
+        // POST: Plataforma/Cidades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Estado estado = db.Estados.Find(id);
-            db.Estados.Remove(estado);
+            Cidade cidade = db.Cidades.Find(id);
+            db.Cidades.Remove(cidade);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
