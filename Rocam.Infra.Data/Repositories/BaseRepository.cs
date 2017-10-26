@@ -1,11 +1,12 @@
 ﻿using RocamERP.Domain.RepositoryInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 namespace RocamERP.Infra.Data.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IDisposable, IBaseRepository<TEntity> where TEntity : class
     {
         protected RocamDbContext dbContext = new RocamDbContext();
 
@@ -41,6 +42,11 @@ namespace RocamERP.Infra.Data.Repositories
         {
             dbContext.Entry(obj).State = EntityState.Modified;
             dbContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Dispose();
         }
     }
 }

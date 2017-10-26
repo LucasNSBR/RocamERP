@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{713DFA20-CC57-444E-9101-A08465C866C9}</ProjectGuid>
+    <ProjectGuid>{ED7B6E6F-1D17-46F0-BFE3-FA0C1E505075}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rocam.Infra.CrossCutting</RootNamespace>
-    <AssemblyName>Rocam.Infra.CrossCutting</AssemblyName>
+    <RootNamespace>RocamERP.CrossCutting</RootNamespace>
+    <AssemblyName>RocamERP.CrossCutting</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,9 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logger\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

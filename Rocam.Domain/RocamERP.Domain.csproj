@@ -43,7 +43,26 @@
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryInterfaces\IBancoRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ICidadeRepository.cs" />
     <Compile Include="RepositoryInterfaces\IBaseRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IChequeRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ClienteRepository\IClientePessoaFisicaRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ClienteRepository\IClientePessoaJuridicaRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ClienteRepository\IClienteRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IContatoRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IEnderecoRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IEstadoRepository.cs" />
+    <Compile Include="ServiceInterfaces\ClienteServices\IClientePessoaFisicaService.cs" />
+    <Compile Include="ServiceInterfaces\ClienteServices\IClientePessoaJuridicaService.cs" />
+    <Compile Include="ServiceInterfaces\ClienteServices\IClienteService.cs" />
+    <Compile Include="ServiceInterfaces\IBancoService.cs" />
+    <Compile Include="ServiceInterfaces\IChequeService.cs" />
+    <Compile Include="ServiceInterfaces\IBaseService.cs" />
+    <Compile Include="ServiceInterfaces\ICidadeService.cs" />
+    <Compile Include="ServiceInterfaces\IContatoService.cs" />
+    <Compile Include="ServiceInterfaces\IEnderecoService.cs" />
+    <Compile Include="ServiceInterfaces\IEstadoService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

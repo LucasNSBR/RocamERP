@@ -3,7 +3,7 @@ using RocamERP.Domain.RepositoryInterfaces;
 
 namespace RocamERP.Infra.Data.Repositories
 {
-    public class EstadoRepository : BaseRepository<Estado>, IEstadoRepository<Estado>
-    { 
+    public class EnderecoRepository : BaseRepository<Endereco>, IEnderecoRepository
+    {
     }
 }

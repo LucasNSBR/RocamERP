@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace RocamERP.Domain.RepositoryInterfaces
+namespace RocamERP.Domain.ServiceInterfaces
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseService<TEntity> where TEntity : class
     {
         void Add(TEntity obj);
 
