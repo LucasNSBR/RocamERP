@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D630ED33-3E7A-446C-834A-C8A1EEC00D98}</ProjectGuid>
+    <ProjectGuid>{B013814C-AE69-47C3-9CEB-0302409C93A6}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RocamERP</RootNamespace>
-    <AssemblyName>RocamERP</AssemblyName>
+    <RootNamespace>RocamERP.Presentation.Web</RootNamespace>
+    <AssemblyName>RocamERP.Presentation.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -45,15 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.7.2.0\lib\net45\FluentValidation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -150,45 +141,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
-    <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BancosController.cs" />
-    <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\RocamDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710212300063_Initial.cs" />
-    <Compile Include="Migrations\201710212300063_Initial.Designer.cs">
-      <DependentUpon>201710212300063_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710212343473_PKChanges.cs" />
-    <Compile Include="Migrations\201710212343473_PKChanges.Designer.cs">
-      <DependentUpon>201710212343473_PKChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710212351369_PropertyChanges-Banco-Column-Length.cs" />
-    <Compile Include="Migrations\201710212351369_PropertyChanges-Banco-Column-Length.Designer.cs">
-      <DependentUpon>201710212351369_PropertyChanges-Banco-Column-Length.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Banco.cs" />
-    <Compile Include="Models\Cheque.cs" />
-    <Compile Include="Models\Cidade.cs" />
-    <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\ClientePessoaFisica.cs" />
-    <Compile Include="Models\ClientePessoaJuridica.cs" />
-    <Compile Include="Models\Contato.cs" />
-    <Compile Include="Models\Endereco.cs" />
-    <Compile Include="Models\Estado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validators\CidadeValidator.cs" />
-    <Compile Include="Validators\EstadoValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\icons\favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -196,15 +158,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Plataforma\Views\web.config" />
-    <Content Include="Areas\Plataforma\Views\Shared\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\Shared\_SidebarMenu.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\Shared\Error.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Cidades\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Cidades\Details.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Cidades\Create.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Cidades\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -227,51 +180,20 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Bancos\Create.cshtml" />
-    <Content Include="Views\Bancos\Delete.cshtml" />
-    <Content Include="Views\Bancos\Details.cshtml" />
-    <Content Include="Views\Bancos\Edit.cshtml" />
-    <Content Include="Views\Bancos\Index.cshtml" />
-    <Content Include="Views\Estados\Create.cshtml" />
-    <Content Include="Views\Estados\Delete.cshtml" />
-    <Content Include="Views\Estados\Details.cshtml" />
-    <Content Include="Views\Estados\Edit.cshtml" />
-    <Content Include="Views\Estados\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Plataforma\Models\" />
-    <Folder Include="Views\Admin\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710212300063_Initial.resx">
-      <DependentUpon>201710212300063_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710212343473_PKChanges.resx">
-      <DependentUpon>201710212343473_PKChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710212351369_PropertyChanges-Banco-Column-Length.resx">
-      <DependentUpon>201710212351369_PropertyChanges-Banco-Column-Length.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -289,9 +211,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50977</DevelopmentServerPort>
+          <DevelopmentServerPort>57756</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50977/</IISUrl>
+          <IISUrl>http://localhost:57756/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

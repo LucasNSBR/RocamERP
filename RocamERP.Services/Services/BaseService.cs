@@ -4,11 +4,11 @@ using RocamERP.Domain.ServiceInterfaces;
 
 namespace RocamERP.Services.Services
 {
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
+    public class BaseService<TRepository> : IBaseService<TRepository> where TRepository : class
     {
-        private BaseRepository<TEntity> _repository = new BaseRepository<TEntity>();
+        private BaseRepository<TRepository> _repository = new BaseRepository<TRepository>();
         
-        public void Add(TEntity obj)
+        public void Add(TRepository obj)
         {
             _repository.Add(obj);
         }
@@ -18,22 +18,22 @@ namespace RocamERP.Services.Services
             _repository.Delete(id);
         }
 
-        public IEnumerable<TEntity> Get()
+        public IEnumerable<TRepository> Get()
         {
             return _repository.Get();
         }
 
-        public TEntity Get(int id)
+        public TRepository Get(int id)
         {
             return _repository.Get(id);
         }
 
-        public TEntity Get(string id)
+        public TRepository Get(string id)
         {
             return _repository.Get(id);
         }
 
-        public void Update(TEntity obj)
+        public void Update(TRepository obj)
         {
             _repository.Update(obj);
         }

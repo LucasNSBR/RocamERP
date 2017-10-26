@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>04e068c9-9578-45b9-9a24-9d0885fe9937</ProjectGuid>
+    <ProjectGuid>{04E068C9-9578-45B9-9A24-9D0885FE9937}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RocamERP.Application</RootNamespace>
@@ -30,24 +30,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BancoApplicationService.cs" />
+    <Compile Include="BaseApplicationService.cs" />
+    <Compile Include="ChequeApplicationService.cs" />
+    <Compile Include="ClienteApplicationService.cs" />
+    <Compile Include="ClientePessoaFisicaApplicationService.cs" />
+    <Compile Include="ClientePessoaJuridicaApplicationService.cs" />
+    <Compile Include="ContatoApplicationService.cs" />
+    <Compile Include="EnderecoApplicationService.cs" />
+    <Compile Include="CidadeApplicationService.cs" />
+    <Compile Include="Interfaces\Cliente\IClienteApplicationService.cs" />
+    <Compile Include="Interfaces\Cliente\IClientePessoaFisicaApplicationService.cs" />
+    <Compile Include="Interfaces\Cliente\IClientePessoaJuridicaApplicationService.cs" />
+    <Compile Include="EstadoApplicationService.cs" />
+    <Compile Include="Interfaces\IBaseApplicationService.cs" />
+    <Compile Include="Interfaces\IBancoApplicationService.cs" />
+    <Compile Include="Interfaces\IChequeApplicationService.cs" />
+    <Compile Include="Interfaces\ICidadeApplicationService.cs" />
+    <Compile Include="Interfaces\IContatoApplicationService.cs" />
+    <Compile Include="Interfaces\IEnderecoApplicationService.cs" />
+    <Compile Include="Interfaces\IEstadoApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RocamERP.Services\RocamERP.Services.csproj">
+      <Project>{b023673b-4dc6-4643-95ff-69c4cddef04b}</Project>
+      <Name>RocamERP.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
