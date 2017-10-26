@@ -69,7 +69,7 @@
     <Compile Include="Repositories\EstadoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rocam.Domain\RocamERP.Domain.csproj">
+    <ProjectReference Include="..\RocamERP.Domain\RocamERP.Domain.csproj">
       <Project>{e3100186-d87f-449b-954b-5ee239d424b4}</Project>
       <Name>RocamERP.Domain</Name>
     </ProjectReference>

@@ -55,17 +55,17 @@
     <Compile Include="Services\EstadoService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rocam.Domain\RocamERP.Domain.csproj">
-      <Project>{E3100186-D87F-449B-954B-5EE239D424B4}</Project>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RocamERP.Domain\RocamERP.Domain.csproj">
+      <Project>{e3100186-d87f-449b-954b-5ee239d424b4}</Project>
       <Name>RocamERP.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rocam.Infra.Data\RocamERP.Infra.Data.csproj">
+    <ProjectReference Include="..\RocamERP.Infra.Data\RocamERP.Infra.Data.csproj">
       <Project>{261c3c12-867a-4942-8bd0-4489a9dba05f}</Project>
       <Name>RocamERP.Infra.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
