@@ -117,6 +117,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -155,6 +158,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
@@ -162,16 +166,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
+    <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
-    <Compile Include="ViewModels\Cheque.cs" />
-    <Compile Include="ViewModels\Cidade.cs" />
-    <Compile Include="ViewModels\Cliente.cs" />
-    <Compile Include="ViewModels\ClientePessoaFisica.cs" />
-    <Compile Include="ViewModels\ClientePessoaJuridica.cs" />
-    <Compile Include="ViewModels\Contato.cs" />
-    <Compile Include="ViewModels\Endereco.cs" />
-    <Compile Include="ViewModels\Estado.cs" />
+    <Compile Include="ViewModels\ChequeViewModel.cs" />
+    <Compile Include="ViewModels\CidadeViewModel.cs" />
+    <Compile Include="ViewModels\ClienteViewModel.cs" />
+    <Compile Include="ViewModels\ClientePessoaFisicaViewModel.cs" />
+    <Compile Include="ViewModels\ClientePessoaJuridicaViewModel.cs" />
+    <Compile Include="ViewModels\ContatoViewModel.cs" />
+    <Compile Include="ViewModels\EnderecoViewModel.cs" />
+    <Compile Include="ViewModels\EstadoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -188,6 +195,7 @@
     <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -218,7 +226,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
-    <Folder Include="Areas\Plataforma\Views\Estados\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -234,6 +241,14 @@
     <ProjectReference Include="..\RocamERP.Domain\RocamERP.Domain.csproj">
       <Project>{E3100186-D87F-449B-954B-5EE239D424B4}</Project>
       <Name>RocamERP.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RocamERP.Infra.Data\RocamERP.Infra.Data.csproj">
+      <Project>{261C3C12-867A-4942-8BD0-4489A9DBA05F}</Project>
+      <Name>RocamERP.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RocamERP.Services\RocamERP.Services.csproj">
+      <Project>{B023673B-4DC6-4643-95FF-69C4CDDEF04B}</Project>
+      <Name>RocamERP.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

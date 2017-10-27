@@ -10,7 +10,7 @@ namespace RocamERP.Infra.Data.EntityConfiguration
             HasKey(e => e.Nome);
 
             Property(e => e.Nome)
-                        .HasMaxLength(20)
+                        .HasMaxLength(50)
                         .IsRequired();
         }
     }

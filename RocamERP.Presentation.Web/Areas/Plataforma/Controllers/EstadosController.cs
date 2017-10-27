@@ -1,23 +1,31 @@
-﻿using RocamERP.Application;
-using RocamERP.Domain.ServiceInterfaces;
+﻿using RocamERP.Application.Interfaces;
 using System.Web.Mvc;
+using RocamERP.Presentation.Web.Mappers;
+using RocamERP.Domain.Models;
+using RocamERP.Presentation.Web.ViewModels;
+using System.Collections.Generic;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
     public class EstadosController : Controller
     {
-        private EstadoApplicationService _estadoApplicationService; 
+        private IEstadoApplicationService _estadoApplicationService; 
 
-        public EstadosController(IEstadoService estadoApplicationService)
+        public EstadosController(IEstadoApplicationService estadoApplicationService)
         {
-            _estadoApplicationService = new EstadoApplicationService(estadoApplicationService);
+            _estadoApplicationService = estadoApplicationService;
         }
 
         public ActionResult Index()
         {
-            _estadoApplicationService.Get();
+            var list = _estadoApplicationService.Get();
+            var vmList = new List<EstadoViewModel>();
 
-            return View();
+            foreach (Estado estado in list) {
+                vmList.Add(AutoMapper.Mapper.Map<Estado, EstadoViewModel>(estado));
+            }
+
+            return View(vmList);
         }
 
         public ActionResult Details(int id)

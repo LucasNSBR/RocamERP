@@ -8,9 +8,9 @@ namespace RocamERP.Services.Services
     {
         public readonly IBaseRepository<TEntity> _repository; 
 
-        public BaseService(IBaseRepository<TEntity> _repo)
+        public BaseService(IBaseRepository<TEntity> repository)
         {
-            _repository = _repo;
+            _repository = repository;
         }        
 
         public void Add(TEntity obj)

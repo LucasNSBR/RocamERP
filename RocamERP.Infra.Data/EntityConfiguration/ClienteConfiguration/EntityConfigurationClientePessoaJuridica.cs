@@ -11,7 +11,7 @@ namespace RocamERP.Infra.Data.EntityConfiguration.ClienteConfiguration
 
             Property(pj => pj.CNPJ)
                 .HasMaxLength(14)
-                .IsOptional();
+                .IsRequired();
 
             Property(pj => pj.InscricaoEstadual)
                 .HasMaxLength(9)

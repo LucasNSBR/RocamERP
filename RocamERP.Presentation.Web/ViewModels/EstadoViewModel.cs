@@ -3,17 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RocamERP.Presentation.Web.ViewModels
 {
-    public class BancoViewModel
+    public class EstadoViewModel
     {
         [Key]
-        [MaxLength(100, ErrorMessage = "O tamanho máximo é de 100 caracteres.")]
+        [MaxLength(50, ErrorMessage = "O tamanho máximo para o campo é de 50 caracteres.")]
         public string Nome { get; set; }
+        public virtual ICollection<CidadeViewModel> Cidades { get; set; }
 
-        public virtual ICollection<ChequeViewModel> Cheques { get; set; }
-
-        public BancoViewModel()
+        public EstadoViewModel()
         {
-            Cheques = new List<ChequeViewModel>();
+            Cidades = new List<CidadeViewModel>();
         }
 
         public override string ToString()

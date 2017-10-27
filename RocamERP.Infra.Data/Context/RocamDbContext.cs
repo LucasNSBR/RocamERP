@@ -18,7 +18,7 @@ namespace RocamERP.Infra.Data
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Contato> Contatos { get; set; }
 
-        public RocamDbContext() : base("RocamData") { }
+        public RocamDbContext() : base("name=RocamDb") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

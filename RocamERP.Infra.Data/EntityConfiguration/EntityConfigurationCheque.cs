@@ -19,7 +19,7 @@ namespace RocamERP.Infra.Data.EntityConfiguration
 
             Property(ch => ch.Observacao)
                 .HasMaxLength(250)
-                .IsRequired();
+                .IsOptional();
 
             Property(ch => ch.Valor)
                 .IsRequired();
