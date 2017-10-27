@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
 using RocamERP.Application.Interfaces;
-using RocamERP.Services.Services;
+using RocamERP.Domain.ServiceInterfaces;
 
 namespace RocamERP.Application
 {
-    public class BaseApplicationService<TService> : IBaseApplicationService<TService> where TService : class
+    public class BaseApplicationService<TEntity> : IBaseApplicationService<TEntity> where TEntity : class
     {
-        private BaseService<TService> _baseService; 
+        private readonly IBaseService<TEntity> _baseService;
 
-        public void Add(TService obj)
+        public BaseApplicationService(IBaseService<TEntity> service)
+        {
+            _baseService = service;
+        }
+
+        public void Add(TEntity obj)
         {
             _baseService.Add(obj);
         }
@@ -18,22 +23,22 @@ namespace RocamERP.Application
             _baseService.Delete(id);
         }
 
-        public IEnumerable<TService> Get()
+        public IEnumerable<TEntity> Get()
         {
             return _baseService.Get();
         }
 
-        public TService Get(int id)
+        public TEntity Get(int id)
         {
             return _baseService.Get(id);
         }
 
-        public TService Get(string id)
+        public TEntity Get(string id)
         {
             return _baseService.Get(id);
         }
 
-        public void Update(TService obj)
+        public void Update(TEntity obj)
         {
             _baseService.Update(obj);
         }

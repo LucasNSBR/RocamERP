@@ -1,8 +1,8 @@
-﻿using RocamERP.Services.Services;
+﻿using RocamERP.Domain.Models;
 
 namespace RocamERP.Application.Interfaces
 {
-    public interface ICidadeApplicationService : IBaseApplicationService<CidadeService>
+    public interface ICidadeApplicationService : IBaseApplicationService<Cidade>
     {
     }
 }

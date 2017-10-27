@@ -2,7 +2,7 @@
 
 namespace RocamERP.Domain.RepositoryInterfaces
 {
-    public interface IEstadoRepository<T> : IBaseRepository<Estado>
+    public interface IEstadoRepository : IBaseRepository<Estado>
     {
     }
 }

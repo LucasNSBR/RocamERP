@@ -1,9 +1,16 @@
 ﻿using RocamERP.Application.Interfaces;
-using RocamERP.Services.Services;
+using RocamERP.Domain.Models;
+using RocamERP.Domain.ServiceInterfaces;
 
 namespace RocamERP.Application
 {
-    public class ContatoApplicationService : BaseApplicationService<ContatoService>, IContatoApplicationService
+    public class ContatoApplicationService : BaseApplicationService<Contato>, IContatoApplicationService
     {
+        private readonly IContatoService _contatoService;
+
+        public ContatoApplicationService(IContatoService contatoService) : base(contatoService)
+        {
+            _contatoService = contatoService;
+        }
     }
 }

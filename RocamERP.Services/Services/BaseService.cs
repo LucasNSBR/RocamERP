@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
-using RocamERP.Infra.Data.Repositories;
 using RocamERP.Domain.ServiceInterfaces;
+using RocamERP.Domain.RepositoryInterfaces;
 
 namespace RocamERP.Services.Services
 {
-    public class BaseService<TRepository> : IBaseService<TRepository> where TRepository : class
+    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        private BaseRepository<TRepository> _repository = new BaseRepository<TRepository>();
-        
-        public void Add(TRepository obj)
+        public readonly IBaseRepository<TEntity> _repository; 
+
+        public BaseService(IBaseRepository<TEntity> _repo)
+        {
+            _repository = _repo;
+        }        
+
+        public void Add(TEntity obj)
         {
             _repository.Add(obj);
         }
@@ -18,22 +23,22 @@ namespace RocamERP.Services.Services
             _repository.Delete(id);
         }
 
-        public IEnumerable<TRepository> Get()
+        public IEnumerable<TEntity> Get()
         {
             return _repository.Get();
         }
 
-        public TRepository Get(int id)
+        public TEntity Get(int id)
         {
             return _repository.Get(id);
         }
 
-        public TRepository Get(string id)
+        public TEntity Get(string id)
         {
             return _repository.Get(id);
         }
 
-        public void Update(TRepository obj)
+        public void Update(TEntity obj)
         {
             _repository.Update(obj);
         }

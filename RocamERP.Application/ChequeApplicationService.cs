@@ -1,9 +1,9 @@
 ﻿using RocamERP.Application.Interfaces;
-using RocamERP.Services.Services;
+using RocamERP.Domain.Models;
 
 namespace RocamERP.Application
 {
-    public class ChequeApplicationService : BaseApplicationService<ChequeService>, IChequeApplicationService
+    public class ChequeApplicationService : BaseApplicationService<Cheque>, IChequeApplicationService
     {
     }
 }

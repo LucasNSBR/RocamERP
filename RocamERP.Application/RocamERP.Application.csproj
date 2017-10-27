@@ -49,9 +49,9 @@
     <Compile Include="ContatoApplicationService.cs" />
     <Compile Include="EnderecoApplicationService.cs" />
     <Compile Include="CidadeApplicationService.cs" />
-    <Compile Include="Interfaces\Cliente\IClienteApplicationService.cs" />
-    <Compile Include="Interfaces\Cliente\IClientePessoaFisicaApplicationService.cs" />
-    <Compile Include="Interfaces\Cliente\IClientePessoaJuridicaApplicationService.cs" />
+    <Compile Include="Interfaces\ClienteApplicationService\IClienteApplicationService.cs" />
+    <Compile Include="Interfaces\ClienteApplicationService\IClientePessoaFisicaApplicationService.cs" />
+    <Compile Include="Interfaces\ClienteApplicationService\IClientePessoaJuridicaApplicationService.cs" />
     <Compile Include="EstadoApplicationService.cs" />
     <Compile Include="Interfaces\IBaseApplicationService.cs" />
     <Compile Include="Interfaces\IBancoApplicationService.cs" />
@@ -63,6 +63,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RocamERP.Domain\RocamERP.Domain.csproj">
+      <Project>{E3100186-D87F-449B-954B-5EE239D424B4}</Project>
+      <Name>RocamERP.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RocamERP.Services\RocamERP.Services.csproj">
       <Project>{b023673b-4dc6-4643-95ff-69c4cddef04b}</Project>
       <Name>RocamERP.Services</Name>
