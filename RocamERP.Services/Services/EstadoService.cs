@@ -12,5 +12,15 @@ namespace RocamERP.Services.Services
         {
             _estadoRepository = estadoRepository;
         }
+
+        public Estado Get(string id)
+        {
+            return _estadoRepository.Get(id);
+        }
+
+        public void Delete(string id)
+        {
+            _estadoRepository.Delete(id);
+        }
     }
 }

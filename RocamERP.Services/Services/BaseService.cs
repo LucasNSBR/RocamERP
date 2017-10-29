@@ -33,11 +33,6 @@ namespace RocamERP.Services.Services
             return _repository.Get(id);
         }
 
-        public TEntity Get(string id)
-        {
-            return _repository.Get(id);
-        }
-
         public void Update(TEntity obj)
         {
             _repository.Update(obj);

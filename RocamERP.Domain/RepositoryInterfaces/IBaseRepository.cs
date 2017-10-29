@@ -8,7 +8,6 @@ namespace RocamERP.Domain.RepositoryInterfaces
 
         IEnumerable<TEntity> Get();
         TEntity Get(int id);
-        TEntity Get(string id);
 
         void Update(TEntity obj);
         void Delete(int id);

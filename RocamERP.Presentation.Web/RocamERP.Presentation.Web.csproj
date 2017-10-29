@@ -160,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -196,6 +197,11 @@
     <Content Include="Areas\Plataforma\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Estados\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Estados\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Estados\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Estados\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cidades\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.EstadoViewModel>
+﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.CidadeViewModel>
 
 @{
-    ViewBag.Title = "Estados";
+    ViewBag.Title = "Cidades";
 }
 
-<h2>Estados</h2>
+<h2>Cidades</h2>
 
 <p>
     @Html.ActionLink("Adicionar Novo", "Create")
@@ -12,7 +12,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th class="border-0">Lista de estados</th>
+            <th>
+                Lista de cidades
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoId)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -20,9 +25,12 @@
         {
             <tr>
                 <td>
-                    @item.Nome
+                    @Html.DisplayFor(modelItem => item.Nome)
                 </td>
-                <td class="text-right">
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoId)
+                </td>
+                <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.Nome }) |
                     @Html.ActionLink("Detalhes", "Details", new { id = item.Nome }) |
                     @Html.ActionLink("Excluir", "Delete", new { id = item.Nome })

@@ -1,0 +1,48 @@
+﻿@model RocamERP.Presentation.Web.ViewModels.EstadoViewModel
+
+@{
+    ViewBag.Title = Model.Nome;
+}
+
+<h2>Detalhes</h2>
+
+@if (Model.Cidades.Count() > 0)
+{ 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Model.Nome
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var cidade in Model.Cidades)
+            {
+                <tr>
+                    <td>
+                        @cidade.Nome
+                    </td>
+                    <td>
+                        @cidade.Estado
+                    </td>
+                    <td>
+                        @cidade.CEP
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>
+    Nenhuma cidade listada.
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Nome }) |
+    @Html.ActionLink("Página anterior", "Index")
+</p>

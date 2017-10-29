@@ -7,10 +7,20 @@ namespace RocamERP.Application
     public class EstadoApplicationService : BaseApplicationService<Estado>, IEstadoApplicationService
     {
         private readonly IEstadoService _estadoService;
-
+        
         public EstadoApplicationService(IEstadoService estadoService) : base(estadoService)
         {
             _estadoService = estadoService;
+        }
+
+        public Estado Get(string id)
+        {
+            return _estadoService.Get(id);
+        }
+
+        public void Delete(string id)
+        {
+            _estadoService.Delete(id);
         }
     }
 }

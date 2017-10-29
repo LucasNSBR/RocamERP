@@ -8,7 +8,6 @@ namespace RocamERP.Application.Interfaces
 
         IEnumerable<T> Get();
         T Get(int id);
-        T Get(string id);
 
         void Update(T obj);
         void Delete(int id);

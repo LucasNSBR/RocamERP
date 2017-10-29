@@ -1,15 +1,15 @@
 ﻿using RocamERP.Application.Interfaces;
 using System.Web.Mvc;
-using RocamERP.Presentation.Web.Mappers;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
     public class EstadosController : Controller
     {
-        private IEstadoApplicationService _estadoApplicationService; 
+        private readonly IEstadoApplicationService _estadoApplicationService; 
 
         public EstadosController(IEstadoApplicationService estadoApplicationService)
         {
@@ -19,18 +19,21 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult Index()
         {
             var list = _estadoApplicationService.Get();
-            var vmList = new List<EstadoViewModel>();
+            var listVM = new List<EstadoViewModel>();
 
             foreach (Estado estado in list) {
-                vmList.Add(AutoMapper.Mapper.Map<Estado, EstadoViewModel>(estado));
+                listVM.Add(Mapper.Map<Estado, EstadoViewModel>(estado));
             }
 
-            return View(vmList);
+            return View(listVM);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            Estado estado = _estadoApplicationService.Get(id);
+            var estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
+
+            return View(estadoVM);
         }
 
         public ActionResult Create()
@@ -38,13 +41,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View();
         }
 
-        // POST: Plataforma/Estados/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EstadoViewModel model)
         {
             try
             {
-
+                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
+                _estadoApplicationService.Add(estado);
 
                 return RedirectToAction("Index");
             }
@@ -54,20 +57,22 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             }
         }
 
-        // GET: Plataforma/Estados/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var estado = _estadoApplicationService.Get(id);
+            var estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
+
+            return View(estadoVM);
         }
 
-        // POST: Plataforma/Estados/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, EstadoViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
+                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
+                _estadoApplicationService.Update(estado);
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -76,20 +81,20 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             }
         }
 
-        // GET: Plataforma/Estados/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var estado = _estadoApplicationService.Get(id);
+            var estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
+
+            return View(estadoVM);
         }
 
-        // POST: Plataforma/Estados/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, EstadoViewModel model)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                _estadoApplicationService.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
