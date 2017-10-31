@@ -18,6 +18,11 @@ namespace RocamERP.Presentation.Web.App_Start
     using RocamERP.Services.Services;
     using RocamERP.Domain.RepositoryInterfaces;
     using RocamERP.Infra.Data.Repositories;
+    using RocamERP.Application.Interfaces.ClienteApplicationService;
+    using RocamERP.Domain.ServiceInterfaces.ClienteServices;
+    using RocamERP.Services.Services.ClienteServices;
+    using RocamERP.Domain.RepositoryInterfaces.ClienteRepository;
+    using RocamERP.Infra.Data.Repositories.ClienteRepository;
 
     public static class NinjectWebCommon 
     {
@@ -69,20 +74,46 @@ namespace RocamERP.Presentation.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            //APPLICATION SERVICES
             kernel.Bind(typeof(IBaseApplicationService<>)).To(typeof(BaseApplicationService<>));
             kernel.Bind<IEstadoApplicationService>().To(typeof(EstadoApplicationService));
             kernel.Bind<ICidadeApplicationService>().To(typeof(CidadeApplicationService));
             kernel.Bind<IBancoApplicationService>().To(typeof(BancoApplicationService));
+            kernel.Bind<IContatoApplicationService>().To(typeof(ContatoApplicationService));
+            kernel.Bind<IEnderecoApplicationService>().To(typeof(EnderecoApplicationService));
+            kernel.Bind<IChequeApplicationService>().To(typeof(ChequeApplicationService));
 
+            kernel.Bind<IClienteApplicationService>().To(typeof(ClienteApplicationService));
+            kernel.Bind<IClientePessoaFisicaApplicationService>().To(typeof(ClientePessoaFisicaApplicationService));
+            kernel.Bind<IClientePessoaJuridicaApplicationService>().To(typeof(ClientePessoaJuridicaApplicationService));
+
+
+            //SERVICES
             kernel.Bind(typeof(IBaseService<>)).To(typeof(BaseService<>));
             kernel.Bind<IEstadoService>().To(typeof(EstadoService));
             kernel.Bind<ICidadeService>().To(typeof(CidadeService));
             kernel.Bind<IBancoService>().To(typeof(BancoService));
+            kernel.Bind<IContatoService>().To(typeof(ContatoService));
+            kernel.Bind<IEnderecoService>().To(typeof(EnderecoService));
+            kernel.Bind<IChequeService>().To(typeof(ChequeService));
 
+            kernel.Bind<IClienteService>().To(typeof(ClienteService));
+            kernel.Bind<IClientePessoaFisicaService>().To(typeof(ClientePessoaFisicaService));
+            kernel.Bind<IClientePessoaJuridicaService>().To(typeof(ClientePessoaJuridicaService));
+
+
+            //REPOSITORIES
             kernel.Bind(typeof(IBaseRepository<>)).To(typeof(BaseRepository<>));
             kernel.Bind<IEstadoRepository>().To(typeof(EstadoRepository));
             kernel.Bind<ICidadeRepository>().To(typeof(CidadeRepository));
             kernel.Bind<IBancoRepository>().To(typeof(BancoRepository));
+            kernel.Bind<IContatoRepository>().To(typeof(ContatoRepository));
+            kernel.Bind<IEnderecoRepository>().To(typeof(EnderecoRepository));
+            kernel.Bind<IChequeService>().To(typeof(ChequeService));
+
+            kernel.Bind<IClienteRepository>().To(typeof(ClienteRepository));
+            kernel.Bind<IClientePessoaFisicaRepository>().To(typeof(ClientePessoaFisicaRepository));
+            kernel.Bind<IClientePessoaJuridicaRepository>().To(typeof(ClientePessoaJuridicaRepository));
         }
     }
 }

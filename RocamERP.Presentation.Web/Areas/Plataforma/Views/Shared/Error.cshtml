@@ -3,11 +3,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Error</title>
+    @Styles.Render("~/content/css")
 </head>
 <body>
     <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
+        <h1>Erro</h1>
+        <h2>Um erro ocorreu durante sua requisição.</h2>
     </hgroup>
+    <div>
+        @Html.ActionLink("Voltar para página inicial", "Index", "Home")
+    </div>
+
+    @Scripts.Render("~/bundles/customjs")
 </body>
 </html>
+

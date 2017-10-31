@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocamERP.Domain", "RocamERP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocamERP.Infra.Data", "RocamERP.Infra.Data\RocamERP.Infra.Data.csproj", "{261C3C12-867A-4942-8BD0-4489A9DBA05F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rocam.ERP.Presentation.Web.Tests", "Rocam.ERP.Presentation.Web.Tests\Rocam.ERP.Presentation.Web.Tests.csproj", "{CDACE344-329D-467F-843C-B2BF643D99CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{261C3C12-867A-4942-8BD0-4489A9DBA05F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{261C3C12-867A-4942-8BD0-4489A9DBA05F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{261C3C12-867A-4942-8BD0-4489A9DBA05F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDACE344-329D-467F-843C-B2BF643D99CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDACE344-329D-467F-843C-B2BF643D99CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDACE344-329D-467F-843C-B2BF643D99CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDACE344-329D-467F-843C-B2BF643D99CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +74,6 @@ Global
 		{B013814C-AE69-47C3-9CEB-0302409C93A6} = {0A1ECB9A-9D66-481A-BD79-A7724EEBA615}
 		{E3100186-D87F-449B-954B-5EE239D424B4} = {CB5FDF1F-F0DF-40A7-A9BA-8F9C92A6D2C0}
 		{261C3C12-867A-4942-8BD0-4489A9DBA05F} = {BC7F755D-92DB-42C2-BAC0-5DB52C2D9544}
+		{CDACE344-329D-467F-843C-B2BF643D99CE} = {0A1ECB9A-9D66-481A-BD79-A7724EEBA615}
 	EndGlobalSection
 EndGlobal

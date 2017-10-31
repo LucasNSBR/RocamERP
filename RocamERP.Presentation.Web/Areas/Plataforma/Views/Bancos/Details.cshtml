@@ -1,0 +1,67 @@
+﻿@model RocamERP.Presentation.Web.ViewModels.BancoViewModel
+
+@{
+    ViewBag.Title = $"{Model.Nome} - Detalhes";
+}
+
+<h2>@Model.Nome</h2>
+
+<div>
+    <h4>Detalhes do banco</h4>
+    <hr />
+    @if (Model.Cheques.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Agência
+                    </th>
+                    <th>
+                        Conta Corrente
+                    </th>
+                    <th>
+                        Recebimento
+                    </th>
+                    <th>
+                        Vencimento
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var cheque in Model.Cheques)
+                {
+                    <tr>
+                        <td>
+                            @cheque.Agencia
+                        </td>
+                        <td>
+                            @cheque.ContaCorrente
+                        </td>
+                        <td>
+                            @cheque.ContaCorrente
+                        </td>
+                        <td>
+                            @cheque.DataRecebimento.Date
+                        </td>
+                        <td>
+                            @cheque.DataVencimento.Date
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>
+            Nenhum cheque listado
+        </p>
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Nome }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

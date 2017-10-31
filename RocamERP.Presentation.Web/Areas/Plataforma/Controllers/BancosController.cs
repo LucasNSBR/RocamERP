@@ -2,16 +2,18 @@
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
-    public class BancosController : Controller
+    public class BancosController : Controller 
     {
         private readonly IBancoApplicationService _bancoApplicationService;
 
-        public BancosController(IBancoApplicationService bancoApplicationService)
+        public BancosController(IBancoApplicationService bancoApplicationService) 
         {
             _bancoApplicationService = bancoApplicationService;
         }
@@ -38,6 +40,8 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Details(string id)
         {
+            id = Uri.UnescapeDataString(id);
+
             try
             {
                 var banco = _bancoApplicationService.Get(id);

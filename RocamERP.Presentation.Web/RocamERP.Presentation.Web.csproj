@@ -161,7 +161,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\BaseController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\ContatoController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\EnderecoController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,6 +173,9 @@
     </Compile>
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
+    <Compile Include="Mappers\Generic\GenericAutoMapperConfig.cs" />
+    <Compile Include="Mappers\Generic\GenericDomainToViewModelMappingProfile.cs" />
+    <Compile Include="Mappers\Generic\GenericViewModelToDomainMappingProfile.cs" />
     <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
@@ -194,7 +200,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Plataforma\Views\web.config" />
+    <Content Include="Areas\Plataforma\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
@@ -209,6 +217,19 @@
     <Content Include="Areas\Plataforma\Views\Cidades\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Bancos\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Bancos\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Bancos\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contato\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Endereco\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contato\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contato\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contato\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contato\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Endereco\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Endereco\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Endereco\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Endereco\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -239,6 +260,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
+    <Folder Include="Areas\Plataforma\Views\Error\" />
+    <Folder Include="Controllers\ErrorHandling\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
