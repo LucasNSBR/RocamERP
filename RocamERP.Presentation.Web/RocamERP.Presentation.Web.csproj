@@ -160,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\Images\icons\favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -194,7 +196,6 @@
     </Content>
     <Content Include="Areas\Plataforma\Views\web.config" />
     <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Details.cshtml" />
@@ -202,6 +203,12 @@
     <Content Include="Areas\Plataforma\Views\Estados\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cidades\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cidades\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cidades\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cidades\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Bancos\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Bancos\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

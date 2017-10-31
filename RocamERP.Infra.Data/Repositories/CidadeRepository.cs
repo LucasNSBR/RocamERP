@@ -15,6 +15,7 @@ namespace RocamERP.Infra.Data.Repositories
         {
             var cidade = dbContext.Cidades.Find(id);
             dbContext.Cidades.Remove(cidade);
+            dbContext.SaveChanges();
         }
     }
 }

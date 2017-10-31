@@ -1,7 +1,6 @@
 ﻿using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Domain.ServiceInterfaces;
-using RocamERP.Services.Services;
 
 namespace RocamERP.Application
 {
@@ -12,6 +11,16 @@ namespace RocamERP.Application
         public BancoApplicationService(IBancoService bancoService) : base(bancoService)
         {
             _bancoService = bancoService;
+        }
+
+        public Banco Get(string id)
+        {
+            return _bancoService.Get(id);
+        }
+
+        public void Delete(string id)
+        {
+            _bancoService.Delete(id);
         }
     }
 }

@@ -1,25 +1,22 @@
-﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.CidadeViewModel>
+﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.BancoViewModel>
 
 @{
-    ViewBag.Title = "Cidades";
+    ViewBag.Title = "Bancos";
 }
 
-<h2>Cidades</h2>
+<h2>Bancos</h2>
 
 <p>
-    @Html.ActionLink("Adicionar Novo", "Create")
+    @Html.ActionLink("Novo", "Create")
 </p>
 <table class="table">
     <thead class="reset-border">
         <tr>
             <th>
-                Cidade
+                Nome
             </th>
             <th>
-                Estado
-            </th>
-            <th>
-                CEP
+                Quantidade de Cheques
             </th>
         </tr>
     </thead>
@@ -28,13 +25,20 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
+                    @item.Nome
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EstadoId)
-                </td>
-                <td class="cep">
-                    @Html.DisplayFor(modelitem => item.CEP)
+                    
+                    @if (item.Cheques.Count > 0)
+                    {
+                        @Html.ActionLink($"{item.Cheques.Count} Cheques", "Index", "Cheques", new { @banco = item.Nome })
+                    }
+                    else
+                    {
+                       <p>
+                           Nenhum cheque encontrado
+                       </p>
+                    }
                 </td>
                 <td class="text-right">
                     @Html.ActionLink("Editar", "Edit", new { id = item.Nome }) |
@@ -45,8 +49,3 @@
         }
     </tbody>
 </table>
-
-@section scripts {
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/custom-js");    
-}

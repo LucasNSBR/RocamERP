@@ -72,14 +72,17 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind(typeof(IBaseApplicationService<>)).To(typeof(BaseApplicationService<>));
             kernel.Bind<IEstadoApplicationService>().To(typeof(EstadoApplicationService));
             kernel.Bind<ICidadeApplicationService>().To(typeof(CidadeApplicationService));
+            kernel.Bind<IBancoApplicationService>().To(typeof(BancoApplicationService));
 
             kernel.Bind(typeof(IBaseService<>)).To(typeof(BaseService<>));
             kernel.Bind<IEstadoService>().To(typeof(EstadoService));
             kernel.Bind<ICidadeService>().To(typeof(CidadeService));
+            kernel.Bind<IBancoService>().To(typeof(BancoService));
 
             kernel.Bind(typeof(IBaseRepository<>)).To(typeof(BaseRepository<>));
             kernel.Bind<IEstadoRepository>().To(typeof(EstadoRepository));
             kernel.Bind<ICidadeRepository>().To(typeof(CidadeRepository));
+            kernel.Bind<IBancoRepository>().To(typeof(BancoRepository));
         }
     }
 }

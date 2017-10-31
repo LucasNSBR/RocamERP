@@ -11,10 +11,12 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class CidadesController : Controller
     {
         private readonly ICidadeApplicationService _cidadeApplicationService;
+        private readonly IEstadoApplicationService _estadoApplicationService;
 
-        public CidadesController(ICidadeApplicationService cidadeApplicationService)
+        public CidadesController(ICidadeApplicationService cidadeApplicationService, IEstadoApplicationService estadoApplicationService)
         {
             _cidadeApplicationService = cidadeApplicationService;
+            _estadoApplicationService = estadoApplicationService;
         }
 
         public ActionResult Index()
@@ -27,8 +29,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 listVM.Add(Mapper.Map<Cidade, CidadeViewModel>(cidade));
             }
 
-            listVM.OrderBy(c => c.Nome).GroupBy(c => c.EstadoId);
-            return View(listVM);
+            return View(listVM.OrderBy(c => c.EstadoId));
         }
 
         public ActionResult Details(string id)
@@ -41,6 +42,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.EstadoId = new SelectList(_estadoApplicationService.Get(), "Nome", "Nome");
             return View();
         }
 
@@ -49,10 +51,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var cidade = Mapper.Map<CidadeViewModel, Cidade>(model);
-                _cidadeApplicationService.Add(cidade);
+                if (ModelState.IsValid)
+                {
+                    var cidade = Mapper.Map<CidadeViewModel, Cidade>(model);
+                    _cidadeApplicationService.Add(cidade);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
@@ -64,7 +71,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
-            
+
             return View(cidadeVM);
         }
 
@@ -73,10 +80,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var cidade = Mapper.Map<CidadeViewModel, Cidade>(model);
-                _cidadeApplicationService.Update(cidade);
+                if (ModelState.IsValid)
+                {
+                    var cidade = Mapper.Map<CidadeViewModel, Cidade>(model);
+                    _cidadeApplicationService.Update(cidade);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
@@ -84,7 +96,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             }
         }
 
-         public ActionResult Delete(string id)
+        public ActionResult Delete(string id)
         {
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
@@ -104,6 +116,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult ValidateCEP(string CEP)
+        {
+            var cidades = _cidadeApplicationService.Get();
+            var exists = !cidades.ToList().Any(c => c.CEP == CEP);
+
+            return Json(exists, JsonRequestBehavior.AllowGet);
         }
     }
 }

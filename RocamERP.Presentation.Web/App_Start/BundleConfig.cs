@@ -7,7 +7,7 @@ namespace RocamERP.Presentation.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/custom-js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/customjs").Include(
                         "~/Scripts/main-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -25,7 +25,8 @@ namespace RocamERP.Presentation.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/custom.css"));
 
             BundleTable.EnableOptimizations = true;
         }

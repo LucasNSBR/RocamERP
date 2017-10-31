@@ -14,6 +14,7 @@ namespace RocamERP.Infra.Data.Repositories
         {
             var estado = dbContext.Estados.Find(id);
             dbContext.Estados.Remove(estado);
+            dbContext.SaveChanges();
         }
     }
 }

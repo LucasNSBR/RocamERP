@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.ViewModels
 {
@@ -7,10 +8,13 @@ namespace RocamERP.Presentation.Web.ViewModels
     {
         [Key]
         [MaxLength(100, ErrorMessage = "O campo deve ter no máximo 100 caracteres.")]
+        [MinLength(2, ErrorMessage = "O campo deve ter no mínimo 3 caracteres")]
         public string Nome { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        [MaxLength(100, ErrorMessage = "O campo deve ter no máximo 8 caracteres.")]
+        [MaxLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
+        [MinLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
+        [Remote("ValidateCEP", "Cidades", "Plataforma", ErrorMessage = "Já existe uma cidade com esse mesmo CEP.")]
         public string CEP { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]

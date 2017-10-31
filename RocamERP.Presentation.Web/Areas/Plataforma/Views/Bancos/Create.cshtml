@@ -1,7 +1,7 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.EstadoViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.BancoViewModel
 
 @{
-    ViewBag.Title = "Adicionar estado";
+    ViewBag.Title = "Adicionar banco";
 }
 
 <h2>Novo</h2>
@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div>
-        <h6>Adicionar novo estado</h6>
+        <h4>Adicionar novo banco</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -19,7 +19,7 @@
             @Html.TextBoxFor(e => e.Nome, new { @class = "form-control" })
             @Html.ValidationMessageFor(e => e.Nome, null, new { @class = "small col-12 text-right text-danger pt-2" })
         </div>
-        
+
         <div class="form-group row pt-5">
             <div class="col-12">
                 <input type="submit" value="Adicionar" class="btn btn-default" />
@@ -29,9 +29,9 @@
 }
 
 <div>
-    @Html.ActionLink("Página Anterior", "Index")
+    @Html.ActionLink("Página anterior", "Index")
 </div>
 
-@section Scripts{
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval");    
 }
