@@ -24,10 +24,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var list = _cidadeApplicationService.Get();
             var listVM = new List<CidadeViewModel>();
 
-            foreach (Cidade cidade in list)
-            {
-                listVM.Add(Mapper.Map<Cidade, CidadeViewModel>(cidade));
-            }
+            Mapper.Map(list, listVM);
 
             return View(listVM.OrderBy(c => c.EstadoId));
         }

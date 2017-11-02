@@ -1,4 +1,6 @@
-﻿namespace RocamERP.Domain.Models
+﻿using System;
+
+namespace RocamERP.Domain.Models
 {
     public class ClientePessoaJuridica : Cliente
     {

@@ -162,12 +162,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\ChequesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\ClientesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ContatoController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EnderecoController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\HtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
     <Content Include="Areas\Plataforma\Views\Endereco\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Endereco\Edit.cshtml" />
     <Content Include="Areas\Plataforma\Views\Endereco\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cheques\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cheques\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Clientes\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

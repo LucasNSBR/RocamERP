@@ -11,11 +11,22 @@ namespace RocamERP.Presentation.Web.Mappers
             CreateMap<Estado, EstadoViewModel>();
             CreateMap<Cidade, CidadeViewModel>();
             CreateMap<Banco, BancoViewModel>();
-            CreateMap<Cheque, ChequeViewModel>();
+            CreateMap<Cheque, ChequeViewModel>().PreserveReferences();
             CreateMap<Endereco, EnderecoViewModel>();
             CreateMap<Contato, ContatoViewModel>();
 
-            CreateMap<Cliente, ClienteViewModel>();
+            CreateMap<Cliente, ClienteViewModel>()
+                .Include<ClientePessoaFisica, ClientePessoaFisicaViewModel>().PreserveReferences()
+                .Include<ClientePessoaJuridica, ClientePessoaJuridicaViewModel>().PreserveReferences();
+
+            //CreateMap<Cliente, ClienteViewModel>()
+            //    .Include<ClientePessoaFisica, ClientePessoaFisicaViewModel>()
+            //    .ForMember(d => d.CPF, m => m.MapFrom(s => s.GetRegistroFederal()));
+            //CreateMap<Cliente, ClienteViewModel>()
+            //    .Include<ClientePessoaFisica, ClientePessoaFisicaViewModel>()
+            //    .ForMember(d => d.CPF, m => m.MapFrom(s => s.GetRegistroFederal()));
+
+
             CreateMap<ClientePessoaFisica, ClientePessoaFisicaViewModel>();
             CreateMap<ClientePessoaJuridica, ClientePessoaJuridicaViewModel>();
         }

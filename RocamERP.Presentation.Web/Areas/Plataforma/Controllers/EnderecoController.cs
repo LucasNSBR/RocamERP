@@ -10,7 +10,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
     public class EnderecoController : Controller
     {
-        IEnderecoApplicationService _enderecoApplicationService;
+        private readonly IEnderecoApplicationService _enderecoApplicationService;
 
         public EnderecoController(IEnderecoApplicationService enderecoApplicationService)
         {
@@ -24,10 +24,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var enderecos = _enderecoApplicationService.Get();
                 var enderecosVM = new List<EnderecoViewModel>();
 
-                foreach (var endereco in enderecos)
-                {
-                    enderecosVM.Add(Mapper.Map<Endereco, EnderecoViewModel>(endereco));
-                }
+                Mapper.Map(enderecos, enderecosVM);
 
                 return View(enderecosVM.OrderBy(c => c.ClienteId));
             }

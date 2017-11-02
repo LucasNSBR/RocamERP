@@ -21,9 +21,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var list = _estadoApplicationService.Get();
             var listVM = new List<EstadoViewModel>();
 
-            foreach (Estado estado in list) {
-                listVM.Add(Mapper.Map<Estado, EstadoViewModel>(estado));
-            }
+            Mapper.Map(list, listVM);
 
             return View(listVM);
         }

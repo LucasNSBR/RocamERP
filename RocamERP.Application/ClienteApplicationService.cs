@@ -1,4 +1,5 @@
-﻿using RocamERP.Application.Interfaces.ClienteApplicationService;
+﻿using System;
+using RocamERP.Application.Interfaces.ClienteApplicationService;
 using RocamERP.Domain.Models;
 using RocamERP.Domain.ServiceInterfaces.ClienteServices;
 

@@ -11,7 +11,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
     public class ContatoController : Controller
     {
-        IContatoApplicationService _contatoApplicationService;
+        private readonly IContatoApplicationService _contatoApplicationService;
 
         public ContatoController(IContatoApplicationService contatoApplicationService)
         {
@@ -25,10 +25,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var contatos = _contatoApplicationService.Get();
                 var contatosVM = new List<ContatoViewModel>();
 
-                foreach(var contato in contatos)
-                {
-                    contatosVM.Add(Mapper.Map<Contato, ContatoViewModel>(contato));
-                }
+                Mapper.Map(contatos, contatosVM);
 
                 return View(contatosVM.OrderBy(c => c.ClienteId));
             }

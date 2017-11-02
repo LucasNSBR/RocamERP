@@ -6,9 +6,9 @@
         public string Observacao { get; set; }
 
         public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
 
-        public TipoContato TipoContato { get; set; }
+        public virtual TipoContato TipoContato { get; set; }
 
         public override string ToString()
         {

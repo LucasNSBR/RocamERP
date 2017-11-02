@@ -7,16 +7,16 @@ namespace RocamERP.Domain.Models
         public int ChequeId { get; set; }
 
         public string BancoId { get; set; }
-        public Banco Banco { get; set; }
+        public virtual Banco Banco { get; set; }
         
         public string Agencia { get; set; }
         public string ContaCorrente { get; set; }
 
         public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
         public string Observacao { get; set; }
 
-        public SituacaoCheque SituacaoCheque { get; set; }
+        public virtual SituacaoCheque SituacaoCheque { get; set; }
 
         public DateTime DataRecebimento { get; set; }
         public DateTime DataVencimento { get; set; }

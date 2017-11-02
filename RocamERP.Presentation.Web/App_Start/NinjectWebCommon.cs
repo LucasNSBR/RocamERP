@@ -109,7 +109,7 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IBancoRepository>().To(typeof(BancoRepository));
             kernel.Bind<IContatoRepository>().To(typeof(ContatoRepository));
             kernel.Bind<IEnderecoRepository>().To(typeof(EnderecoRepository));
-            kernel.Bind<IChequeService>().To(typeof(ChequeService));
+            kernel.Bind<IChequeRepository>().To(typeof(ChequeRepository));
 
             kernel.Bind<IClienteRepository>().To(typeof(ClienteRepository));
             kernel.Bind<IClientePessoaFisicaRepository>().To(typeof(ClientePessoaFisicaRepository));

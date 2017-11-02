@@ -17,7 +17,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma
             context.MapRoute(
                 "Plataforma_default",
                 "Plataforma/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Cheques", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
