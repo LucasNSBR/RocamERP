@@ -31,9 +31,9 @@ namespace RocamERP.Infra.Data.EntityConfiguration
                 .WithMany(c => c.Enderecos)
                 .HasForeignKey(e => e.CidadeId);
 
-            HasRequired(e => e.Cliente)
+            HasRequired(e => e.Pessoa)
                 .WithMany(c => c.Enderecos)
-                .HasForeignKey(e => e.ClienteId);
+                .HasForeignKey(e => e.PessoaId);
         }
     }
 }

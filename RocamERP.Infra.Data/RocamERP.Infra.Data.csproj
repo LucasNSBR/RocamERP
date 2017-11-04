@@ -48,26 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\RocamDbContext.cs" />
-    <Compile Include="EntityConfiguration\ClienteConfiguration\EntityConfigurationClienteBase.cs" />
-    <Compile Include="EntityConfiguration\ClienteConfiguration\EntityConfigurationClientePessoaFisica.cs" />
-    <Compile Include="EntityConfiguration\ClienteConfiguration\EntityConfigurationClientePessoaJuridica.cs" />
+    <Compile Include="EntityConfiguration\EntityConfigurationPessoa.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationBanco.cs" />
+    <Compile Include="EntityConfiguration\EntityConfigurationCadastroEstadual.cs" />
+    <Compile Include="EntityConfiguration\EntityConfigurationCadastroNacional.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationCheque.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationCidade.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationContato.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEndereco.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEstado.cs" />
-    <Compile Include="Migrations\201710262256378_Initial.cs" />
-    <Compile Include="Migrations\201710262256378_Initial.Designer.cs">
-      <DependentUpon>201710262256378_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710271808322_SeedStateEntities.cs" />
-    <Compile Include="Migrations\201710271808322_SeedStateEntities.Designer.cs">
-      <DependentUpon>201710271808322_SeedStateEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711020052270_VirtualEntitiesBugFixed.cs" />
-    <Compile Include="Migrations\201711020052270_VirtualEntitiesBugFixed.Designer.cs">
-      <DependentUpon>201711020052270_VirtualEntitiesBugFixed.cs</DependentUpon>
+    <Compile Include="Migrations\201711032333342_Initial.cs" />
+    <Compile Include="Migrations\201711032333342_Initial.Designer.cs">
+      <DependentUpon>201711032333342_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,9 +67,7 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ChequeRepository.cs" />
     <Compile Include="Repositories\CidadeRepository.cs" />
-    <Compile Include="Repositories\ClienteRepository\ClientePessoaFisicaRepository.cs" />
-    <Compile Include="Repositories\ClienteRepository\ClientePessoaJuridicaRepository.cs" />
-    <Compile Include="Repositories\ClienteRepository\ClienteRepository.cs" />
+    <Compile Include="Repositories\PessoaRepository.cs" />
     <Compile Include="Repositories\ContatoRepository.cs" />
     <Compile Include="Repositories\EnderecoRepository.cs" />
     <Compile Include="Repositories\EstadoRepository.cs" />
@@ -89,19 +79,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710262256378_Initial.resx">
-      <DependentUpon>201710262256378_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710271808322_SeedStateEntities.resx">
-      <DependentUpon>201710271808322_SeedStateEntities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711020052270_VirtualEntitiesBugFixed.resx">
-      <DependentUpon>201711020052270_VirtualEntitiesBugFixed.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711032333342_Initial.resx">
+      <DependentUpon>201711032333342_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

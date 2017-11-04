@@ -1,69 +1,65 @@
 ﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.ChequeViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cheques";
 }
 
-<h2>Index</h2>
+<h2>Cheques</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BancoId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Agencia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContaCorrente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClienteId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataRecebimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataVencimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BancoId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Agencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContaCorrente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataRecebimento.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataVencimento.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ChequeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ChequeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ChequeId })
-        </td>
-    </tr>
-}
-
+    <thead class="reset-border">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BancoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroCheque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataRecebimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataVencimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.BancoId
+                </td>
+                <td>
+                    @item.NumeroCheque
+                </td>
+                <td>
+                    @item.Cliente.Nome
+                </td>
+                <td>
+                    @item.DataRecebimento.ToShortDateString()
+                </td>
+                <td>
+                    @item.DataVencimento.ToShortDateString()
+                </td>
+                <td>
+                    @item.Valor.ToString("C2")
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ChequeId }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.ChequeId }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.ChequeId })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

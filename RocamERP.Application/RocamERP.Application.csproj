@@ -43,15 +43,11 @@
     <Compile Include="BancoApplicationService.cs" />
     <Compile Include="BaseApplicationService.cs" />
     <Compile Include="ChequeApplicationService.cs" />
-    <Compile Include="ClienteApplicationService.cs" />
-    <Compile Include="ClientePessoaFisicaApplicationService.cs" />
-    <Compile Include="ClientePessoaJuridicaApplicationService.cs" />
+    <Compile Include="PessoaApplicationService.cs" />
     <Compile Include="ContatoApplicationService.cs" />
     <Compile Include="EnderecoApplicationService.cs" />
     <Compile Include="CidadeApplicationService.cs" />
-    <Compile Include="Interfaces\ClienteApplicationService\IClienteApplicationService.cs" />
-    <Compile Include="Interfaces\ClienteApplicationService\IClientePessoaFisicaApplicationService.cs" />
-    <Compile Include="Interfaces\ClienteApplicationService\IClientePessoaJuridicaApplicationService.cs" />
+    <Compile Include="Interfaces\IPessoaApplicationService.cs" />
     <Compile Include="EstadoApplicationService.cs" />
     <Compile Include="Interfaces\IBaseApplicationService.cs" />
     <Compile Include="Interfaces\IBancoApplicationService.cs" />
@@ -72,5 +68,6 @@
       <Name>RocamERP.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

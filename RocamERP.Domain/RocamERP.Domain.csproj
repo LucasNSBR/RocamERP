@@ -34,11 +34,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\CadastroEstadual.cs" />
+    <Compile Include="Models\CadastroNacional.cs" />
     <Compile Include="Models\Cheque.cs" />
     <Compile Include="Models\Cidade.cs" />
-    <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\ClientePessoaFisica.cs" />
-    <Compile Include="Models\ClientePessoaJuridica.cs" />
+    <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Estado.cs" />
@@ -47,15 +47,11 @@
     <Compile Include="RepositoryInterfaces\ICidadeRepository.cs" />
     <Compile Include="RepositoryInterfaces\IBaseRepository.cs" />
     <Compile Include="RepositoryInterfaces\IChequeRepository.cs" />
-    <Compile Include="RepositoryInterfaces\ClienteRepository\IClientePessoaFisicaRepository.cs" />
-    <Compile Include="RepositoryInterfaces\ClienteRepository\IClientePessoaJuridicaRepository.cs" />
-    <Compile Include="RepositoryInterfaces\ClienteRepository\IClienteRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IPessoaRepository.cs" />
     <Compile Include="RepositoryInterfaces\IContatoRepository.cs" />
     <Compile Include="RepositoryInterfaces\IEnderecoRepository.cs" />
     <Compile Include="RepositoryInterfaces\IEstadoRepository.cs" />
-    <Compile Include="ServiceInterfaces\ClienteServices\IClientePessoaFisicaService.cs" />
-    <Compile Include="ServiceInterfaces\ClienteServices\IClientePessoaJuridicaService.cs" />
-    <Compile Include="ServiceInterfaces\ClienteServices\IClienteService.cs" />
+    <Compile Include="ServiceInterfaces\IPessoaService.cs" />
     <Compile Include="ServiceInterfaces\IBancoService.cs" />
     <Compile Include="ServiceInterfaces\IChequeService.cs" />
     <Compile Include="ServiceInterfaces\IBaseService.cs" />

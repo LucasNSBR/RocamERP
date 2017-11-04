@@ -17,6 +17,10 @@ namespace RocamERP.Infra.Data.EntityConfiguration
                 .HasMaxLength(10)
                 .IsRequired();
 
+            Property(ch => ch.NumeroCheque)
+                .HasMaxLength(7)
+                .IsRequired();
+
             Property(ch => ch.Observacao)
                 .HasMaxLength(250)
                 .IsOptional();
@@ -37,9 +41,9 @@ namespace RocamERP.Infra.Data.EntityConfiguration
                 .WithMany(b => b.Cheques)
                 .HasForeignKey(ch => ch.BancoId);
 
-            HasRequired(ch => ch.Cliente)
+            HasRequired(ch => ch.Pessoa)
                 .WithMany(c => c.Cheques)
-                .HasForeignKey(ch => ch.ClienteId);
+                .HasForeignKey(ch => ch.PessoaId);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
                 Mapper.Map(enderecos, enderecosVM);
 
-                return View(enderecosVM.OrderBy(c => c.ClienteId));
+                return View(enderecosVM.OrderBy(c => c.Pessoa));
             }
             catch
             {

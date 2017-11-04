@@ -1,0 +1,194 @@
+﻿@model RocamERP.Presentation.Web.ViewModels.ClienteViewModel
+
+@{
+    ViewBag.Title = $"{Model.Nome} - Detalhes";
+}
+
+<h2 class="pb-3">Detalhes</h2>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#basicInfo">
+            Geral
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#chequesInfo">
+            Cheques
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#enderecosInfo">
+            Endereços
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#contatosInfo">
+            Contatos
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    
+    
+    <div class="tab-pane active" id="basicInfo" role="tabpanel"> 
+        <div class="p-3">
+            <h4>@Model.Nome</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Descricao)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RegistroFederal)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RegistroFederal)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RegistroEstadual)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RegistroEstadual)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+
+
+
+    <div class="tab-pane" id="chequesInfo" role="tabpanel">
+        
+        <div class="p-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Cheques.First().BancoId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Cheques.First().Agencia)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Cheques.First().ContaCorrente)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Cheques.First().NumeroCheque)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Cheques.First().Valor)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var cheque in Model.Cheques)
+                    {
+                        <tr>
+                            <td>
+                                @cheque.BancoId
+                            </td>
+                            <td>
+                                @cheque.Agencia
+                            </td>
+                            <td>
+                                @cheque.ContaCorrente
+                            </td>
+                            <td>
+                                @cheque.NumeroCheque
+                            </td>
+                            <td>
+                                @cheque.Valor
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="tab-pane" id="enderecosInfo" role="tabpanel">
+
+        <div class="p-5">
+            @if (Model.Enderecos.Count() > 0)
+            {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Enderecos.First().Rua)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Enderecos.First().Numero)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Enderecos.First().Bairro)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Enderecos.First().TipoEndereco)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => modelItem.Enderecos.First().Cidade)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var endereco in Model.Enderecos)
+                    {
+                        <tr>
+                            <td>
+                                @endereco.Rua
+                            </td>
+                            <td>
+                                @endereco.Numero
+                            </td>
+                            <td>
+                                @endereco.Bairro
+                            </td>
+                            <td>
+                                @endereco.TipoEndereco
+                            </td>
+                            <td>
+                                @endereco.Cidade
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            }
+            else
+            {
+                <p>
+                    Nenhum endereço registrado.
+                </p>
+
+                @Html.ActionLink("Adicionar novo", "Create", "Enderecos", new { })
+            }
+        </div>
+
+    </div>
+    <div class="tab-pane" id="contatosInfo" role="tabpanel">
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ClienteId }) |
+    @Html.ActionLink("Página Anterior", "Index")
+</p>

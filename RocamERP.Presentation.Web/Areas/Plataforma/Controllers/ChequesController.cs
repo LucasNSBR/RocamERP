@@ -29,7 +29,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                     chequesVM.Add(Mapper.Map<Cheque, ChequeViewModel>(cheque));
                 }
 
-                return View(chequesVM.OrderBy(c => c.ClienteId));
+                return View(chequesVM.OrderBy(c => c.Pessoa));
             }
             catch
             {

@@ -10,7 +10,6 @@ namespace RocamERP.Presentation.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using RocamERP.Presentation.Web.Areas.Plataforma.Controllers;
     using RocamERP.Application;
     using RocamERP.Application.Interfaces;
     using Ninject.Web.Common.WebHost;
@@ -18,11 +17,6 @@ namespace RocamERP.Presentation.Web.App_Start
     using RocamERP.Services.Services;
     using RocamERP.Domain.RepositoryInterfaces;
     using RocamERP.Infra.Data.Repositories;
-    using RocamERP.Application.Interfaces.ClienteApplicationService;
-    using RocamERP.Domain.ServiceInterfaces.ClienteServices;
-    using RocamERP.Services.Services.ClienteServices;
-    using RocamERP.Domain.RepositoryInterfaces.ClienteRepository;
-    using RocamERP.Infra.Data.Repositories.ClienteRepository;
 
     public static class NinjectWebCommon 
     {
@@ -82,10 +76,7 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IContatoApplicationService>().To(typeof(ContatoApplicationService));
             kernel.Bind<IEnderecoApplicationService>().To(typeof(EnderecoApplicationService));
             kernel.Bind<IChequeApplicationService>().To(typeof(ChequeApplicationService));
-
-            kernel.Bind<IClienteApplicationService>().To(typeof(ClienteApplicationService));
-            kernel.Bind<IClientePessoaFisicaApplicationService>().To(typeof(ClientePessoaFisicaApplicationService));
-            kernel.Bind<IClientePessoaJuridicaApplicationService>().To(typeof(ClientePessoaJuridicaApplicationService));
+            kernel.Bind<IPessoaApplicationService>().To(typeof(PessoaApplicationService));
 
 
             //SERVICES
@@ -96,10 +87,7 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IContatoService>().To(typeof(ContatoService));
             kernel.Bind<IEnderecoService>().To(typeof(EnderecoService));
             kernel.Bind<IChequeService>().To(typeof(ChequeService));
-
-            kernel.Bind<IClienteService>().To(typeof(ClienteService));
-            kernel.Bind<IClientePessoaFisicaService>().To(typeof(ClientePessoaFisicaService));
-            kernel.Bind<IClientePessoaJuridicaService>().To(typeof(ClientePessoaJuridicaService));
+            kernel.Bind<IPessoaService>().To(typeof(PessoaService));
 
 
             //REPOSITORIES
@@ -110,10 +98,7 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IContatoRepository>().To(typeof(ContatoRepository));
             kernel.Bind<IEnderecoRepository>().To(typeof(EnderecoRepository));
             kernel.Bind<IChequeRepository>().To(typeof(ChequeRepository));
-
-            kernel.Bind<IClienteRepository>().To(typeof(ClienteRepository));
-            kernel.Bind<IClientePessoaFisicaRepository>().To(typeof(ClientePessoaFisicaRepository));
-            kernel.Bind<IClientePessoaJuridicaRepository>().To(typeof(ClientePessoaJuridicaRepository));
+            kernel.Bind<IPessoaRepository>().To(typeof(PessoaRepository));
         }
     }
 }

@@ -1,0 +1,55 @@
+﻿@using RocamERP.Presentation.Web.Extensions;
+
+@model IEnumerable<RocamERP.Presentation.Web.ViewModels.PessoaViewModel>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Create")
+</p>
+<table class="table">
+    <thead class="reset-border">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CadastroNacional.NumeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CadastroNacional.NumeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cheques)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Nome
+                </td>
+                <td>
+                    @item.CadastroEstadual.NumeroDocumento.FormatCadastroEstadual()
+                </td>
+                <td>
+                    @item.CadastroNacional.NumeroDocumento.FormatCadastroFederal()
+                </td>
+                <td>
+                    @(item.Cheques.Count() > 0 ? item.Cheques.Count().ToString() : "Nenhum")
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.PessoaId }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.PessoaId }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.PessoaId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

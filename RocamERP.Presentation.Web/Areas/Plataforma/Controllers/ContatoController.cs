@@ -27,7 +27,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
                 Mapper.Map(contatos, contatosVM);
 
-                return View(contatosVM.OrderBy(c => c.ClienteId));
+                return View(contatosVM.OrderBy(c => c.PessoaId));
             }
             catch
             {

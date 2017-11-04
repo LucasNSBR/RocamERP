@@ -12,8 +12,8 @@ namespace RocamERP.Presentation.Web.ViewModels
         public string Observacao { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        public int ClienteId { get; set; }
-        public ClienteViewModel Cliente { get; set; }
+        public int PessoaId { get; set; }
+        public PessoaViewModel Pessoa { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public TipoContato TipoContato { get; set; }

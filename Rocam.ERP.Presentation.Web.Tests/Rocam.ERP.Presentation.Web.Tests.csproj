@@ -59,6 +59,10 @@
       <Project>{E3100186-D87F-449B-954B-5EE239D424B4}</Project>
       <Name>RocamERP.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RocamERP.Infra.Data\RocamERP.Infra.Data.csproj">
+      <Project>{261c3c12-867a-4942-8bd0-4489a9dba05f}</Project>
+      <Name>RocamERP.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

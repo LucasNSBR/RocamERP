@@ -1,15 +1,18 @@
 namespace RocamERP.Infra.Data.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<RocamDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<RocamERP.Infra.Data.RocamDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(RocamDbContext context)
+        protected override void Seed(RocamERP.Infra.Data.RocamDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -23,21 +26,6 @@ namespace RocamERP.Infra.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            var mg = new Domain.Models.Estado()
-            {
-                Nome = "Minas Gerais",
-            };
-
-            var sp = new Domain.Models.Estado()
-            {
-                Nome = "São Paulo",
-            };
-
-            var rj = new Domain.Models.Estado()
-            {
-                Nome = "Rio de Janeiro",
-            };
         }
     }
 }

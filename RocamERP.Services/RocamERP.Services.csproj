@@ -47,9 +47,7 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ChequeService.cs" />
     <Compile Include="Services\CidadeService.cs" />
-    <Compile Include="Services\ClienteServices\ClientePessoaFisicaService.cs" />
-    <Compile Include="Services\ClienteServices\ClientePessoaJuridicaService.cs" />
-    <Compile Include="Services\ClienteServices\ClienteService.cs" />
+    <Compile Include="Services\PessoaService.cs" />
     <Compile Include="Services\ContatoService.cs" />
     <Compile Include="Services\EnderecoService.cs" />
     <Compile Include="Services\EstadoService.cs" />

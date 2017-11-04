@@ -11,8 +11,8 @@
         public string CidadeId { get; set; }
         public virtual Cidade Cidade { get; set; }
         
-        public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        public int PessoaId { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
 
         public virtual TipoEndereco TipoEndereco { get; set; }
 

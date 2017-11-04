@@ -11,9 +11,10 @@ namespace RocamERP.Domain.Models
         
         public string Agencia { get; set; }
         public string ContaCorrente { get; set; }
+        public string NumeroCheque { get; set; }
 
-        public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        public int PessoaId { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
         public string Observacao { get; set; }
 
         public virtual SituacaoCheque SituacaoCheque { get; set; }

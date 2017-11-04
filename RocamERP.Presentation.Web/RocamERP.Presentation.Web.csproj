@@ -164,34 +164,33 @@
     <Compile Include="Areas\Plataforma\Controllers\BaseController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ChequesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
-    <Compile Include="Areas\Plataforma\Controllers\ClientesController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\PessoasController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ContatoController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EnderecoController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\FormattingHelpers.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
-    <Compile Include="Mappers\Generic\GenericAutoMapperConfig.cs" />
-    <Compile Include="Mappers\Generic\GenericDomainToViewModelMappingProfile.cs" />
-    <Compile Include="Mappers\Generic\GenericViewModelToDomainMappingProfile.cs" />
     <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
+    <Compile Include="ViewModels\CadastroEstadualViewModel.cs" />
+    <Compile Include="ViewModels\CadastroNacionalViewModel.cs" />
     <Compile Include="ViewModels\ChequeViewModel.cs" />
     <Compile Include="ViewModels\CidadeViewModel.cs" />
-    <Compile Include="ViewModels\ClienteViewModel.cs" />
-    <Compile Include="ViewModels\ClientePessoaFisicaViewModel.cs" />
-    <Compile Include="ViewModels\ClientePessoaJuridicaViewModel.cs" />
+    <Compile Include="ViewModels\PessoaViewModel.cs" />
     <Compile Include="ViewModels\ContatoViewModel.cs" />
     <Compile Include="ViewModels\EnderecoViewModel.cs" />
     <Compile Include="ViewModels\EstadoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Shared\404.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
@@ -235,7 +234,11 @@
     <Content Include="Areas\Plataforma\Views\Endereco\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cheques\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cheques\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Clientes\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Pessoas\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Pessoas\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cheques\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cheques\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Pessoas\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -267,7 +270,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
-    <Folder Include="Areas\Plataforma\Views\Error\" />
     <Folder Include="Controllers\ErrorHandling\" />
   </ItemGroup>
   <ItemGroup>

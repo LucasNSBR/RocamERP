@@ -25,10 +25,15 @@ namespace RocamERP.Presentation.Web.ViewModels
         [MaxLength(10, ErrorMessage = "O tamanho máximo para o campo é 10 caracteres.")]
         public string ContaCorrente { get; set; }
 
+        [DisplayName("Número do Cheque")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
+        [MaxLength(7, ErrorMessage = "O tamanho máximo para o campo é 7 caracteres.")]
+        public string NumeroCheque { get; set; }
+
         [DisplayName("Cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        public int ClienteId { get; set; }
-        public virtual ClienteViewModel Cliente { get; set; }
+        public int PessoaId { get; set; }
+        public virtual PessoaViewModel Pessoa { get; set; }
 
         [DisplayName("Observações")]
         [MaxLength(1000, ErrorMessage = "O tamanho máximo para o campo é 1000 caracteres.")]

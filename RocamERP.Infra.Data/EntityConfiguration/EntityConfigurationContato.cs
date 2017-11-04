@@ -16,9 +16,9 @@ namespace RocamERP.Infra.Data.EntityConfiguration
             Property(c => c.TipoContato)
                 .IsRequired();
 
-            HasRequired(c => c.Cliente)
+            HasRequired(c => c.Pessoa)
                 .WithMany(co => co.Contatos)
-                .HasForeignKey(c => c.ClienteId);
+                .HasForeignKey(c => c.PessoaId);
         }
     }
 }

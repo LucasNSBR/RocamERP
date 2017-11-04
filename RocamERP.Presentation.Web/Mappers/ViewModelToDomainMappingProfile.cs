@@ -15,9 +15,9 @@ namespace RocamERP.Presentation.Web.Mappers
             CreateMap<EnderecoViewModel, Endereco>();
             CreateMap<ContatoViewModel, Contato>();
 
-            CreateMap<ClienteViewModel, Cliente>();
-            CreateMap<ClientePessoaFisicaViewModel, ClientePessoaFisica>();
-            CreateMap<ClientePessoaJuridicaViewModel, ClientePessoaJuridica>();
+            CreateMap<PessoaViewModel, Pessoa>();
+            CreateMap<CadastroNacionalViewModel, CadastroNacional>();
+            CreateMap<CadastroEstadualViewModel, CadastroEstadual>();
         }
     }
 }
