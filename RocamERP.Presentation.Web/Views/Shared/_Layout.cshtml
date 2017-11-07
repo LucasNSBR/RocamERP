@@ -2,10 +2,10 @@
 <html>
 <head>
     <link rel="icon" href="~/Content/Images/icons/favicon.ico" />
-    
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Rocam Controle</title>
+    <title>@ViewBag.Title | Rocam Controle</title>
     @RenderSection("custom-css", required: false)
 
     @Styles.Render("~/Content/css")
@@ -19,8 +19,16 @@
         </button>
         <div class="navbar-collapse collapse">
             <div class="navbar-nav ml-auto">
-                @Html.ActionLink("Home", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Cheques", "Cheques", "Cheques", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+                <strong>
+                    @Html.ActionLink("Cheques", "Index", "Cheques", new { area = "Plataforma" }, new { @class = "nav-item nav-link" })
+                </strong>
+                @Html.ActionLink("Cidades", "Index", "Cidades", new { area = "Plataforma" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Estados", "Index", "Estados", new { area = "Plataforma" }, new { @class = "nav-item nav-link" })
+                <strong>
+                    @Html.ActionLink("Pessoas", "Index", "Pessoas", new { area = "Plataforma" }, new { @class = "nav-item nav-link" })
+                </strong>
+                @Html.ActionLink("Bancos", "Index", "Bancos", new { area = "Plataforma" }, new { @class = "nav-item nav-link" })
             </div>
         </div>
     </nav>

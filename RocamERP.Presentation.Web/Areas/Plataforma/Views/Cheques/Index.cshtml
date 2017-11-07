@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.NumeroCheque)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cliente.Nome)
+                @Html.DisplayNameFor(model => model.Pessoa.Nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataRecebimento)
@@ -43,7 +43,7 @@
                     @item.NumeroCheque
                 </td>
                 <td>
-                    @item.Cliente.Nome
+                    @item.Pessoa.Nome
                 </td>
                 <td>
                     @item.DataRecebimento.ToShortDateString()

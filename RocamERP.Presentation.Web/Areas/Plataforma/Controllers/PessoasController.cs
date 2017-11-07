@@ -2,7 +2,9 @@
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
@@ -16,13 +18,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = clienteApplicationService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string filter = "")
         {
             try
             {
-                var pessoas = _pessoaApplicationService.Get();
+                var pessoas = _pessoaApplicationService.Get(filter);
                 var pessoasVM = new List<PessoaViewModel>();
-
+                
                 foreach (var pessoa in pessoas)
                 {
                     pessoasVM.Add(Mapper.Map<Pessoa, PessoaViewModel>(pessoa));
@@ -53,22 +55,32 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.TipoCadastroEstadual = new SelectList(Enum.GetNames(typeof(TipoCadastroEstadual)));
+            ViewBag.TipoCadastroNacional = new SelectList(Enum.GetNames(typeof(TipoCadastroNacional)));
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(PessoaViewModel model)
         {
+            ViewBag.TipoCadastroEstadual = new SelectList(Enum.GetNames(typeof(TipoCadastroEstadual)), model.CadastroEstadual.TipoCadastroEstadual);
+            ViewBag.TipoCadastroNacional = new SelectList(Enum.GetNames(typeof(TipoCadastroNacional)), model.CadastroEstadual.TipoCadastroEstadual);
+
             try
             {
-                var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
-                _pessoaApplicationService.Add(pessoa);
+                if (ModelState.IsValid)
+                {
+                    var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
+                    _pessoaApplicationService.Add(pessoa);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -92,10 +104,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
-                _pessoaApplicationService.Update(pessoa);
+                if (ModelState.IsValid)
+                {
+                    var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
+                    _pessoaApplicationService.Update(pessoa);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
@@ -129,6 +146,30 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             {
                 return View();
             }
+        }
+
+        public JsonResult ValidateCadastroEstadual(string value)
+        {
+            var result = _pessoaApplicationService.Get().Any(p => {
+                if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
+                    return true;
+                else
+                    return false;
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        
+        public JsonResult ValidateCadastroNacional(string value)
+        {
+            var result = _pessoaApplicationService.Get().Any(p => {
+                if (p.CadastroEstadual != null && p.CadastroNacional.NumeroDocumento == value)
+                    return true;
+                else
+                    return false;
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -44,14 +44,19 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
-                _estadoApplicationService.Add(estado);
+                if (ModelState.IsValid)
+                {
+                    var estado = Mapper.Map<EstadoViewModel, Estado>(model);
+                    _estadoApplicationService.Add(estado);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -68,10 +73,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
-                _estadoApplicationService.Update(estado);
-                
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var estado = Mapper.Map<EstadoViewModel, Estado>(model);
+                    _estadoApplicationService.Update(estado);
+
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {

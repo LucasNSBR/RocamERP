@@ -62,10 +62,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
-                _chequeApplicationService.Add(cheque);
+                if (ModelState.IsValid)
+                {
+                    var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
+                    _chequeApplicationService.Add(cheque);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
@@ -93,10 +98,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
-                _chequeApplicationService.Update(cheque);
+                if (ModelState.IsValid)
+                {
+                    var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
+                    _chequeApplicationService.Update(cheque);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {

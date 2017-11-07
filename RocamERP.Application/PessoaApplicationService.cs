@@ -1,4 +1,5 @@
-﻿using RocamERP.Application.Interfaces;
+﻿using System.Collections.Generic;
+using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Domain.ServiceInterfaces;
 
@@ -11,6 +12,11 @@ namespace RocamERP.Application
         public PessoaApplicationService(IPessoaService pessoaService) : base(pessoaService)
         {
             _pessoaService = pessoaService;
+        }
+
+        public IEnumerable<Pessoa> Get(string prefix)
+        {
+            return _pessoaService.Get(prefix);
         }
     }
 }

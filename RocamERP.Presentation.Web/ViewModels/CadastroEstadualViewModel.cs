@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RocamERP.Domain.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.ViewModels
@@ -11,9 +8,10 @@ namespace RocamERP.Presentation.Web.ViewModels
     public class CadastroEstadualViewModel
     {
         [Key]
+        [DisplayName("RG/Inscr. Estadual")]
         [MaxLength(14, ErrorMessage = "O tamanho máximo para o campo é 14 caracteres.")]
         [MinLength(11, ErrorMessage = "O tamanho mínimo para o campo é 11 caracteres.")]
-        [Remote("ValidateCadastroEstadual", "Pessoa", ErrorMessage = "O campo deve ter 10 ou 12 caracteres.")]
+        [Remote("ValidateCadastroEstadual", "Pessoas", ErrorMessage = "O campo deve ter 10 ou 12 caracteres.")]
         public string NumeroDocumento { get; set; }
 
         [Required]
@@ -28,13 +26,5 @@ namespace RocamERP.Presentation.Web.ViewModels
         {
             return NumeroDocumento;
         }
-    }
-
-    public enum TipoCadastroEstadual
-    {
-        RG,
-        InscricaoEstadual,
-        Isento,
-        Outro
     }
 }

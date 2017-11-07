@@ -6,16 +6,25 @@ namespace RocamERP.Presentation.Web.Extensions
     {
         public static string FormatCEP(this string cep)
         {
+            if (cep == null)
+                return null;
+
             return cep.Insert(2, ".").Insert(6, "-");
         }
 
         public static string FormatCurrency(this string value)
         {
+            if (value == null)
+                return null;
+
             return $"R${value}";
         }
 
-        public static string FormatCadastroFederal(this string value)
+        public static string FormatCadastroNacional(this string value)
         {
+            if (value == null)
+                return null;
+
             int cpfLenght = 11;
             int cnpjLenght = 14;
             StringBuilder sb = new StringBuilder();
@@ -42,12 +51,19 @@ namespace RocamERP.Presentation.Web.Extensions
                 sb.Append("-");
                 sb.Append(value.Substring(12, 2));
             }
+            else
+            {
+                return value;
+            }
 
             return sb.ToString();
         }
 
         public static string FormatCadastroEstadual(this string value)
         {
+            if (value == null)
+                return null;
+
             int rgLenght = 10;
             int inscricaoEstadualLenght = 12;
             StringBuilder sb = new StringBuilder();
@@ -69,6 +85,10 @@ namespace RocamERP.Presentation.Web.Extensions
                 sb.Append(value.Substring(6, 3));
                 sb.Append(".");
                 sb.Append(value.Substring(9, 3));
+            }
+            else
+            {
+                return value;
             }
 
             return sb.ToString();

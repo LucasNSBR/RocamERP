@@ -9,7 +9,6 @@ namespace Rocam.ERP.Presentation.Web.Tests
     [TestClass]
     public class MiscellanousTests
     {
-        [TestMethod]
         public void TestMethod1()
         {
             string c ="";
@@ -18,8 +17,28 @@ namespace Rocam.ERP.Presentation.Web.Tests
             Assert.AreNotEqual(c.GetType(), d.GetType());
 
             List<Pessoa> clientes = new List<Pessoa>();
-        
-            
+
+            PessoaRepository p = new PessoaRepository();
+
+
+
+            Pessoa pessoa = new Pessoa()
+            {
+                Nome = "Lucas Pereira Campos",
+                Descricao = "Sem descrição",
+                CadastroEstadual = new CadastroEstadual()
+                {
+                    TipoCadastroEstadual = TipoCadastroEstadual.RG,
+                    NumeroDocumento = "15215153",
+                },
+                CadastroNacional = new CadastroNacional()
+                {
+                    TipoCadastroNacional = TipoCadastroNacional.CNPJ,
+                    NumeroDocumento = "22332811000122",
+                }
+            };
+            p.Add(pessoa);
+
             
 
            // Assert.AreEqual(d.GetRegistroFederal(), c.GetRegistroFederal());

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using RocamERP.Domain.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -7,9 +8,10 @@ namespace RocamERP.Presentation.Web.ViewModels
     public class CadastroNacionalViewModel
     {
         [Key]
+        [DisplayName("CPF/CNPJ")]
         [MaxLength(14, ErrorMessage = "O tamanho máximo para o campo é 14 caracteres.")]
         [MinLength(11, ErrorMessage = "O tamanho mínimo para o campo é 11 caracteres.")]
-        [Remote("ValidateCadastroNacional", "Pessoa", ErrorMessage = "O campo deve ter 11 ou 14 caracteres.")]
+        [Remote("ValidateCadastroNacional", "Pessoas", ErrorMessage = "O campo deve ter 11 ou 14 caracteres.")]
         public string NumeroDocumento { get; set; }
 
         [Required]
@@ -24,13 +26,5 @@ namespace RocamERP.Presentation.Web.ViewModels
         {
             return NumeroDocumento;
         }
-    }
-
-    public enum TipoCadastroNacional
-    {
-        CPF,
-        CNPJ,
-        Isento,
-        Outro,
     }
 }

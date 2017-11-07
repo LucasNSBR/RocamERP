@@ -3,7 +3,7 @@
     public class CadastroNacional
     {
         public string NumeroDocumento { get; set; }
-        public TipoCadastroNacional TipoCadastroNacional { get; set; }
+        public virtual TipoCadastroNacional TipoCadastroNacional { get; set; }
 
         public int PessoaId { get; set; }
         public virtual Pessoa Pessoa { get; set; }

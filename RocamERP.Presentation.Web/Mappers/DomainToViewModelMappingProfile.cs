@@ -14,7 +14,7 @@ namespace RocamERP.Presentation.Web.Mappers
             CreateMap<Cheque, ChequeViewModel>();
             CreateMap<Endereco, EnderecoViewModel>();
             CreateMap<Contato, ContatoViewModel>();
-            CreateMap<Pessoa, PessoaViewModel>();
+            CreateMap<Pessoa, PessoaViewModel>().PreserveReferences();
             CreateMap<CadastroNacional, CadastroNacionalViewModel>();
             CreateMap<CadastroEstadual, CadastroEstadualViewModel>();
         }

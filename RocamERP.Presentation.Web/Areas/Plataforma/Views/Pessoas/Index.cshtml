@@ -3,53 +3,75 @@
 @model IEnumerable<RocamERP.Presentation.Web.ViewModels.PessoaViewModel>
 
 @{
-    ViewBag.Title = "Clientes";
+    ViewBag.Title = "Pessoas";
 }
 
 <h2>Clientes</h2>
 
-<p>
+<p class="pb-0">
     @Html.ActionLink("Novo", "Create")
 </p>
-<table class="table">
-    <thead class="reset-border">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CadastroNacional.NumeroDocumento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CadastroNacional.NumeroDocumento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cheques)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<div class="pb-4 pt-0">
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+        <div class="input-group">
+            @Html.TextBox("filter", null, new { @class = "form-control", @placeholder = "Pesquisar cliente" })
+            <span class="input-group-btn" type="submit">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </span>
+        </div>
+    }
+</div>
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <thead class="reset-border">
             <tr>
-                <td>
-                    @item.Nome
-                </td>
-                <td>
-                    @item.CadastroEstadual.NumeroDocumento.FormatCadastroEstadual()
-                </td>
-                <td>
-                    @item.CadastroNacional.NumeroDocumento.FormatCadastroFederal()
-                </td>
-                <td>
-                    @(item.Cheques.Count() > 0 ? item.Cheques.Count().ToString() : "Nenhum")
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.PessoaId }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.PessoaId }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.PessoaId })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CadastroNacional.NumeroDocumento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CadastroEstadual.NumeroDocumento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cheques)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Nome
+                    </td>
+                    <td>
+                        @($"{item.CadastroEstadual?.NumeroDocumento?.ToUpper()?.FormatCadastroEstadual() ?? "Não registrado"}")
+                    </td>
+                    <td>
+                        @($"{item.CadastroNacional?.NumeroDocumento?.ToUpper()?.FormatCadastroNacional() ?? "Não registrado"}")
+                    </td>
+                    <td>
+                        @(item.Cheques.Count() > 0 ? item.Cheques.Count().ToString() : "Nenhum")
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.PessoaId }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.PessoaId }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.PessoaId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="pt-5 lead">
+        Nenhum registro encontrado.
+    </p>
+}

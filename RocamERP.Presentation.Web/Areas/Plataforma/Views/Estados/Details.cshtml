@@ -6,41 +6,18 @@
 
 <h2>Detalhes</h2>
 
-@if (Model.Cidades.Count() > 0)
-{ 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Model.Nome
-                </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var cidade in Model.Cidades)
-            {
-                <tr>
-                    <td>
-                        @cidade.Nome
-                    </td>
-                    <td>
-                        @cidade.Estado
-                    </td>
-                    <td>
-                        @cidade.CEP
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>
-    Nenhuma cidade listada.
-    </p>
-}
+<div class="pb-4">
+    @if (Model.Cidades.Count() > 0)
+    {
+        @Html.ActionLink($"{Model.Cidades.Count().ToString()} Cidades listadas", "Index", "Cidades", new { @state = Model.Nome });
+    }
+    else
+    {
+        <p>
+            Nenhuma cidade listada.
+        </p>
+    }
+</div>
 
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.Nome }) |

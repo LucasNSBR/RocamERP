@@ -1,4 +1,6 @@
-﻿using RocamERP.Domain.Models;
+﻿using System;
+using System.Collections.Generic;
+using RocamERP.Domain.Models;
 using RocamERP.Domain.RepositoryInterfaces;
 using RocamERP.Domain.ServiceInterfaces;
 
@@ -11,6 +13,11 @@ namespace RocamERP.Services.Services
         public PessoaService(IPessoaRepository pessoaRepository) : base(pessoaRepository)
         {
             _pessoaRepository = pessoaRepository;
+        }
+
+        public IEnumerable<Pessoa> Get(string prefix)
+        {
+            return _pessoaRepository.Get(prefix);
         }
     }
 }
