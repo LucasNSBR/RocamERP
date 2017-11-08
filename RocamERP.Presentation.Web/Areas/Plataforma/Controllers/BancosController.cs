@@ -22,7 +22,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var bancos = _bancoApplicationService.Get();
+                var bancos = _bancoApplicationService.GetAll();
                 var bancosVM = new List<BancoViewModel>();
 
                 foreach (var banco in bancos)

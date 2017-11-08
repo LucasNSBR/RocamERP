@@ -5,6 +5,5 @@ namespace RocamERP.Application.Interfaces
 {
     public interface IPessoaApplicationService : IBaseApplicationService<Pessoa>
     {
-        IEnumerable<Pessoa> Get(string prefix);
     }
 }

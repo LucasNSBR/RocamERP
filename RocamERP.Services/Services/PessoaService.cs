@@ -14,10 +14,5 @@ namespace RocamERP.Services.Services
         {
             _pessoaRepository = pessoaRepository;
         }
-
-        public IEnumerable<Pessoa> Get(string prefix)
-        {
-            return _pessoaRepository.Get(prefix);
-        }
     }
 }

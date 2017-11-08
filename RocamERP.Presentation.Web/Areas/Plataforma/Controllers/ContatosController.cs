@@ -9,11 +9,11 @@ using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
-    public class ContatoController : Controller
+    public class ContatosController : Controller
     {
         private readonly IContatoApplicationService _contatoApplicationService;
 
-        public ContatoController(IContatoApplicationService contatoApplicationService)
+        public ContatosController(IContatoApplicationService contatoApplicationService)
         {
             _contatoApplicationService = contatoApplicationService;
         }
@@ -22,7 +22,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var contatos = _contatoApplicationService.Get();
+                var contatos = _contatoApplicationService.GetAll();
                 var contatosVM = new List<ContatoViewModel>();
 
                 Mapper.Map(contatos, contatosVM);

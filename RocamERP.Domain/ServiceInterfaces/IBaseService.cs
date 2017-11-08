@@ -6,7 +6,7 @@ namespace RocamERP.Domain.ServiceInterfaces
     {
         void Add(TEntity obj);
 
-        IEnumerable<TEntity> Get();
+        IEnumerable<TEntity> GetAll();
         TEntity Get(int id);
 
         void Update(TEntity obj);

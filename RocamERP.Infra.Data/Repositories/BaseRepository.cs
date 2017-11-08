@@ -23,7 +23,7 @@ namespace RocamERP.Infra.Data.Repositories
             dbContext.SaveChanges();
         }
 
-        public IEnumerable<TEntity> Get()
+        public IEnumerable<TEntity> GetAll()
         {
             return dbContext.Set<TEntity>().ToList();
         }

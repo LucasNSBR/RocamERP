@@ -18,14 +18,26 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _cidadeApplicationService = cidadeApplicationService;
             _estadoApplicationService = estadoApplicationService;
         }
-
-        public ActionResult Index()
+        
+        public ActionResult Index(string prefix = "", string estado = "")
         {
-            var list = _cidadeApplicationService.Get();
+            ViewBag.Estado = new SelectList(_estadoApplicationService.GetAll());
+
             var listVM = new List<CidadeViewModel>();
+            var list = _cidadeApplicationService.GetAll()
+                .Where(c => c.Nome.ToLower().Contains(prefix.ToLower()))
+                .Where(c =>
+                {
+                    if (!string.IsNullOrWhiteSpace(estado))
+                    {
+                        return c.EstadoId == estado;
+                    }
 
+                    return true;
+                })
+                .OrderBy(c => c.Nome); 
+            
             Mapper.Map(list, listVM);
-
             return View(listVM.OrderBy(c => c.EstadoId));
         }
 
@@ -39,7 +51,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.EstadoId = new SelectList(_estadoApplicationService.Get(), "Nome", "Nome");
+            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome");
             return View();
         }
 
@@ -117,7 +129,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult ValidateCEP(string CEP)
         {
-            var cidades = _cidadeApplicationService.Get();
+            var cidades = _cidadeApplicationService.GetAll();
             var exists = !cidades.ToList().Any(c => c.CEP == CEP);
 
             return Json(exists, JsonRequestBehavior.AllowGet);

@@ -18,7 +18,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index()
         {
-            var list = _estadoApplicationService.Get();
+            var list = _estadoApplicationService.GetAll();
             var listVM = new List<EstadoViewModel>();
 
             Mapper.Map(list, listVM);

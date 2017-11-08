@@ -1,34 +1,43 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
+﻿@using RocamERP.Presentation.Web.Extensions
+@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
 
 @{
     ViewBag.Title = $"{Model.Nome} - Detalhes";
 }
 
-<h2>Details</h2>
+<h2>@Model.Nome</h2>
 
-<div>
-    <h4>CidadeViewModel</h4>
-    <hr />
+<div class="pb-4">
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CEP)
+            @Html.DisplayNameFor(modelItem => modelItem.CEP)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.CEP)
+            @Html.DisplayFor(modelItem => modelItem.CEP).ToString().FormatCEP()
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.EstadoId)
+            @Html.DisplayNameFor(modelItem => modelItem.EstadoId)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.EstadoId)
-        </dd>
-
+            @Html.DisplayFor(modelItem => modelItem.EstadoId)
+        <dd/>
     </dl>
 </div>
+
+@if (Model.Enderecos.Count() > 0)
+{
+<div>
+    @Html.ActionLink($"{Model.Enderecos.Count().ToString()} endereços listados", "Index", "Enderecos", new { @cidade = Model.Nome, @prefix = "" })
+</div>
+}
+else
+{
+    <p>
+        Nenhum endereço listado. Clique @Html.ActionLink("aqui", "Create", "Enderecos") para adicionar.
+    </p>
+}
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Nome }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Nome }) |
+    @Html.ActionLink("Página Anterior", "Index")
 </p>

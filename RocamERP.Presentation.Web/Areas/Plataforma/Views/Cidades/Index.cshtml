@@ -11,44 +11,69 @@
 <p>
     @Html.ActionLink("Adicionar Novo", "Create")
 </p>
-<table class="table">
-    <thead class="reset-border">
-        <tr>
-            <th>
-                Cidade
-            </th>
-            <th>
-                Estado
-            </th>
-            <th>
-                CEP
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Nome
-                </td>
-                <td>
-                    @item.EstadoId
-                </td>
-                <td>
-                    @item.CEP.FormatCEP()
-                </td>
-                <td class="text-right">
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Nome }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Nome }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.Nome })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
-@section scripts {
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/custom-js");    
+<div class="pb-4 pt-0">
+    @using (Html.BeginForm("Index", "Cidades", FormMethod.Get))
+    {
+        <div class="form-group row">
+            <div class="col-6 pr-0">
+                @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome da cidade..." })
+            </div>
+            <div class="col-6 pl-1">
+                <div class="input-group">
+                    @Html.DropDownList("Estado", null, "Todos", new { @class = "form-control" })
+                    <span class="input-group-btn pl-1">
+                        <button class="btn btn-primary" type="submit">Pesquisar</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <thead class="reset-border">
+            <tr>
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    CEP
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Nome
+                    </td>
+                    <td>
+                        @item.EstadoId
+                    </td>
+                    <td>
+                        @item.CEP.FormatCEP()
+                    </td>
+                    <td class="text-right">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Nome }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.Nome }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.Nome })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="pt-5">
+        Nenhum registro encontrado.
+    </p>
 }

@@ -161,17 +161,18 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
-    <Compile Include="Areas\Plataforma\Controllers\BaseController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ChequesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\PessoasController.cs" />
-    <Compile Include="Areas\Plataforma\Controllers\ContatoController.cs" />
-    <Compile Include="Areas\Plataforma\Controllers\EnderecoController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\ContatosController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Exceptions\BaseHandleErrorAttribute.cs" />
     <Compile Include="Extensions\FormattingHelpers.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
+    <Compile Include="Extensions\LINQHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,7 +193,7 @@
   <ItemGroup>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Views\Shared\Errors\404.html" />
+    <Content Include="Views\Shared\Errors\HTTP\404.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
@@ -206,7 +207,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Edit.cshtml" />
@@ -253,7 +253,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -262,7 +264,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DefaultError.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

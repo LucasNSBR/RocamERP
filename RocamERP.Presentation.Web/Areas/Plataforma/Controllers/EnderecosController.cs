@@ -1,27 +1,30 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
+using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
-    public class EnderecoController : Controller
+    public class EnderecosController : Controller
     {
         private readonly IEnderecoApplicationService _enderecoApplicationService;
 
-        public EnderecoController(IEnderecoApplicationService enderecoApplicationService)
+        public EnderecosController(IEnderecoApplicationService enderecoApplicationService)
         {
             _enderecoApplicationService = enderecoApplicationService;
         }
 
+        [HandleError(ExceptionType = typeof(Exception), View = "DefaultError")]
         public ActionResult Index()
         {
             try
             {
-                var enderecos = _enderecoApplicationService.Get();
+                var enderecos = _enderecoApplicationService.GetAll();
                 var enderecosVM = new List<EnderecoViewModel>();
 
                 Mapper.Map(enderecos, enderecosVM);

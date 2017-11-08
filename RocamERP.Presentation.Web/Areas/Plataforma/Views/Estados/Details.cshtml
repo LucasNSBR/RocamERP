@@ -4,17 +4,17 @@
     ViewBag.Title = $"{Model.Nome} - Detalhes";
 }
 
-<h2>Detalhes</h2>
+<h2>@Model.Nome</h2>
 
 <div class="pb-4">
     @if (Model.Cidades.Count() > 0)
     {
-        @Html.ActionLink($"{Model.Cidades.Count().ToString()} Cidades listadas", "Index", "Cidades", new { @state = Model.Nome });
+        @Html.ActionLink($"{Model.Cidades.Count().ToString()} Cidades listadas", "Index", "Cidades", new { @estado = Model.Nome, @prefix = "" }, null);
     }
     else
     {
         <p>
-            Nenhuma cidade listada.
+            Nenhuma cidade listada. Clique @Html.ActionLink("aqui", "Create", "Cidades") para adicionar.
         </p>
     }
 </div>

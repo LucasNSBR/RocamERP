@@ -13,10 +13,5 @@ namespace RocamERP.Application
         {
             _pessoaService = pessoaService;
         }
-
-        public IEnumerable<Pessoa> Get(string prefix)
-        {
-            return _pessoaService.Get(prefix);
-        }
     }
 }

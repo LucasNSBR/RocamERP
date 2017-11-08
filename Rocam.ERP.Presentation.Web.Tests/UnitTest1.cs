@@ -3,60 +3,62 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RocamERP.Domain.Models;
 using System.Collections.Generic;
 using RocamERP.Infra.Data.Repositories;
+using System.Linq;
 
 namespace Rocam.ERP.Presentation.Web.Tests
 {
     [TestClass]
     public class MiscellanousTests
     {
-        public void TestMethod1()
+        [TestMethod]
+        public void TestValidation()
         {
-            string c ="";
-            string d ="";
-
-            Assert.AreNotEqual(c.GetType(), d.GetType());
-
-            List<Pessoa> clientes = new List<Pessoa>();
-
-            PessoaRepository p = new PessoaRepository();
-
-
-
-            Pessoa pessoa = new Pessoa()
+            List<Pessoa> pr = new List<Pessoa>()
             {
-                Nome = "Lucas Pereira Campos",
-                Descricao = "Sem descrição",
-                CadastroEstadual = new CadastroEstadual()
+                new Pessoa()
                 {
-                    TipoCadastroEstadual = TipoCadastroEstadual.RG,
-                    NumeroDocumento = "15215153",
+                    CadastroEstadual = new CadastroEstadual()
+                    {
+                        NumeroDocumento = "223328110001222"
+                    },
+                     CadastroNacional = new CadastroNacional()
+                     {
+                         NumeroDocumento = "98911309672"
+                     },
                 },
-                CadastroNacional = new CadastroNacional()
+                new Pessoa()
                 {
-                    TipoCadastroNacional = TipoCadastroNacional.CNPJ,
-                    NumeroDocumento = "22332811000122",
+                    CadastroEstadual = new CadastroEstadual()
+                    {
+                        NumeroDocumento = "555555"
+                    },
+
+                     CadastroNacional = new CadastroNacional()
+                     {
+                         NumeroDocumento = "13936618666"
+                     },
                 }
             };
-            p.Add(pessoa);
 
-            
+            string value = "555555";
 
-           // Assert.AreEqual(d.GetRegistroFederal(), c.GetRegistroFederal());
+            var result = pr.Any(p =>
+            {
+                if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
+                    return true;
+                else
+                    return false;
+            });
 
-            //Assert.AreNotEqual(clientes[0], clientes[1]);
+            var resultNacional = pr.Any(p =>
+            {
+                if (p.CadastroNacional != null && p.CadastroNacional.NumeroDocumento == value)
+                    return true;
+                else
+                    return false;
+            });
 
-            //Assert.AreEqual(c.GetType(), d.GetType());
-
-        }
-
-        [TestMethod]
-        public void Tests()
-        {
-            DateTime d = new DateTime();
-            d = DateTime.Now.AddYears(1);
-
-            System.Diagnostics.Debug.WriteLine("Data: " + d.ToShortDateString());
-            Assert.AreEqual(d, d);
+            Assert.AreEqual(true, result);
         }
     }
 }

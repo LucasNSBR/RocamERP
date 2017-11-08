@@ -6,17 +6,17 @@
     ViewBag.Title = "Pessoas";
 }
 
-<h2>Clientes</h2>
+<h2>Pessoas</h2>
 
 <p class="pb-0">
     @Html.ActionLink("Novo", "Create")
 </p>
 
 <div class="pb-4 pt-0">
-    @using (Html.BeginForm(FormMethod.Get))
+    @using (Html.BeginForm("Index", "Pessoas", FormMethod.Get))
     {
         <div class="input-group">
-            @Html.TextBox("filter", null, new { @class = "form-control", @placeholder = "Pesquisar cliente" })
+            @Html.TextBox("prefix", null, new { @class = "form-control", @placeholder = "Digite o nome da pessoa..." })
             <span class="input-group-btn" type="submit">
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
@@ -71,7 +71,8 @@
 }
 else
 {
-    <p class="pt-5 lead">
+    <p class="pt-5">
         Nenhum registro encontrado.
     </p>
 }
+

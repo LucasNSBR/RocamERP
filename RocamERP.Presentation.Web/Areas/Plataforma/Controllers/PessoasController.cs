@@ -18,12 +18,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = clienteApplicationService;
         }
 
-        public ActionResult Index(string filter = "")
+        public ActionResult Index(string prefix = "")
         {
             try
             {
-                var pessoas = _pessoaApplicationService.Get(filter);
                 var pessoasVM = new List<PessoaViewModel>();
+                var pessoas = _pessoaApplicationService.GetAll()
+                    .Where(p => p.Nome.ToLower().Contains(prefix.ToLower()))
+                    .OrderBy(p => p.Nome);
                 
                 foreach (var pessoa in pessoas)
                 {
@@ -150,26 +152,26 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public JsonResult ValidateCadastroEstadual(string value)
         {
-            var result = _pessoaApplicationService.Get().Any(p => {
+            var exists = _pessoaApplicationService.GetAll().Any(p => {
                 if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
                     return true;
                 else
                     return false;
             });
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(!exists, JsonRequestBehavior.AllowGet);
         }
         
         public JsonResult ValidateCadastroNacional(string value)
         {
-            var result = _pessoaApplicationService.Get().Any(p => {
-                if (p.CadastroEstadual != null && p.CadastroNacional.NumeroDocumento == value)
+            var exists = _pessoaApplicationService.GetAll().Any(p => {
+                if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
                     return true;
                 else
                     return false;
             });
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(!exists, JsonRequestBehavior.AllowGet);
         }
     }
 }

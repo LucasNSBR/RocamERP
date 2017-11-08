@@ -21,7 +21,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             try
             {
-                var cheques = _chequeApplicationService.Get();
+                var cheques = _chequeApplicationService.GetAll();
                 var chequesVM = new List<ChequeViewModel>();
 
                 foreach (var cheque in cheques)

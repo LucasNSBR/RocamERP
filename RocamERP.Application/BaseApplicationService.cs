@@ -23,9 +23,9 @@ namespace RocamERP.Application
             _baseService.Delete(id);
         }
 
-        public IEnumerable<TEntity> Get()
+        public IEnumerable<TEntity> GetAll()
         {
-            return _baseService.Get();
+            return _baseService.GetAll();
         }
 
         public TEntity Get(int id)

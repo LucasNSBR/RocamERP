@@ -6,7 +6,7 @@ namespace RocamERP.Application.Interfaces
     {
         void Add(T obj);
 
-        IEnumerable<T> Get();
+        IEnumerable<T> GetAll();
         T Get(int id);
 
         void Update(T obj);
