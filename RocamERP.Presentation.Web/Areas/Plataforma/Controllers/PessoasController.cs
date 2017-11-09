@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
+using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
+    [ExtendedHandleError()]
     public class PessoasController : Controller
     {
         IPessoaApplicationService _pessoaApplicationService;
@@ -20,39 +22,25 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index(string prefix = "")
         {
-            try
-            {
-                var pessoasVM = new List<PessoaViewModel>();
-                var pessoas = _pessoaApplicationService.GetAll()
-                    .Where(p => p.Nome.ToLower().Contains(prefix.ToLower()))
-                    .OrderBy(p => p.Nome);
-                
-                foreach (var pessoa in pessoas)
-                {
-                    pessoasVM.Add(Mapper.Map<Pessoa, PessoaViewModel>(pessoa));
-                }
+            var pessoasVM = new List<PessoaViewModel>();
+            var pessoas = _pessoaApplicationService.GetAll()
+                .Where(p => p.Nome.ToLower().Contains(prefix.ToLower()))
+                .OrderBy(p => p.Nome);
 
-                return View(pessoasVM);
-            }
-            catch
+            foreach (var pessoa in pessoas)
             {
-                throw;
+                pessoasVM.Add(Mapper.Map<Pessoa, PessoaViewModel>(pessoa));
             }
+
+            return View(pessoasVM);
         }
 
         public ActionResult Details(int id)
         {
-            try
-            {
-                var cliente = _pessoaApplicationService.Get(id);
-                var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
+            var cliente = _pessoaApplicationService.Get(id);
+            var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
 
-                return View(clienteVM);
-            }
-            catch
-            {
-                throw;
-            }
+            return View(clienteVM);
         }
 
         public ActionResult Create()
@@ -65,25 +53,17 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Create(PessoaViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
+                _pessoaApplicationService.Add(pessoa);
+
+                return RedirectToAction("Index");
+            }
+
             ViewBag.TipoCadastroEstadual = new SelectList(Enum.GetNames(typeof(TipoCadastroEstadual)), model.CadastroEstadual.TipoCadastroEstadual);
             ViewBag.TipoCadastroNacional = new SelectList(Enum.GetNames(typeof(TipoCadastroNacional)), model.CadastroEstadual.TipoCadastroEstadual);
-
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
-                    _pessoaApplicationService.Add(pessoa);
-
-                    return RedirectToAction("Index");
-                }
-
-                return View(model);
-            }
-            catch
-            {
-                throw;
-            }
+            return View(model);
         }
 
         public ActionResult Edit(int id)
@@ -121,7 +101,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return View();
             }
         }
-        
+
         public ActionResult Delete(int id)
         {
             try
@@ -152,7 +132,8 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public JsonResult ValidateCadastroEstadual(string value)
         {
-            var exists = _pessoaApplicationService.GetAll().Any(p => {
+            var exists = _pessoaApplicationService.GetAll().Any(p =>
+            {
                 if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
                     return true;
                 else
@@ -161,10 +142,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
             return Json(!exists, JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult ValidateCadastroNacional(string value)
         {
-            var exists = _pessoaApplicationService.GetAll().Any(p => {
+            var exists = _pessoaApplicationService.GetAll().Any(p =>
+            {
                 if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
                     return true;
                 else

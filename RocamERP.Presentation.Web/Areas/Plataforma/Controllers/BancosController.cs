@@ -1,58 +1,45 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
+using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
-    public class BancosController : Controller 
+    [ExtendedHandleError()]
+    public class BancosController : Controller
     {
         private readonly IBancoApplicationService _bancoApplicationService;
 
-        public BancosController(IBancoApplicationService bancoApplicationService) 
+        public BancosController(IBancoApplicationService bancoApplicationService)
         {
             _bancoApplicationService = bancoApplicationService;
         }
 
         public ActionResult Index()
         {
-            try
+            var bancos = _bancoApplicationService.GetAll();
+            var bancosVM = new List<BancoViewModel>();
+
+            foreach (var banco in bancos)
             {
-                var bancos = _bancoApplicationService.GetAll();
-                var bancosVM = new List<BancoViewModel>();
-
-                foreach (var banco in bancos)
-                {
-                    bancosVM.Add(Mapper.Map<Banco, BancoViewModel>(banco));
-                }
-
-                return View(bancosVM);
+                bancosVM.Add(Mapper.Map<Banco, BancoViewModel>(banco));
             }
-            catch
-            { 
-                return View();
-            }
+
+            return View(bancosVM);
         }
 
         public ActionResult Details(string id)
         {
             id = Uri.UnescapeDataString(id);
 
-            try
-            {
-                var banco = _bancoApplicationService.Get(id);
-                var bancoVM = Mapper.Map<Banco, BancoViewModel>(banco);
+            var banco = _bancoApplicationService.Get(id);
+            var bancoVM = Mapper.Map<Banco, BancoViewModel>(banco);
 
-                return View(bancoVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(bancoVM);
         }
 
         public ActionResult Create()
@@ -63,82 +50,54 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Create(BancoViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var banco = Mapper.Map<BancoViewModel, Banco>(model);
-                    _bancoApplicationService.Add(banco);
+                var banco = Mapper.Map<BancoViewModel, Banco>(model);
+                _bancoApplicationService.Add(banco);
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+            }
 
-                return View(model);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
+
 
         public ActionResult Edit(string id)
         {
-            try
-            {
-                var banco = _bancoApplicationService.Get(id);
-                var bancoVM = Mapper.Map<Banco, BancoViewModel>(banco);
+            var banco = _bancoApplicationService.Get(id);
+            var bancoVM = Mapper.Map<Banco, BancoViewModel>(banco);
 
-                return View(bancoVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(bancoVM);
         }
 
         [HttpPost]
         public ActionResult Edit(string id, BancoViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
                 var banco = Mapper.Map<BancoViewModel, Banco>(model);
                 _bancoApplicationService.Update(banco);
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(model);
         }
 
         public ActionResult Delete(string id)
         {
-            try
-            {
-                var model = _bancoApplicationService.Get(id);
-                var bancoVM = Mapper.Map<Banco, BancoViewModel>(model);
+            var model = _bancoApplicationService.Get(id);
+            var bancoVM = Mapper.Map<Banco, BancoViewModel>(model);
 
-                return View(bancoVM); 
-            }
-            catch
-            {
-                return View();
-            }
+            return View(bancoVM);
         }
 
         [HttpPost]
         public ActionResult Delete(string id, BancoViewModel model)
         {
-            try
-            {
-                _bancoApplicationService.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _bancoApplicationService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
+

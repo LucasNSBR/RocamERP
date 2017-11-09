@@ -1,0 +1,23 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ERRO</title>
+    </head>
+    <body>
+        @if (ViewData.Model.Exception != null)
+        {
+            <p>
+                @ViewData.Model.Exception.Message
+            </p>
+            <p>
+                @ViewData.Model.Exception.Source
+            </p>
+        }
+
+        <h1>
+            ERRO AO PROCESSAR SUA REQUISIÇÃO
+        </h1>
+    </body>
+</html>

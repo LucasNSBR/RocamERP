@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
+    [ExtendedHandleError()]
     public class EnderecosController : Controller
     {
         private readonly IEnderecoApplicationService _enderecoApplicationService;
@@ -19,118 +20,75 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _enderecoApplicationService = enderecoApplicationService;
         }
 
-        [HandleError(ExceptionType = typeof(Exception), View = "DefaultError")]
         public ActionResult Index()
         {
-            try
-            {
-                var enderecos = _enderecoApplicationService.GetAll();
-                var enderecosVM = new List<EnderecoViewModel>();
+            var enderecos = _enderecoApplicationService.GetAll();
+            var enderecosVM = new List<EnderecoViewModel>();
 
-                Mapper.Map(enderecos, enderecosVM);
-
-                return View(enderecosVM.OrderBy(c => c.Pessoa));
-            }
-            catch
-            {
-                return View("Error");
-            }
+            Mapper.Map(enderecos, enderecosVM);
+            return View(enderecosVM.OrderBy(c => c.Pessoa));
         }
 
         public ActionResult Details(int id)
         {
-            try
-            {
-                var endereco = _enderecoApplicationService.Get(id);
-                var enderecoVM = Mapper.Map<Endereco, EnderecoViewModel>(endereco);
+            var endereco = _enderecoApplicationService.Get(id);
+            var enderecoVM = Mapper.Map<Endereco, EnderecoViewModel>(endereco);
 
-                return View(enderecoVM);
-            }
-            catch
-            {
-                return View("Error");
-            }
+            return View(enderecoVM);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewBag.TipoEndereco = new SelectList(Enum.GetValues(typeof(ViewModels.TipoEndereco)));
+            ViewBag.PessoaId = id;
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(EnderecoViewModel model)
         {
-            try
-            {
-                var enderecoVM = Mapper.Map<EnderecoViewModel, Endereco>(model);
-                _enderecoApplicationService.Add(enderecoVM);
+            var enderecoVM = Mapper.Map<EnderecoViewModel, Endereco>(model);
+            _enderecoApplicationService.Add(enderecoVM);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View("Error");
-            }
+            return RedirectToAction("Index");
+
         }
 
         public ActionResult Edit(int id)
         {
-            try
-            {
-                var endereco = _enderecoApplicationService.Get(id);
-                var enderecoVM = Mapper.Map<Endereco, EnderecoViewModel>(endereco);
+            var endereco = _enderecoApplicationService.Get(id);
+            var enderecoVM = Mapper.Map<Endereco, EnderecoViewModel>(endereco);
 
-                return View(enderecoVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(enderecoVM);
         }
 
         [HttpPost]
         public ActionResult Edit(int id, EnderecoViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
                 var endereco = Mapper.Map<EnderecoViewModel, Endereco>(model);
                 _enderecoApplicationService.Update(endereco);
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View("Error");
-            }
+
+            return View(model);
         }
 
         public ActionResult Delete(int id)
         {
-            try
-            {
-                var endereco = _enderecoApplicationService.Get(id);
-                var enderecoVM = Mapper.Map<Endereco, EnderecoViewModel>(endereco);
+            var endereco = _enderecoApplicationService.Get(id);
+            var enderecoVM = Mapper.Map<Endereco, EnderecoViewModel>(endereco);
 
-                return View(enderecoVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(enderecoVM);
         }
 
         [HttpPost]
         public ActionResult Delete(int id, EnderecoViewModel model)
         {
-            try
-            {
-                _enderecoApplicationService.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _enderecoApplicationService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

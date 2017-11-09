@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
+using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
+    [ExtendedHandleError()]
     public class ChequesController : Controller
     {
         private readonly IChequeApplicationService _chequeApplicationService;
@@ -19,37 +21,23 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index()
         {
-            try
-            {
-                var cheques = _chequeApplicationService.GetAll();
-                var chequesVM = new List<ChequeViewModel>();
+            var cheques = _chequeApplicationService.GetAll();
+            var chequesVM = new List<ChequeViewModel>();
 
-                foreach (var cheque in cheques)
-                {
-                    chequesVM.Add(Mapper.Map<Cheque, ChequeViewModel>(cheque));
-                }
-
-                return View(chequesVM.OrderBy(c => c.Pessoa));
-            }
-            catch
+            foreach (var cheque in cheques)
             {
-                return View();
+                chequesVM.Add(Mapper.Map<Cheque, ChequeViewModel>(cheque));
             }
+
+            return View(chequesVM.OrderBy(c => c.Pessoa));
         }
 
         public ActionResult Details(int id)
         {
-            try
-            {
-                var cheque = _chequeApplicationService.Get(id);
-                var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
+            var cheque = _chequeApplicationService.Get(id);
+            var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
 
-                return View(chequeVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(chequeVM);
         }
 
         public ActionResult Create()
@@ -60,87 +48,53 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Create(ChequeViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
-                    _chequeApplicationService.Add(cheque);
+                var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
+                _chequeApplicationService.Add(cheque);
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+            }
 
-                return View(model);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
+
 
         public ActionResult Edit(int id)
         {
-            try
-            {
-                var cheque = _chequeApplicationService.Get(id);
-                var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
+            var cheque = _chequeApplicationService.Get(id);
+            var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
 
-                return View(chequeVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(chequeVM);
         }
 
         [HttpPost]
         public ActionResult Edit(int id, ChequeViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
-                    _chequeApplicationService.Update(cheque);
+                var cheque = Mapper.Map<ChequeViewModel, Cheque>(model);
+                _chequeApplicationService.Update(cheque);
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+            }
 
-                return View(model);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         public ActionResult Delete(int id)
         {
-            try
-            {
-                var cheque = _chequeApplicationService.Get(id);
-                var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
+            var cheque = _chequeApplicationService.Get(id);
+            var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
 
-                return View(chequeVM);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(chequeVM);
         }
 
         [HttpPost]
         public ActionResult Delete(int id, ChequeViewModel model)
         {
-            try
-            {
-                _chequeApplicationService.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _chequeApplicationService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

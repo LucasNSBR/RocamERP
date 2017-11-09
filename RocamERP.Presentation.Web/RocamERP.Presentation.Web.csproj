@@ -169,7 +169,7 @@
     <Compile Include="Areas\Plataforma\Controllers\EstadosController.cs" />
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Exceptions\BaseHandleErrorAttribute.cs" />
+    <Compile Include="Exceptions\ExtendedHandleErrorAttribute.cs" />
     <Compile Include="Extensions\FormattingHelpers.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
     <Compile Include="Extensions\LINQHelpers.cs" />
@@ -222,16 +222,16 @@
     <Content Include="Areas\Plataforma\Views\Bancos\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Edit.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contato\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Endereco\Details.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contato\Details.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contato\Create.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contato\Edit.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contato\Delete.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Endereco\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Endereco\Create.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Endereco\Edit.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Endereco\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contatos\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Enderecos\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contatos\Details.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contatos\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contatos\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Contatos\Delete.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Enderecos\Index.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Enderecos\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Enderecos\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Enderecos\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cheques\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cheques\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Pessoas\Index.cshtml" />
@@ -240,6 +240,7 @@
     <Content Include="Areas\Plataforma\Views\Cheques\Edit.cshtml" />
     <Content Include="Areas\Plataforma\Views\Pessoas\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Pessoas\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\EnderecoViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -262,9 +263,11 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\DefaultError.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -273,7 +276,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
-    <Folder Include="Controllers\ErrorHandling\" />
+    <Folder Include="Areas\Plataforma\Views\Shared\DisplayTemplates\" />
+    <Folder Include="Areas\Plataforma\Views\Shared\Errors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -4,12 +4,14 @@ using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using AutoMapper;
+using RocamERP.Presentation.Web.Exceptions;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
+    [ExtendedHandleError()]
     public class EstadosController : Controller
     {
-        private readonly IEstadoApplicationService _estadoApplicationService; 
+        private readonly IEstadoApplicationService _estadoApplicationService;
 
         public EstadosController(IEstadoApplicationService estadoApplicationService)
         {
@@ -42,22 +44,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Create(EstadoViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var estado = Mapper.Map<EstadoViewModel, Estado>(model);
-                    _estadoApplicationService.Add(estado);
+                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
+                _estadoApplicationService.Add(estado);
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+            }
 
-                return View(model);
-            }
-            catch
-            {
-                throw;
-            }
+            return View(model);
         }
 
         public ActionResult Edit(string id)
@@ -71,22 +66,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Edit(string id, EstadoViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var estado = Mapper.Map<EstadoViewModel, Estado>(model);
-                    _estadoApplicationService.Update(estado);
+                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
+                _estadoApplicationService.Update(estado);
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+            }
 
-                return View(model);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         public ActionResult Delete(string id)
@@ -100,15 +88,9 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Delete(string id, EstadoViewModel model)
         {
-            try
-            {
-                _estadoApplicationService.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _estadoApplicationService.Delete(id);
+
+            return RedirectToAction("Index");
         }
     }
 }
