@@ -1,4 +1,4 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.ClienteViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.PessoaViewModel
 
 @{
     ViewBag.Title = $"{Model.Nome} - Detalhes";
@@ -29,7 +29,7 @@
     </li>
 </ul>
 
-<div class="tab-content">
+<div class="tab-content height-1">
     
     
     <div class="tab-pane active" id="basicInfo" role="tabpanel"> 
@@ -52,22 +52,6 @@
                 <dd>
                     @Html.DisplayFor(model => model.Descricao)
                 </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.RegistroFederal)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.RegistroFederal)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.RegistroEstadual)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.RegistroEstadual)
-                </dd>
             </dl>
         </div>
     </div>
@@ -78,6 +62,8 @@
     <div class="tab-pane" id="chequesInfo" role="tabpanel">
         
         <div class="p-5">
+            @if (Model.Cheques.Count() > 0)
+            {
             <table class="table">
                 <thead>
                     <tr>
@@ -99,7 +85,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var cheque in Model.Cheques)
+                    @foreach (var cheque in Model.Cheques)
                     {
                         <tr>
                             <td>
@@ -121,6 +107,15 @@
                     }
                 </tbody>
             </table>
+            }
+            else
+            {
+                <p>
+                    Nenhum cheque registrado.
+                </p>
+
+                @Html.ActionLink("Adicionar novo", "Create", "Cheques", new { @id = Model.PessoaId }, null)
+            }
         </div>
 
     </div>
@@ -178,17 +173,54 @@
                 <p>
                     Nenhum endereço registrado.
                 </p>
-
-                @Html.ActionLink("Adicionar novo", "Create", "Enderecos", new { })
             }
+
+            @Html.ActionLink("Adicionar novo", "Create", "Enderecos", new { @id = Model.PessoaId }, null)
         </div>
 
     </div>
     <div class="tab-pane" id="contatosInfo" role="tabpanel">
+        <div class="p-5">
+            @if (Model.Contatos.Count() > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.First().TipoContato)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.First().Observacao)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contato in Model.Contatos)
+                        {
+                            <tr>
+                                <td>
+                                    @contato.TipoContato
+                                </td>
+                                <td>
+                                    @contato.Observacao
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>
+                    Nenhum contato registrado.
+                </p>
+            }
 
+            @Html.ActionLink("Adicionar novo", "Create", "Contatos", new { @id = Model.PessoaId }, null)
+        </div>
     </div>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ClienteId }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PessoaId }) |
     @Html.ActionLink("Página Anterior", "Index")
 </p>

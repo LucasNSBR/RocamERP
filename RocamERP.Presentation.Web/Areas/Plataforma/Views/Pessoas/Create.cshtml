@@ -13,7 +13,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class="form-horizontal px-4">
         <div>
             <div class="mx-2 pt-2">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -22,18 +22,9 @@
                     <legend>
                         Cadastro Nacional (CNPJ/CPF)
                     </legend>
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.CadastroNacional.TipoCadastroNacional, new { @class = "col-form-label" })
-                        <div class="col-12">
-                            @Html.DropDownList("TipoCadastroNacional", null, string.Empty, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.CadastroNacional.NumeroDocumento, new { @class = "col-form-label" })
-                        <div class="col-12">
-                            @Html.TextBoxFor(model => model.CadastroNacional.NumeroDocumento, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CadastroNacional.NumeroDocumento, "", new { @class = "text-danger" })
-                        </div>
+
+                    <div class="px-4">
+                        @Html.EditorForModel("CadastroNacionalViewModel", "CadastroNacional")
                     </div>
                 </fieldset>
 
@@ -42,18 +33,8 @@
                         Cadastro Estadual (Inscrição Estadual/RG)
                     </legend>
 
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.CadastroEstadual.TipoCadastroEstadual, new { @class = "col-form-label" })
-                        <div class="col-12">
-                            @Html.DropDownList("TipoCadastroEstadual", null, string.Empty, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.CadastroEstadual.NumeroDocumento, new { @class = "col-form-label" })
-                        <div class="col-12">
-                            @Html.TextBoxFor(model => model.CadastroEstadual.NumeroDocumento, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CadastroEstadual.NumeroDocumento, "", new { @class = "text-danger" })
-                        </div>
+                    <div class="px-4">
+                        @Html.EditorForModel("CadastroEstadualViewModel", "CadastroEstadual")
                     </div>
                 </fieldset>
 

@@ -9,6 +9,7 @@
 <h2>Pessoas</h2>
 
 <p class="pb-0">
+    <span class="fa fa-plus text-primary"></span>
     @Html.ActionLink("Novo", "Create")
 </p>
 
@@ -16,7 +17,7 @@
     @using (Html.BeginForm("Index", "Pessoas", FormMethod.Get))
     {
         <div class="input-group">
-            @Html.TextBox("prefix", null, new { @class = "form-control", @placeholder = "Digite o nome da pessoa..." })
+            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome da pessoa..." })
             <span class="input-group-btn" type="submit">
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
@@ -59,7 +60,7 @@
                     <td>
                         @(item.Cheques.Count() > 0 ? item.Cheques.Count().ToString() : "Nenhum")
                     </td>
-                    <td>
+                    <td class="text-right">
                         @Html.ActionLink("Editar", "Edit", new { id = item.PessoaId }) |
                         @Html.ActionLink("Detalhes", "Details", new { id = item.PessoaId }) |
                         @Html.ActionLink("Excluir", "Delete", new { id = item.PessoaId })
@@ -75,4 +76,3 @@ else
         Nenhum registro encontrado.
     </p>
 }
-

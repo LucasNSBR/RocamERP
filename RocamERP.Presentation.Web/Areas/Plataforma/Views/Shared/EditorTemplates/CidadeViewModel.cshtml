@@ -1,0 +1,32 @@
+﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CEP, new { @class = "control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.EstadoId, new { @class = "control-label" })
+    <div class="col-12">
+        @Html.DropDownList("EstadoId", null, "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group row pt-5">
+    <div class="col-12">
+        <input type="submit" value="Adicionar" class="btn btn-primary" />
+    </div>
+</div>
+

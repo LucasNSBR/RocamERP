@@ -68,69 +68,43 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Edit(int id)
         {
-            try
-            {
-                var cliente = _pessoaApplicationService.Get(id);
-                var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
+            var cliente = _pessoaApplicationService.Get(id);
+            var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
 
-                return View(clienteVM);
-            }
-            catch
-            {
-                throw;
-            }
+            return View(clienteVM);
         }
 
         [HttpPost]
         public ActionResult Edit(int id, PessoaViewModel model)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
-                    _pessoaApplicationService.Update(pessoa);
 
-                    return RedirectToAction("Index");
-                }
-
-                return View(model);
-            }
-            catch
+            if (ModelState.IsValid)
             {
-                return View();
+                var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);
+                _pessoaApplicationService.Update(pessoa);
+
+                return RedirectToAction("Index");
             }
+
+            return View(model);
         }
 
         public ActionResult Delete(int id)
         {
-            try
-            {
-                var cliente = _pessoaApplicationService.Get(id);
-                var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
-                return View(clienteVM);
-            }
-            catch
-            {
-                throw;
-            }
+            var cliente = _pessoaApplicationService.Get(id);
+            var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
+            return View(clienteVM);
+
         }
 
         [HttpPost]
         public ActionResult Delete(int id, PessoaViewModel model)
         {
-            try
-            {
-                _pessoaApplicationService.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _pessoaApplicationService.Delete(id);
+            return RedirectToAction("Index");
         }
 
-        public JsonResult ValidateCadastroEstadual(string value)
+        public JsonResult ValidateCadastroEstadual([Bind(Prefix = "CadastroEstadual.NumeroDocumento")]string value)
         {
             var exists = _pessoaApplicationService.GetAll().Any(p =>
             {
@@ -143,11 +117,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return Json(!exists, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ValidateCadastroNacional(string value)
+        public JsonResult ValidateCadastroNacional([Bind(Prefix = "CadastroNacional.NumeroDocumento")]string value)
         {
             var exists = _pessoaApplicationService.GetAll().Any(p =>
             {
-                if (p.CadastroEstadual != null && p.CadastroEstadual.NumeroDocumento == value)
+                if (p.CadastroNacional != null && p.CadastroNacional.NumeroDocumento == value)
                     return true;
                 else
                     return false;

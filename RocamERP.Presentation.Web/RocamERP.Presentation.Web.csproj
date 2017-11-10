@@ -241,6 +241,13 @@
     <Content Include="Areas\Plataforma\Views\Pessoas\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Pessoas\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\EnderecoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\CadastroNacionalViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\CadastroEstadualViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\CidadeViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\EstadoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\BancoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\ContatoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Pessoas\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

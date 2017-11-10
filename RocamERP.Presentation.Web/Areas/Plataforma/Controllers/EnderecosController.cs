@@ -14,10 +14,12 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class EnderecosController : Controller
     {
         private readonly IEnderecoApplicationService _enderecoApplicationService;
+        private readonly ICidadeApplicationService _cidadeApplicationService;
 
-        public EnderecosController(IEnderecoApplicationService enderecoApplicationService)
+        public EnderecosController(IEnderecoApplicationService enderecoApplicationService, ICidadeApplicationService cidadeApplicationService)
         {
             _enderecoApplicationService = enderecoApplicationService;
+            _cidadeApplicationService = cidadeApplicationService;
         }
 
         public ActionResult Index()
@@ -40,6 +42,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult Create(int id)
         {
             ViewBag.TipoEndereco = new SelectList(Enum.GetValues(typeof(ViewModels.TipoEndereco)));
+            ViewBag.CidadeId = new SelectList(_cidadeApplicationService.GetAll());
             ViewBag.PessoaId = id;
             return View();
         }
@@ -47,11 +50,17 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Create(EnderecoViewModel model)
         {
-            var enderecoVM = Mapper.Map<EnderecoViewModel, Endereco>(model);
-            _enderecoApplicationService.Add(enderecoVM);
+            if (ModelState.IsValid)
+            {
+                var enderecoVM = Mapper.Map<EnderecoViewModel, Endereco>(model);
+                _enderecoApplicationService.Add(enderecoVM);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
+            }
 
+            ViewBag.TipoEndereco = new SelectList(Enum.GetValues(typeof(ViewModels.TipoEndereco)), model.TipoEndereco);
+            ViewBag.CidadeId = new SelectList(_cidadeApplicationService.GetAll(), model.CidadeId);
+            return View(model);
         }
 
         public ActionResult Edit(int id)
@@ -70,9 +79,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var endereco = Mapper.Map<EnderecoViewModel, Endereco>(model);
                 _enderecoApplicationService.Update(endereco);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
             }
 
+            ViewBag.TipoEndereco = new SelectList(Enum.GetValues(typeof(ViewModels.TipoEndereco)), model.TipoEndereco);
+            ViewBag.CidadeId = new SelectList(_cidadeApplicationService.GetAll(), model.CidadeId);
             return View(model);
         }
 
@@ -88,7 +99,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult Delete(int id, EnderecoViewModel model)
         {
             _enderecoApplicationService.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
         }
     }
 }

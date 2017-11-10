@@ -45,10 +45,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Create(ContatoViewModel model)
         {
-            var contatoVM = Mapper.Map<ContatoViewModel, Contato>(model);
-            _contatoApplicationService.Add(contatoVM);
+            if (ModelState.IsValid)
+            {
+                var contatoVM = Mapper.Map<ContatoViewModel, Contato>(model);
+                _contatoApplicationService.Add(contatoVM);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
+            }
+
+            return View(model);
         }
 
         public ActionResult Edit(int id)
@@ -67,7 +72,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var contato = Mapper.Map<ContatoViewModel, Contato>(model);
                 _contatoApplicationService.Update(contato);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
             }
 
             return View(model);
@@ -85,8 +90,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult Delete(int id, ContatoViewModel model)
         {
             _contatoApplicationService.Delete(id);
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
         }
     }
 }

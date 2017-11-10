@@ -14,12 +14,9 @@
         <h6>Adicionar novo estado</h6>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, new { @class = "col-form-label" })
-            <div class="col-12">
-                @Html.TextBoxFor(e => e.Nome, new { @class = "form-control" })
-                @Html.ValidationMessageFor(e => e.Nome, null, new { @class = "text-danger" })
-            </div>
+        
+        <div>
+            @Html.EditorForModel();
         </div>
 
         <div class="form-group row pt-5">
