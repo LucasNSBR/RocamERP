@@ -5,6 +5,7 @@ using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using AutoMapper;
 using RocamERP.Presentation.Web.Exceptions;
+using System.Linq;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -18,79 +19,16 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _estadoApplicationService = estadoApplicationService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string prefix = "")
         {
-            var list = _estadoApplicationService.GetAll();
-            var listVM = new List<EstadoViewModel>();
+            var list = _estadoApplicationService.GetAll()
+                .Where(e => e.Nome.ToLower().Contains(prefix.ToLower()))
+                .OrderByDescending(e => e.Cidades.Count());
 
+            var listVM = new List<EstadoViewModel>();
             Mapper.Map(list, listVM);
 
             return View(listVM);
-        }
-
-        public ActionResult Details(string id)
-        {
-            Estado estado = _estadoApplicationService.Get(id);
-            var estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
-
-            return View(estadoVM);
-        }
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(EstadoViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
-                _estadoApplicationService.Add(estado);
-
-                return RedirectToAction("Index");
-            }
-
-            return View(model);
-        }
-
-        public ActionResult Edit(string id)
-        {
-            var estado = _estadoApplicationService.Get(id);
-            var estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
-
-            return View(estadoVM);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(string id, EstadoViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var estado = Mapper.Map<EstadoViewModel, Estado>(model);
-                _estadoApplicationService.Update(estado);
-
-                return RedirectToAction("Index");
-            }
-
-            return View(model);
-        }
-
-        public ActionResult Delete(string id)
-        {
-            var estado = _estadoApplicationService.Get(id);
-            var estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
-
-            return View(estadoVM);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(string id, EstadoViewModel model)
-        {
-            _estadoApplicationService.Delete(id);
-
-            return RedirectToAction("Index");
         }
     }
 }

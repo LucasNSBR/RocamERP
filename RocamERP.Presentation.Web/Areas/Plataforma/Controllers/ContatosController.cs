@@ -37,9 +37,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(contatoVM);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            return View();
+            ContatoViewModel contatoVM = new ContatoViewModel()
+            {
+                PessoaId = id
+            };
+
+            return View(contatoVM);
         }
 
         [HttpPost]

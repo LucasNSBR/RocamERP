@@ -27,7 +27,7 @@
 @if (Model.Enderecos.Count() > 0)
 {
 <div>
-    @Html.ActionLink($"{Model.Enderecos.Count().ToString()} endereços listados", "Index", "Enderecos", new { @cidade = Model.Nome, @prefix = "" })
+    @Html.ActionLink($"{Model.Enderecos.Count().ToString()} endereços listados", "Index", "Enderecos", new { @cidade = Model.Nome, @prefix = "" }, null)
 </div>
 }
 else

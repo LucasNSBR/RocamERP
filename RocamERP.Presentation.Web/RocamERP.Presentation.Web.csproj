@@ -193,7 +193,6 @@
   <ItemGroup>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Views\Shared\Errors\HTTP\404.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
@@ -208,10 +207,6 @@
     </Content>
     <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Estados\Details.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Estados\Edit.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Estados\Delete.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Estados\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Delete.cshtml" />
@@ -244,10 +239,12 @@
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\CadastroNacionalViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\CadastroEstadualViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\CidadeViewModel.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\EstadoViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\BancoViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\ContatoViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Pessoas\Edit.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\SearchBar.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\SearchBarExtended.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\PessoaViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -279,12 +276,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
     <Folder Include="Areas\Plataforma\Views\Shared\DisplayTemplates\" />
-    <Folder Include="Areas\Plataforma\Views\Shared\Errors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

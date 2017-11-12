@@ -1,53 +1,44 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.EnderecoViewModel
 
+@Html.HiddenFor(model => model.EnderecoId)
+@Html.HiddenFor(model => model.CidadeId)
+
 <div class="form-group">
-    @Html.LabelFor(model => model.Rua, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Rua, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.LabelFor(model => model.Rua, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Rua, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Rua, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.LabelFor(model => model.Numero, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Complemento, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.LabelFor(model => model.Bairro, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Complemento, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.CidadeId, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownList("CidadeId", null, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.CidadeId, "", new { @class = "text-danger" })
-    </div>
-</div>
-
-<div hidden="hidden">
-    @Html.Hidden("PessoaId", (int)ViewBag.PessoaId);
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(model => model.TipoEndereco, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownListFor(model => model.TipoEndereco, null, new { @class = "form-control " })
+    @Html.LabelFor(model => model.TipoEndereco, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.DropDownListFor(model => model.TipoEndereco, Model.TipoEnderecoList, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.TipoEndereco, "", new { @class = "text-danger" })
     </div>
 </div>

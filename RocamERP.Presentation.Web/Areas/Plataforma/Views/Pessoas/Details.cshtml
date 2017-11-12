@@ -34,8 +34,6 @@
     
     <div class="tab-pane active" id="basicInfo" role="tabpanel"> 
         <div class="p-3">
-            <h4>@Model.Nome</h4>
-            <hr />
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.Nome)
@@ -53,6 +51,9 @@
                     @Html.DisplayFor(model => model.Descricao)
                 </dd>
             </dl>
+        </div>
+        <div>
+            @Html.ActionLink("Editar dados básicos", "Edit", new { id = Model.PessoaId })
         </div>
     </div>
 
@@ -221,6 +222,5 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.PessoaId }) |
     @Html.ActionLink("Página Anterior", "Index")
 </p>

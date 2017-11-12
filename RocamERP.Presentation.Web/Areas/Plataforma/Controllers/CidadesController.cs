@@ -48,6 +48,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
 
+            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", cidadeVM.EstadoId);
             return View(cidadeVM);
         }
 
@@ -68,6 +69,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", model.EstadoId);
             return View(model);
         }
 
@@ -76,6 +78,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
 
+            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", cidadeVM.EstadoId);
             return View(cidadeVM);
         }
 
@@ -90,6 +93,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", model.EstadoId);
             return View(model);
         }
 

@@ -6,9 +6,24 @@
 
 <h2>Estados</h2>
 
-<p>
-    @Html.ActionLink("Adicionar Novo", "Create")
-</p>
+<div class="pt-3 pb-0 pt-0">
+    @Html.Partial("PartialTemplates/SearchBar", null, new ViewDataDictionary
+    {
+        {
+        "Action", "Index"
+        },
+        {
+        "Controller", "Estados"
+        },
+        {
+        "Parameter", "prefix"
+        },
+        {
+        "Placeholder", "Digite o nome de um estado..."
+        }
+    })
+</div>
+
 <table class="table">
     <thead class="reset-border">
         <tr>
@@ -28,7 +43,7 @@
                     @if (item.Cidades.Count() > 0)
                     {
                         <p>
-                            @($"{item.Cidades.Count()} Cidades listadas")
+                            @Html.ActionLink($"{item.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estado = item.Nome }, null)
                         </p>
                     }
                     else
@@ -37,12 +52,6 @@
                             Nenhuma cidade encontrada
                         </p>
                     }
-                </td>
-
-                <td class="text-right">
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Nome }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Nome }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.Nome })
                 </td>
             </tr>
         }
