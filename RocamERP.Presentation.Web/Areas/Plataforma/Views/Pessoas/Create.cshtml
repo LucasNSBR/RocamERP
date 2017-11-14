@@ -4,10 +4,9 @@
     ViewBag.Title = "Novo";
 }
 
-<div>
-    <h2>Novo</h2>
-    <h6>Adicionar novo cliente</h6>
-</div>
+<h2>Novo</h2>
+<h6>Adicionar novo cliente</h6>
+<hr />
 
 @using (Html.BeginForm())
 {
@@ -38,29 +37,13 @@
                     </div>
                 </fieldset>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "col-form-label" })
-                    <div class="col-12">
-                        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "col-form-label" })
-                    <div class="col-12">
-                        @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-                    </div>
+                <div>
+                    @Html.EditorForModel()
                 </div>
             </div>
         </div>
 
-        <div class="form-group row pt-5">
-            <div class="col-12">
-                <input type="submit" value="Enviar" class="btn btn-primary" />
-            </div>
-        </div>
+        @Html.SubmitButton("Adicionar")
     </div>
 }
 

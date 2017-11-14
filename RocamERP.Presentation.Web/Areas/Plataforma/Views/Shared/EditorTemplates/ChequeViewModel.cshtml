@@ -1,0 +1,91 @@
+﻿@model RocamERP.Presentation.Web.ViewModels.ChequeViewModel
+
+@Html.HiddenFor(model => model.ChequeId)
+
+@*<div class="form-group">
+    @Html.LabelFor(model => model.BancoId, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.DropDownListFor(model => model.BancosList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BancoId, "", new { @class = "text-danger" })
+    </div>
+</div>*@
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Agencia, new { @class = "control-label col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Agencia, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Agencia, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ContaCorrente, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.ContaCorrente, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ContaCorrente, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.NumeroCheque, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.NumeroCheque, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.NumeroCheque, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PessoaId, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.PessoaId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PessoaId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Observacao, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Observacao, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DataRecebimento, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.DataRecebimento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DataRecebimento, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DataVencimento, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.DataVencimento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DataVencimento, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DataPagamento, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.DataPagamento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DataPagamento, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DataPagamento, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.EnumDropDownListFor(model => model.SituacaoCheque, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DataPagamento, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Valor, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+    </div>
+</div>

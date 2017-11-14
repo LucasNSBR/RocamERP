@@ -7,32 +7,19 @@
 <h2>Excluir</h2>
 
 <h6>Tem certeza que deseja apagar esse dado?</h6>
+<hr />
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CEP)
-        </dt>
+    <div>
+        @Html.DisplayForModel()
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CEP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EstadoId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EstadoId)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        @Html.SubmitButton("Excluir")
     }
+
+    <div>
+        @Html.ActionLink("Página Anterior", "Index")
+    </div>
 </div>

@@ -19,11 +19,12 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _estadoApplicationService = estadoApplicationService;
         }
 
-        public ActionResult Index(string prefix = "")
+        public ActionResult Index(string prefix = "", bool hideEmpty = false)
         {
             var list = _estadoApplicationService.GetAll()
                 .Where(e => e.Nome.ToLower().Contains(prefix.ToLower()))
                 .OrderByDescending(e => e.Cidades.Count());
+
 
             var listVM = new List<EstadoViewModel>();
             Mapper.Map(list, listVM);

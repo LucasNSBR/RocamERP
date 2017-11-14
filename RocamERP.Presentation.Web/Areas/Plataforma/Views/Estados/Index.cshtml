@@ -6,7 +6,7 @@
 
 <h2>Estados</h2>
 
-<div class="pt-3 pb-0 pt-0">
+<div class="pt-3 pb-2 pt-0">
     @Html.Partial("PartialTemplates/SearchBar", null, new ViewDataDictionary
     {
         {
@@ -22,6 +22,12 @@
         "Placeholder", "Digite o nome de um estado..."
         }
     })
+
+    <div class="form-group">
+        <div class="col-12">
+            @Html.CheckBox("hideEmpty", false, new { @class = "d-inline mx-2" }) Esconder estados sem cidades cadastradas
+        </div>
+    </div>
 </div>
 
 <table class="table">
@@ -33,24 +39,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var estado in Model)
         {
             <tr>
                 <td>
-                    @item.Nome
+                    @Html.DisplayFor(model => estado.Nome)
                 </td>
                 <td>
-                    @if (item.Cidades.Count() > 0)
+                    @if (estado.Cidades.Any())
                     {
-                        <p>
-                            @Html.ActionLink($"{item.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estado = item.Nome }, null)
-                        </p>
+                        @Html.ActionLink($"{estado.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estado = estado.Nome }, null)
                     }
                     else
                     {
-                        <p>
+                        <span>
                             Nenhuma cidade encontrada
-                        </p>
+                        </span>
                     }
                 </td>
             </tr>

@@ -5,25 +5,21 @@
 }
 
 <h2>Novo</h2>
+<h6>Adicionar novo banco</h6>
+<hr />
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div>
-        <h6>Adicionar novo banco</h6>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
         <div>
             @Html.EditorForModel()
         </div>
 
-        <div class="form-group row pt-5">
-            <div class="col-12">
-                <input type="submit" value="Adicionar" class="btn btn-primary" />
-            </div>
-        </div>
+        @Html.SubmitButton("Adicionar")
     </div>
 }
 

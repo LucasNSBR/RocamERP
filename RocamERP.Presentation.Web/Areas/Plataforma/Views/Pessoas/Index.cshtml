@@ -45,25 +45,25 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var pessoa in Model)
             {
                 <tr>
                     <td>
-                        @item.Nome
+                        @Html.DisplayFor(model => pessoa.Nome)
                     </td>
                     <td>
-                        @($"{item.CadastroEstadual?.NumeroDocumento?.ToUpper()?.FormatCadastroEstadual() ?? "Não registrado"}")
+                        @($"{pessoa.CadastroEstadual?.NumeroDocumento?.ToUpper()?.FormatCadastroEstadual() ?? "Não registrado"}")
                     </td>
                     <td>
-                        @($"{item.CadastroNacional?.NumeroDocumento?.ToUpper()?.FormatCadastroNacional() ?? "Não registrado"}")
+                        @($"{pessoa.CadastroNacional?.NumeroDocumento?.ToUpper()?.FormatCadastroNacional() ?? "Não registrado"}")
                     </td>
                     <td>
-                        @(item.Cheques.Count() > 0 ? item.Cheques.Count().ToString() : "Nenhum")
+                        @(pessoa.Cheques.Count() > 0 ? pessoa.Cheques.Count().ToString() : "Nenhum")
                     </td>
                     <td class="text-right">
-                        @Html.ActionLink("Editar", "Edit", new { id = item.PessoaId }) |
-                        @Html.ActionLink("Detalhes", "Details", new { id = item.PessoaId }) |
-                        @Html.ActionLink("Excluir", "Delete", new { id = item.PessoaId })
+                        @Html.ActionLink("Editar", "Edit", new { id = pessoa.PessoaId }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = pessoa.PessoaId }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = pessoa.PessoaId })
                     </td>
                 </tr>
             }

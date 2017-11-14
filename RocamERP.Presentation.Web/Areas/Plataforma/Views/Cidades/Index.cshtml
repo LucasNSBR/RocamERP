@@ -9,6 +9,7 @@
 <h2>Cidades</h2>
 
 <p>
+    <span class="fa fa-plus text-primary"></span>
     @Html.ActionLink("Novo", "Create")
 </p>
 
@@ -53,13 +54,13 @@
             {
                 <tr>
                     <td>
-                        @item.Nome
+                        @Html.DisplayFor(model => item.Nome)
                     </td>
                     <td>
-                        @item.EstadoId
+                        @Html.DisplayFor(model => item.EstadoId)
                     </td>
                     <td>
-                        @item.CEP.FormatCEP()
+                        @Html.DisplayFor(model => item.CEP)
                     </td>
                     <td class="text-right">
                         @Html.ActionLink("Editar", "Edit", new { id = item.Nome }) |

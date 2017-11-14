@@ -3,7 +3,6 @@ using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -30,16 +29,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             }
 
             return View(bancosVM);
-        }
-
-        public ActionResult Details(string id)
-        {
-            id = Uri.UnescapeDataString(id);
-
-            var banco = _bancoApplicationService.Get(id);
-            var bancoVM = Mapper.Map<Banco, BancoViewModel>(banco);
-
-            return View(bancoVM);
         }
 
         public ActionResult Create()

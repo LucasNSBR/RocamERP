@@ -1,24 +1,25 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.BancoViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = $"Excluir - {Model.Nome}";
 }
 
-<h2>Delete</h2>
+<h2>Excluir</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h6>Tem certeza que deseja apagar esse dado?</h6>
+<hr />
 <div>
-    <h4>BancoViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+    <div>
+        @Html.DisplayForModel()
+    </div>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        @Html.SubmitButton("Excluir")
     }
+
+    <div>
+        @Html.ActionLink("Página Anterior", "Index")
+    </div>
 </div>

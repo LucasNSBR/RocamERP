@@ -45,19 +45,6 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public TipoEndereco TipoEndereco { get; set; }
 
-        public IEnumerable<SelectListItem> TipoEnderecoList
-        {
-            get
-            {
-                List<SelectListItem> ListItems = new List<SelectListItem>();
-                Enum.GetNames(typeof(TipoEndereco))
-                    .ToList()
-                    .ForEach(i => ListItems.Add(new SelectListItem { Text = i, Value = i }));
-
-                return ListItems;
-            }
-        } 
-
         public override string ToString()
         {
             return $"{Rua}, {Numero}, {Bairro} em {Cidade}";

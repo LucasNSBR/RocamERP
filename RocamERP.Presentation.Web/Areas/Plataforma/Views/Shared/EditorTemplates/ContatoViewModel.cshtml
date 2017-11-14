@@ -15,7 +15,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.TipoContato, new { @class = "col-form-label" })
     <div class="col-12">
-        @Html.DropDownListFor(model => model.TipoContato, Model.TipoContatoList, new { @class = "form-control" })
+        @Html.EnumDropDownListFor(model => model.TipoContato, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.TipoContato, "", new { @class = "text-danger" })
     </div>
 </div>

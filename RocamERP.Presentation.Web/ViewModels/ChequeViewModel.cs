@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.ViewModels
 {
@@ -9,12 +12,12 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Key]
         [DisplayName("Chave")]
         public int ChequeId { get; set; }
-        
+
         [DisplayName("Banco")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public string BancoId { get; set; }
         public virtual BancoViewModel Banco { get; set; }
-        
+
         [DisplayName("Agência")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(10, ErrorMessage = "O tamanho máximo para o campo é 10 caracteres.")]
@@ -30,7 +33,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [MaxLength(7, ErrorMessage = "O tamanho máximo para o campo é 7 caracteres.")]
         public string NumeroCheque { get; set; }
 
-        [DisplayName("Cliente")]
+        [DisplayName("Proprietário")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public int PessoaId { get; set; }
         public virtual PessoaViewModel Pessoa { get; set; }
@@ -52,6 +55,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         public DateTime DataVencimento { get; set; }
 
         [DisplayName("Data de Pagamento")]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", NullDisplayText = "Não registrado.")]
         public DateTime? DataPagamento { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]

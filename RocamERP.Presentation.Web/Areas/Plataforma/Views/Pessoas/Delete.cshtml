@@ -6,34 +6,20 @@
 
 <h2>Excluir</h2>
 
-<h6>Você tem certeza que deseja apagar esse dado?</h6>
+<h6>Tem certeza que deseja apagar esse dado?</h6>
+<hr />
 <div>
-    <h4>@Model.Nome</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+    <div>
+        @Html.DisplayForModel()
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
-        <div>
-            <input type="submit" value="Excluir" class="btn btn-primary" /> |
-            @Html.ActionLink("Página Anterior", "Index")
-        </div>
+        @Html.SubmitButton("Excluir")
     }
+
+    <div>
+        @Html.ActionLink("Página Anterior", "Index")
+    </div>
 </div>

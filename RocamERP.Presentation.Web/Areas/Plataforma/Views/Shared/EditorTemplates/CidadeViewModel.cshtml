@@ -1,7 +1,7 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
+    @Html.LabelFor(model => model.Nome, new { @class = "col-form-label" })
     <div class="col-12">
         @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
@@ -9,7 +9,7 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.CEP, new { @class = "control-label" })
+    @Html.LabelFor(model => model.CEP, new { @class = "col-form-label" })
     <div class="col-12">
         @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
@@ -17,7 +17,7 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.EstadoId, new { @class = "control-label" })
+    @Html.LabelFor(model => model.EstadoId, new { @class = "col-form-label" })
     <div class="col-12">
         @Html.DropDownList("EstadoId", null, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })

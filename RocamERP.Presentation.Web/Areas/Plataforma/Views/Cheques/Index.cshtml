@@ -7,8 +7,14 @@
 <h2>Cheques</h2>
 
 <p>
-    @Html.ActionLink("Novo", "Create")
+    <span class="fa fa-plus text-primary"></span> @Html.ActionLink("Novo", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Cheques", FormMethod.Get))
+{
+    
+}
+
 <table class="table">
     <thead class="reset-border">
         <tr>
@@ -28,6 +34,9 @@
                 @Html.DisplayNameFor(model => model.DataVencimento)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SituacaoCheque)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Valor)
             </th>
         </tr>
@@ -37,22 +46,25 @@
         {
             <tr>
                 <td>
-                    @item.BancoId
+                    @Html.DisplayFor(model => item.BancoId)
                 </td>
                 <td>
-                    @item.NumeroCheque
+                    @Html.DisplayFor(model => item.NumeroCheque)
                 </td>
                 <td>
-                    @item.Pessoa.Nome
+                    @Html.DisplayFor(model => item.Pessoa.Nome)
                 </td>
                 <td>
-                    @item.DataRecebimento.ToShortDateString()
+                    @Html.DisplayFor(model => item.DataRecebimento)
                 </td>
                 <td>
-                    @item.DataVencimento.ToShortDateString()
+                    @Html.DisplayFor(model => item.DataVencimento)
                 </td>
                 <td>
-                    @item.Valor.ToString("C2")
+                    @Html.DisplayFor(model => item.SituacaoCheque)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Valor)
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.ChequeId }) |

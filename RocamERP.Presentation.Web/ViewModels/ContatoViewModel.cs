@@ -27,19 +27,6 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayName("Tipo de Contato")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public TipoContato TipoContato { get; set; }
-        
-        public IEnumerable<SelectListItem> TipoContatoList
-        {
-            get
-            {
-                List<SelectListItem> ListItems = new List<SelectListItem>();
-                Enum.GetNames(typeof(TipoContato))
-                    .ToList()
-                    .ForEach(i => ListItems.Add(new SelectListItem { Text = i, Value = i }));
-               
-                return ListItems;
-            }
-        }
 
         public override string ToString()
         {

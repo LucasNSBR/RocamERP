@@ -214,7 +214,6 @@
     <Content Include="Areas\Plataforma\Views\Cidades\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Create.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Bancos\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Edit.cshtml" />
     <Content Include="Areas\Plataforma\Views\Contatos\Index.cshtml" />
@@ -245,6 +244,14 @@
     <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\SearchBar.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\SearchBarExtended.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\PessoaViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\CidadeViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\BancoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\ContatoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\EnderecoViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\PessoaViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\ChequeViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\ChequeViewModel.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cheques\Create.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -281,7 +288,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
-    <Folder Include="Areas\Plataforma\Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
