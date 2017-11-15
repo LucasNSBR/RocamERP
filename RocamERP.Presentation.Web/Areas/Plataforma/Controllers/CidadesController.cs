@@ -14,7 +14,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     {
         private readonly ICidadeApplicationService _cidadeApplicationService;
         private readonly IEstadoApplicationService _estadoApplicationService;
-
+        
         public CidadesController(ICidadeApplicationService cidadeApplicationService, IEstadoApplicationService estadoApplicationService)
         {
             _cidadeApplicationService = cidadeApplicationService;
@@ -48,14 +48,17 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
 
-            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", cidadeVM.EstadoId);
             return View(cidadeVM);
         }
 
         public ActionResult Create()
         {
-            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome");
-            return View();
+            var estados = _estadoApplicationService.GetAll();
+            var estadosVM  = Mapper.Map<IEnumerable<Estado>, IEnumerable<EstadoViewModel>>(estados);
+
+            CidadeViewModel cidadeVM = new CidadeViewModel();
+            cidadeVM.LoadEstadosList(estadosVM);
+            return View(cidadeVM);
         }
 
         [HttpPost]
@@ -77,8 +80,9 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
+            var estadosVM = Mapper.Map<IEnumerable<Estado>, IEnumerable<EstadoViewModel>>(_estadoApplicationService.GetAll());
+            cidadeVM.LoadEstadosList(estadosVM);
 
-            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", cidadeVM.EstadoId);
             return View(cidadeVM);
         }
 
@@ -92,8 +96,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
                 return RedirectToAction("Index");
             }
-
-            ViewBag.EstadoId = new SelectList(_estadoApplicationService.GetAll(), "Nome", "Nome", model.EstadoId);
+            
             return View(model);
         }
 

@@ -11,6 +11,19 @@ namespace Rocam.ERP.Presentation.Web.Tests
     public class MiscellanousTests
     {
         [TestMethod]
+        public void TestConvert()
+        {
+            var x = new { aclass = "btn btn-primary", type = "submit" };
+            Dictionary<string, string> values = new Dictionary<string, string>()
+            {
+                { x.aclass, "sss" },
+                { x.type, "ss"}
+            };
+
+
+        }
+
+        [TestMethod]
         public void TestValidation()
         {
             List<Pessoa> pr = new List<Pessoa>()

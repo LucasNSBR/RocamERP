@@ -5,6 +5,7 @@ using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -18,9 +19,12 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _bancoApplicationService = bancoApplicationService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string prefix = "")
         {
-            var bancos = _bancoApplicationService.GetAll();
+            var bancos = _bancoApplicationService.GetAll()
+                .Where(b => b.Nome.ToLower().Contains(prefix.ToLower()))
+                .OrderByDescending(b => b.Cheques.Count);
+
             var bancosVM = new List<BancoViewModel>();
 
             foreach (var banco in bancos)

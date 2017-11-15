@@ -6,15 +6,25 @@
 
 <h2>Cheques</h2>
 
-<p>
-    <span class="fa fa-plus text-primary"></span> @Html.ActionLink("Novo", "Create")
+<p class="pb-0">
+    <span class="fa fa-plus text-primary"></span>
+    @Html.ActionLink("Novo", "Create")
 </p>
 
-@using (Html.BeginForm("Index", "Cheques", FormMethod.Get))
-{
-    
-}
+<div class="pb-4 pt-0">
+    @using (Html.BeginForm("Index", "Cheques", FormMethod.Get))
+    {
+        <div class="input-group">
+            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o número do cheque..." })
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </span>
+        </div>
+    }
+</div>
 
+@if (Model.Any())
+{
 <table class="table">
     <thead class="reset-border">
         <tr>
@@ -75,3 +85,10 @@
         }
     </tbody>
 </table>
+}
+else
+{
+    <div class="mt-5">
+        @Html.Raw("Nada encontrado")
+    </div>
+}

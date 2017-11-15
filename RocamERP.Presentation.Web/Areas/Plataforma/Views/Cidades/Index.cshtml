@@ -1,6 +1,4 @@
-﻿@using RocamERP.Presentation.Web.Extensions
-
-@model IEnumerable<RocamERP.Presentation.Web.ViewModels.CidadeViewModel>
+﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.CidadeViewModel>
 
 @{
     ViewBag.Title = "Cidades";
@@ -33,7 +31,7 @@
 </div>
 
 
-@if (Model.Count() > 0)
+@if (Model.Any())
 {
     <table class="table">
         <thead class="reset-border">
@@ -74,7 +72,7 @@
 }
 else
 {
-    <p class="pt-5">
-        Nenhum registro encontrado.
-    </p>
+    <div class="mt-5">
+        @Html.Raw("Nada encontrado")
+    </div>
 }

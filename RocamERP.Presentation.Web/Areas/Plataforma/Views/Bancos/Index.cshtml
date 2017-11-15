@@ -7,8 +7,23 @@
 <h2>Bancos</h2>
 
 <p>
+    <span class="fa fa-plus text-primary"></span>
     @Html.ActionLink("Novo", "Create")
 </p>
+
+<div>
+    @using (Html.BeginForm("Index", "Bancos", FormMethod.Get))
+    {
+        <div class="input-group">
+            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome do banco..." })
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </span>
+        </div>
+    }
+</div>
+
+@if (Model.Any()) { 
 <table class="table">
     <thead class="reset-border">
         <tr>
@@ -32,9 +47,7 @@
                     }
                     else
                     {
-                       <p>
-                           Nenhum cheque encontrado
-                       </p>
+                        @Html.Raw("Nenhum cheque encontrado")
                     }
                 </td>
                 <td class="text-right">
@@ -45,3 +58,10 @@
         }
     </tbody>
 </table>
+}
+else
+{
+    <div class="mt-5">
+        @Html.Raw("Nada encontrado")
+    </div>
+}

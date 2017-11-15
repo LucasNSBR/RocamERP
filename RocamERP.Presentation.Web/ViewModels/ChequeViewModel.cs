@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.ViewModels
 {
@@ -39,6 +36,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         public virtual PessoaViewModel Pessoa { get; set; }
 
         [DisplayName("Observações")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ConvertEmptyStringToNull = true, NullDisplayText = "Não registrado.")]
         [MaxLength(1000, ErrorMessage = "O tamanho máximo para o campo é 1000 caracteres.")]
         public string Observacao { get; set; }
 
@@ -47,17 +45,20 @@ namespace RocamERP.Presentation.Web.ViewModels
         public SituacaoCheque SituacaoCheque { get; set; }
 
         [DisplayName("Data de Recebimento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public DateTime DataRecebimento { get; set; }
 
         [DisplayName("Data de Vencimento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public DateTime DataVencimento { get; set; }
 
         [DisplayName("Data de Pagamento")]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", NullDisplayText = "Não registrado.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", NullDisplayText = "Não registrado.")]
         public DateTime? DataPagamento { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:c}", NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [Range(0, 100000, ErrorMessage = "O valor deve ser entre 0 e 100.000.")]
         public decimal Valor { get; set; }

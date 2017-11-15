@@ -6,30 +6,19 @@
 
 <h2>Estados</h2>
 
-<div class="pt-3 pb-2 pt-0">
-    @Html.Partial("PartialTemplates/SearchBar", null, new ViewDataDictionary
+<div class="pb-4 pt-4">
+    @using (Html.BeginForm("Index", "Cheques", FormMethod.Get))
     {
-        {
-        "Action", "Index"
-        },
-        {
-        "Controller", "Estados"
-        },
-        {
-        "Parameter", "prefix"
-        },
-        {
-        "Placeholder", "Digite o nome de um estado..."
-        }
-    })
-
-    <div class="form-group">
-        <div class="col-12">
-            @Html.CheckBox("hideEmpty", false, new { @class = "d-inline mx-2" }) Esconder estados sem cidades cadastradas
+        <div class="input-group">
+            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o número do cheque..." })
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </span>
         </div>
-    </div>
+    }
 </div>
 
+@if (Model.Any()) { 
 <table class="table">
     <thead class="reset-border">
         <tr>
@@ -52,12 +41,17 @@
                     }
                     else
                     {
-                        <span>
-                            Nenhuma cidade encontrada
-                        </span>
+                        @Html.Raw("Nenhuma cidade encontrada");
                     }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+}
+else
+{
+    <div class="mt-5">
+        @Html.Raw("Nada encontrado")
+    </div>
+}

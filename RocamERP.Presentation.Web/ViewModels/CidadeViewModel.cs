@@ -14,6 +14,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         public string Nome { get; set; }
         
         [DisplayName("CEP")]
+        [DisplayFormat(DataFormatString = "{0:##.###-###}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
         [MinLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
@@ -29,15 +30,29 @@ namespace RocamERP.Presentation.Web.ViewModels
 
         [DisplayName("Endereços")]
         public virtual ICollection<EnderecoViewModel> Enderecos { get; set; }
-    
-        public CidadeViewModel()
+
+        public ICollection<SelectListItem> EstadosList { get; private set; }
+        public void LoadEstadosList(IEnumerable<EstadoViewModel> estados)
         {
-            Enderecos = new List<EnderecoViewModel>();
+            ICollection<SelectListItem> estadosList = new List<SelectListItem>();
+            foreach(var estado in estados)
+            {
+                EstadosList.Add(new SelectListItem()
+                {
+                    Text = estado.Nome,
+                    Value = estado.Nome,
+                }); 
+            }
         }
 
         public override string ToString()
         {
             return Nome;
+        }
+
+        public CidadeViewModel()
+        {
+            EstadosList = new List<SelectListItem>();
         }
     }
 }

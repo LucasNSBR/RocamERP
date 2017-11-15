@@ -9,6 +9,13 @@
     </dd>
 
     <dt>
+        @Html.DisplayNameFor(model => model.NumeroCheque)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.NumeroCheque)
+    </dd>
+
+    <dt>
         @Html.DisplayNameFor(model => model.BancoId)
     </dt>
     <dd>
@@ -33,28 +40,21 @@
         @Html.DisplayNameFor(model => model.PessoaId)
     </dt>
     <dd>
-        @*@if (Model.Pessoa != null)
+        @if (Model.Pessoa != null)
         {
             @Html.ActionLink(Model.Pessoa.Nome, "Details", "Pessoas", new { @id = Model.PessoaId })
         }
         else
         {
             @Html.Display("Dados não puderam ser recuperados.");
-        }*@
+        }
     </dd>
 
     <dt>
         @Html.DisplayNameFor(model => model.Observacao)
     </dt>
     <dd>
-        @if (!string.IsNullOrWhiteSpace(Model.Observacao))
-        {
-            @Html.DisplayNameFor(model => model.Observacao)
-        }
-        else
-        {
-            @Html.Display("Nenhuma observação foi adicionada.")
-        }
+        @Html.DisplayFor(model => model.Observacao)
     </dd>
 
     <dt>

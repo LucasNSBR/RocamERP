@@ -1,35 +1,22 @@
-﻿@using RocamERP.Presentation.Web.Extensions
-@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
 
 @{
-    ViewBag.Title = $"{Model.Nome} - Detalhes";
+    ViewBag.Title = $"Detalhes - {Model.Nome}";
 }
 
 <h2>@Model.Nome</h2>
 <h6>Detalhes sobre a cidade</h6>
-<hr/>
-<div class="pb-4">
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(modelItem => modelItem.CEP)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelItem => modelItem.CEP).ToString().FormatCEP()
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelItem => modelItem.EstadoId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelItem => modelItem.EstadoId)
-        <dd/>
-    </dl>
+<hr />
+
+<div>
+    @Html.DisplayForModel()
 </div>
 
 @if (Model.Enderecos.Count() > 0)
 {
-<div>
-    @Html.ActionLink($"{Model.Enderecos.Count().ToString()} endereços listados", "Index", "Enderecos", new { @cidade = Model.Nome, @prefix = "" }, null)
-</div>
+    <div>
+        @Html.ActionLink($"{Model.Enderecos.Count().ToString()} endereços listados", "Index", "Enderecos", new { @cidade = Model.Nome, @prefix = "" }, null)
+    </div>
 }
 else
 {

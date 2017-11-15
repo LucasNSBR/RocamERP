@@ -19,9 +19,19 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _chequeApplicationService = chequeApplicationService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? pessoaId, string prefix = "")
         {
-            var cheques = _chequeApplicationService.GetAll();
+            var cheques = _chequeApplicationService.GetAll()
+                .Where(c => c.NumeroCheque.ToLower().Contains(prefix.ToLower()))
+                .Where(c =>
+                {
+                    if (pessoaId != null)
+                        return c.PessoaId == pessoaId;
+                    else
+                        return true;
+                })
+                .OrderBy(c => c.PessoaId);
+
             var chequesVM = new List<ChequeViewModel>();
 
             foreach (var cheque in cheques)
@@ -29,7 +39,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 chequesVM.Add(Mapper.Map<Cheque, ChequeViewModel>(cheque));
             }
 
-            return View(chequesVM.OrderBy(c => c.PessoaId));
+            return View(chequesVM);
         }
 
         public ActionResult Details(int id)
