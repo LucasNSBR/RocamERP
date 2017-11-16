@@ -7,11 +7,11 @@ namespace RocamERP.Infra.Data.EntityConfiguration
     {
         public EntityConfigurationEstado() : base()
         {
-            HasKey(e => e.Nome);
+            HasKey(e => e.EstadoId);
 
             Property(e => e.Nome)
-                        .HasMaxLength(50)
-                        .IsRequired();
+                .HasMaxLength(50)
+                .IsRequired();
         }
     }
 }

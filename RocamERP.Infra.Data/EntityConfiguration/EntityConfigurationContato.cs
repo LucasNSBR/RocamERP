@@ -9,9 +9,13 @@ namespace RocamERP.Infra.Data.EntityConfiguration
         {
             HasKey(c => c.ContatoId);
 
-            Property(c => c.Observacao)
+            Property(c => c.Informacao)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            Property(c => c.Observacao)
+                .HasMaxLength(1000)
+                .IsOptional();
 
             Property(c => c.TipoContato)
                 .IsRequired();

@@ -10,17 +10,18 @@ namespace RocamERP.Presentation.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Help()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Documentation()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult BugReport()
+        {
             return View();
         }
     }

@@ -1,31 +1,53 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Rocam ERP</h1>
+    <p class="lead">Sistema experiemental para cadastro de cheques e clientes de Centro Automotivo Rocam Ltda.</p>
+    <p>
+        <a class="btn btn-success text-white btn-lg" href="Accounts/LoginAccount">
+            Login &raquo;
+        </a>
+    </p>
+
+    <a href="Accounts/CreateAccount">
+        Criar conta
+    </a>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="col-4">
+        <h2>Ajuda</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Consultar ajuda e detalhes sobre como usar a aplicação.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p>
+            <a class="btn btn-primary" href="Home/Help">
+                Abrir ajuda &raquo;
+            </a>
+        </p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-4">
+        <h2>Documentação</h2>
+        <p>
+            Consultar a documentação, detalhes de API's e tecnologias.
+        </p>
+        <p>
+            <a class="btn btn-primary" href="Home/Documentation">
+                Consultar &raquo;
+            </a>
+        </p>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-4">
+        <h2>Reportar Erros</h2>
+        <p>
+            Notas de lançamento e mudanças nas versões. Reportar erros.
+        </p>
+        <p>
+            <a class="btn btn-primary" href="/Home/BugReport">
+                Reportar Erros &raquo;
+            </a>
+        </p>
     </div>
 </div>

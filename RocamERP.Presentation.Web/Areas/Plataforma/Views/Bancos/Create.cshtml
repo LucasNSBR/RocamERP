@@ -12,9 +12,7 @@
 {
     @Html.AntiForgeryToken()
     
-    <div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+    <div>        
         <div>
             @Html.EditorForModel()
         </div>

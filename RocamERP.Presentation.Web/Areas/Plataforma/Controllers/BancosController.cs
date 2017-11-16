@@ -10,7 +10,7 @@ using System.Linq;
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
     [ExtendedHandleError()]
-    public class BancosController : Controller
+    public class BancosController : BaseController
     {
         private readonly IBancoApplicationService _bancoApplicationService;
 
@@ -19,19 +19,18 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _bancoApplicationService = bancoApplicationService;
         }
 
-        public ActionResult Index(string prefix = "")
+        public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
         {
+            var bancosVM = new List<BancoViewModel>();
             var bancos = _bancoApplicationService.GetAll()
+                .Where(b =>
+                {
+                    return hideEmptyCheques == true ? b.Cheques.Any() : true;
+                })
                 .Where(b => b.Nome.ToLower().Contains(prefix.ToLower()))
                 .OrderByDescending(b => b.Cheques.Count);
 
-            var bancosVM = new List<BancoViewModel>();
-
-            foreach (var banco in bancos)
-            {
-                bancosVM.Add(Mapper.Map<Banco, BancoViewModel>(banco));
-            }
-
+            Mapper.Map(bancos, bancosVM);
             return View(bancosVM);
         }
 
@@ -48,6 +47,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var banco = Mapper.Map<BancoViewModel, Banco>(model);
                 _bancoApplicationService.Add(banco);
 
+                SendMessage("Banco cadastrado com sucesso.");
                 return RedirectToAction("Index");
             }
 
@@ -55,7 +55,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             var banco = _bancoApplicationService.Get(id);
             var bancoVM = Mapper.Map<Banco, BancoViewModel>(banco);
@@ -64,7 +64,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(string id, BancoViewModel model)
+        public ActionResult Edit(int id, BancoViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(model);
         }
 
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var model = _bancoApplicationService.Get(id);
             var bancoVM = Mapper.Map<Banco, BancoViewModel>(model);
@@ -86,7 +86,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(string id, BancoViewModel model)
+        public ActionResult Delete(int id, BancoViewModel model)
         {
             _bancoApplicationService.Delete(id);
             return RedirectToAction("Index");

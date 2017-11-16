@@ -21,8 +21,8 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index(int? pessoaId, string prefix = "")
         {
+            var chequesVM = new List<ChequeViewModel>();
             var cheques = _chequeApplicationService.GetAll()
-                .Where(c => c.NumeroCheque.ToLower().Contains(prefix.ToLower()))
                 .Where(c =>
                 {
                     if (pessoaId != null)
@@ -30,15 +30,10 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                     else
                         return true;
                 })
+                .Where(c => c.NumeroCheque.ToLower().Contains(prefix.ToLower()))
                 .OrderBy(c => c.PessoaId);
 
-            var chequesVM = new List<ChequeViewModel>();
-
-            foreach (var cheque in cheques)
-            {
-                chequesVM.Add(Mapper.Map<Cheque, ChequeViewModel>(cheque));
-            }
-
+            Mapper.Map(cheques, chequesVM);
             return View(chequesVM);
         }
 

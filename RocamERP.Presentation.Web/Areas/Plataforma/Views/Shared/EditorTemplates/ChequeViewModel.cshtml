@@ -1,6 +1,6 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.ChequeViewModel
 
-@Html.HiddenFor(model => model.ChequeId)
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
 @*<div class="form-group">
     @Html.LabelFor(model => model.BancoId, new { @class = "col-form-label" })

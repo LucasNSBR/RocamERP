@@ -8,18 +8,13 @@ namespace RocamERP.Presentation.Web.ViewModels
     public class CidadeViewModel
     {
         [Key]
+        [DisplayName("Chave")]
+        public int CidadeId { get; set; }
+
         [DisplayName("Nome")]
         [MaxLength(100, ErrorMessage = "O campo deve ter no máximo 100 caracteres.")]
         [MinLength(2, ErrorMessage = "O campo deve ter no mínimo 3 caracteres")]
         public string Nome { get; set; }
-        
-        [DisplayName("CEP")]
-        [DisplayFormat(DataFormatString = "{0:##.###-###}")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        [MaxLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
-        [MinLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
-        [Remote("ValidateCEP", "Cidades", "Plataforma", ErrorMessage = "Já existe uma cidade com esse mesmo CEP.")]
-        public string CEP { get; set; }
 
         [DisplayName("Estado")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
@@ -52,6 +47,7 @@ namespace RocamERP.Presentation.Web.ViewModels
 
         public CidadeViewModel()
         {
+            Enderecos = new List<EnderecoViewModel>();
             EstadosList = new List<SelectListItem>();
         }
     }

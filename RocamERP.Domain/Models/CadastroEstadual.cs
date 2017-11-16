@@ -2,6 +2,7 @@
 {
     public class CadastroEstadual
     {
+        public int CadastroEstadualId { get; set; }
         public string NumeroDocumento { get; set; }
         public virtual TipoCadastroEstadual TipoCadastroEstadual { get; set; }
 

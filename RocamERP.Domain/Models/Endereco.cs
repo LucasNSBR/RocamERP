@@ -7,8 +7,9 @@
         public string Bairro { get; set; }
         public int Numero { get; set; }
         public string Complemento { get; set; }
-        
-        public string CidadeId { get; set; }
+        public string CEP { get; set; }
+
+        public int CidadeId { get; set; }
         public virtual Cidade Cidade { get; set; }
         
         public int PessoaId { get; set; }

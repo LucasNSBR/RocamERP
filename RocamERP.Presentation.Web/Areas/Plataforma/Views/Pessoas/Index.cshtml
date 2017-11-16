@@ -22,6 +22,20 @@
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
         </div>
+
+        <div>
+            @{
+                if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyCheques") == "true")
+                {
+                    <input type="checkbox" name="hideEmptyCheques" checked="checked" value="true" />
+                }
+                else
+                {
+                    <input type="checkbox" name="hideEmptyCheques" value="true" />
+                }
+            }
+            <span class="font-italic">Esconder clientes sem cheques cadastrados</span>
+        </div>
     }
 </div>
 

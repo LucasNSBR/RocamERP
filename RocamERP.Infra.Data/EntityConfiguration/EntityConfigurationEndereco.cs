@@ -16,12 +16,16 @@ namespace RocamERP.Infra.Data.EntityConfiguration
                 .HasMaxLength(50)
                 .IsRequired();
 
+            Property(e => e.Bairro)
+                .HasMaxLength(30)
+                .IsRequired();
+
             Property(e => e.Complemento)
                 .HasMaxLength(50)
                 .IsOptional();
 
-            Property(e => e.Bairro)
-                .HasMaxLength(30)
+            Property(c => c.CEP)
+                .HasMaxLength(8)
                 .IsRequired();
 
             Property(e => e.TipoEndereco)

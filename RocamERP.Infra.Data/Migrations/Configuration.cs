@@ -9,7 +9,7 @@ namespace RocamERP.Infra.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(RocamERP.Infra.Data.RocamDbContext context)

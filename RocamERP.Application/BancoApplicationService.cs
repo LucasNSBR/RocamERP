@@ -12,15 +12,5 @@ namespace RocamERP.Application
         {
             _bancoService = bancoService;
         }
-
-        public Banco Get(string id)
-        {
-            return _bancoService.Get(id);
-        }
-
-        public void Delete(string id)
-        {
-            _bancoService.Delete(id);
-        }
     }
 }

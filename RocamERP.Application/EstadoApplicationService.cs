@@ -12,15 +12,5 @@ namespace RocamERP.Application
         {
             _estadoService = estadoService;
         }
-
-        public Estado Get(string id)
-        {
-            return _estadoService.Get(id);
-        }
-
-        public void Delete(string id)
-        {
-            _estadoService.Delete(id);
-        }
     }
 }

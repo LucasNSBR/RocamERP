@@ -7,7 +7,7 @@ namespace RocamERP.Infra.Data.EntityConfiguration
     {
         public EntityConfigurationBanco() : base()
         {
-            HasKey(b => b.Nome);
+            HasKey(b => b.BancoId);
 
             Property(b => b.Nome)
                 .HasMaxLength(100)

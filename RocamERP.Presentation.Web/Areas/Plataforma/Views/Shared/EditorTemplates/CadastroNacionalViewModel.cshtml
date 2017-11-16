@@ -1,5 +1,7 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.CadastroNacionalViewModel
 
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
 <div class="form-group">
     @Html.LabelFor(model => model.TipoCadastroNacional, new { @class = "col-form-label" })
     <div class="col-12">

@@ -4,9 +4,9 @@ namespace RocamERP.Domain.Models
 {
     public class Cidade
     {
+        public int CidadeId { get; set; }
         public string Nome { get; set; }
-        public string CEP { get; set; }
-        public string EstadoId { get; set; }
+        public int EstadoId { get; set; }
         public virtual Estado Estado { get; set; }
 
         public virtual ICollection<Endereco> Enderecos { get; set; }

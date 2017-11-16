@@ -3,6 +3,7 @@
     public class Contato
     {
         public int ContatoId { get; set; }
+        public string Informacao { get; set; }
         public string Observacao { get; set; }
 
         public int PessoaId { get; set; }

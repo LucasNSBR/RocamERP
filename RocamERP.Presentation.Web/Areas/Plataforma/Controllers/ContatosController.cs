@@ -21,11 +21,10 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index()
         {
-            var contatos = _contatoApplicationService.GetAll();
             var contatosVM = new List<ContatoViewModel>();
+            var contatos = _contatoApplicationService.GetAll();
 
             Mapper.Map(contatos, contatosVM);
-
             return View(contatosVM.OrderBy(c => c.PessoaId));
         }
 

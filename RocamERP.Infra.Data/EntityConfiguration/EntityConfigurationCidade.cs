@@ -7,14 +7,10 @@ namespace RocamERP.Infra.Data.EntityConfiguration
     {
         public EntityConfigurationCidade() : base()
         {
-                HasKey(c => c.Nome);
+                HasKey(c => c.CidadeId);
 
                 Property(c => c.Nome)
                     .HasMaxLength(100)
-                    .IsRequired();
-
-                Property(c => c.CEP)
-                    .HasMaxLength(8)
                     .IsRequired();
 
                 HasRequired(e => e.Estado)

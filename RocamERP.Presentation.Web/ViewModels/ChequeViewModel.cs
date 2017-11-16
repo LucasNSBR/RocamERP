@@ -36,7 +36,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         public virtual PessoaViewModel Pessoa { get; set; }
 
         [DisplayName("Observações")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ConvertEmptyStringToNull = true, NullDisplayText = "Não registrado.")]
+        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Não registrado.")]
         [MaxLength(1000, ErrorMessage = "O tamanho máximo para o campo é 1000 caracteres.")]
         public string Observacao { get; set; }
 

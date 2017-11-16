@@ -7,6 +7,9 @@ namespace RocamERP.Presentation.Web.ViewModels
     public class EstadoViewModel
     {
         [Key]
+        [DisplayName("Chave")]
+        public int EstadoId { get; set; }
+
         [DisplayName("Nome")]
         [MaxLength(50, ErrorMessage = "O tamanho máximo para o campo é de 50 caracteres.")]
         public string Nome { get; set; }

@@ -32,7 +32,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 {
                     if (!string.IsNullOrWhiteSpace(estado))
                     {
-                        return c.EstadoId == estado;
+                        return c.Nome == estado;
                     }
 
                     return true;
@@ -43,7 +43,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(listVM.OrderBy(c => c.EstadoId));
         }
 
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
@@ -76,7 +76,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(model);
         }
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
@@ -100,7 +100,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(model);
         }
 
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
@@ -109,19 +109,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(string id, CidadeViewModel model)
+        public ActionResult Delete(int id, CidadeViewModel model)
         {
             _cidadeApplicationService.Delete(id);
 
             return RedirectToAction("Index");
-        }
-
-        public ActionResult ValidateCEP(string CEP)
-        {
-            var cidades = _cidadeApplicationService.GetAll();
-            var exists = !cidades.ToList().Any(c => c.CEP == CEP);
-
-            return Json(exists, JsonRequestBehavior.AllowGet);
         }
     }
 }

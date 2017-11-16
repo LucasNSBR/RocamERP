@@ -21,8 +21,8 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index()
         {
-            var enderecos = _enderecoApplicationService.GetAll();
             var enderecosVM = new List<EnderecoViewModel>();
+            var enderecos = _enderecoApplicationService.GetAll();
 
             Mapper.Map(enderecos, enderecosVM);
             return View(enderecosVM.OrderBy(c => c.PessoaId));
@@ -95,6 +95,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             _enderecoApplicationService.Delete(id);
             return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
+        }
+
+        public ActionResult ValidateCEP(string CEP)
+        {
+            var cidades = _enderecoApplicationService.GetAll();
+            var exists = !cidades.ToList().Any(e => e.CEP == CEP);
+
+            return Json(exists, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -161,6 +161,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
+    <Compile Include="Areas\Plataforma\Controllers\BaseController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ChequesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\PessoasController.cs" />
@@ -170,15 +171,15 @@
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Exceptions\ExtendedHandleErrorAttribute.cs" />
-    <Compile Include="Extensions\FormattingHelpers.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
-    <Compile Include="Extensions\LINQHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Messager\BaseMessage.cs" />
+    <Compile Include="Messager\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
     <Compile Include="ViewModels\CadastroEstadualViewModel.cs" />
@@ -252,6 +253,7 @@
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\ChequeViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\ChequeViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cheques\Create.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\MessagePartialView.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -279,15 +281,17 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\BugReport.cshtml" />
+    <Content Include="Views\Home\Documentation.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NotFound.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
+    <Folder Include="Areas\Plataforma\Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -299,6 +303,10 @@
     <ProjectReference Include="..\RocamERP.Application\RocamERP.Application.csproj">
       <Project>{04e068c9-9578-45b9-9a24-9d0885fe9937}</Project>
       <Name>RocamERP.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RocamERP.CrossCutting\RocamERP.CrossCutting.csproj">
+      <Project>{ED7B6E6F-1D17-46F0-BFE3-FA0C1E505075}</Project>
+      <Name>RocamERP.CrossCutting</Name>
     </ProjectReference>
     <ProjectReference Include="..\RocamERP.Domain\RocamERP.Domain.csproj">
       <Project>{E3100186-D87F-449B-954B-5EE239D424B4}</Project>

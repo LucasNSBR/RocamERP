@@ -8,6 +8,9 @@ namespace RocamERP.Presentation.Web.ViewModels
     public class CadastroEstadualViewModel
     {
         [Key]
+        [DisplayName("Chave")]
+        public int CadastroEstadualId { get; set; }
+
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Não cadastrado")]
         [DisplayName("RG/Inscr. Estadual")]
         [MaxLength(14, ErrorMessage = "O tamanho máximo para o campo é 14 caracteres.")]

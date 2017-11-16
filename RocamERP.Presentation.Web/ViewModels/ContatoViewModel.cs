@@ -13,9 +13,14 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayName("Chave")]
         public int ContatoId { get; set; }
 
-        [DisplayName("Observação")]
+        [DisplayName("Contato")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(100, ErrorMessage = "O tamanho máximo do campo é 100 caracteres.")]
+        public string Informacao { get; set; }
+
+        [DisplayName("Observação")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
+        [MaxLength(1000, ErrorMessage = "O tamanho máximo do campo é 1000 caracteres.")]
         public string Observacao { get; set; }
 
         [DisplayName("Pessoa")]

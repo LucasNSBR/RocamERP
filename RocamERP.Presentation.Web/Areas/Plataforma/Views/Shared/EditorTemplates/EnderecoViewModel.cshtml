@@ -1,7 +1,6 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.EnderecoViewModel
 
-@Html.HiddenFor(model => model.EnderecoId)
-@Html.HiddenFor(model => model.CidadeId)
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
 <div class="form-group">
     @Html.LabelFor(model => model.Rua, new { @class = "col-form-label" })
@@ -32,6 +31,14 @@
     <div class="col-12">
         @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CEP, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
     </div>
 </div>
 

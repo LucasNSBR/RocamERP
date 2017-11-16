@@ -7,13 +7,27 @@
 <h2>Estados</h2>
 
 <div class="pb-4 pt-4">
-    @using (Html.BeginForm("Index", "Cheques", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Estados", FormMethod.Get))
     {
         <div class="input-group">
-            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o número do cheque..." })
+            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome da cidade..." })
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
+        </div>
+
+        <div>
+            @{
+                if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyCidades") == "true")
+                {
+                    <input type="checkbox" name="hideEmptyCidades" checked="checked" value="true" />
+                }
+                else
+                {
+                    <input type="checkbox" name="hideEmptyCidades" value="true" />
+                }
+            }
+            <span class="font-italic">Esconder estados sem cidades cadastradas</span>
         </div>
     }
 </div>

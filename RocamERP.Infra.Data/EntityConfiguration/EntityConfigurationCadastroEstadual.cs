@@ -7,7 +7,7 @@ namespace RocamERP.Infra.Data.EntityConfiguration
     {
         public EntityConfigurationCadastroEstadual()
         {
-            HasKey(ce => ce.NumeroDocumento);
+            HasKey(ce => ce.CadastroEstadualId);
 
             Property(ce => ce.NumeroDocumento)
                 .HasMaxLength(12)

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
 using RocamERP.Domain.Models;
 using System.Collections.Generic;
 using RocamERP.Infra.Data.Repositories;
@@ -14,13 +15,19 @@ namespace Rocam.ERP.Presentation.Web.Tests
         public void TestConvert()
         {
             var x = new { aclass = "btn btn-primary", type = "submit" };
-            Dictionary<string, string> values = new Dictionary<string, string>()
+            var props = x.GetType();
+
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            foreach (var v in props.GetProperties())
             {
-                { x.aclass, "sss" },
-                { x.type, "ss"}
-            };
-
-
+                values.Add(v.Name, (string)v.GetValue(x, null));
+            }
+            
+            foreach(var v in values)
+            {
+                Trace.WriteLine($"Key: {v.Key}");
+                Trace.WriteLine($"Value: {v.Value}");
+            }
         }
 
         [TestMethod]

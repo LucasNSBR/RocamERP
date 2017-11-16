@@ -4,6 +4,7 @@ namespace RocamERP.Domain.Models
 {
     public class Banco
     {
+        public int BancoId { get; set; }
         public string Nome { get; set; }
 
         public virtual ICollection<Cheque> Cheques { get; set; }

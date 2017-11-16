@@ -13,15 +13,5 @@ namespace RocamERP.Application
         {
             _cidadeService = cidadeService;
         }
-
-        public Cidade Get(string id)
-        {
-            return _cidadeService.Get(id);
-        }
-
-        public void Delete(string id)
-        {
-            _cidadeService.Delete(id);
-        }
     }
 }

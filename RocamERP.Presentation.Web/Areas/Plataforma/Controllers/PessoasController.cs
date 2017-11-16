@@ -20,18 +20,18 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = clienteApplicationService;
         }
 
-        public ActionResult Index(string prefix = "")
+        public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
         {
             var pessoasVM = new List<PessoaViewModel>();
             var pessoas = _pessoaApplicationService.GetAll()
+                .Where(p =>
+                {
+                    return hideEmptyCheques == true ? p.Cheques.Any() : true;
+                })
                 .Where(p => p.Nome.ToLower().Contains(prefix.ToLower()))
                 .OrderBy(p => p.Nome);
 
-            foreach (var pessoa in pessoas)
-            {
-                pessoasVM.Add(Mapper.Map<Pessoa, PessoaViewModel>(pessoa));
-            }
-
+            Mapper.Map(pessoas, pessoasVM);
             return View(pessoasVM);
         }
 
