@@ -87,15 +87,5 @@ namespace RocamERP.Presentation.Web.Extensions
             sb.AppendLine("</button>");
             return new MvcHtmlString(sb.ToString());
         }
-
-
-
-        public static MvcHtmlString SearchBar(this HtmlHelper helper, Dictionary<string, string> htmlAttributes)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("<div>");
-            sb.AppendLine("</div>");
-            return new MvcHtmlString(sb.ToString());
-        }
     }
 }
