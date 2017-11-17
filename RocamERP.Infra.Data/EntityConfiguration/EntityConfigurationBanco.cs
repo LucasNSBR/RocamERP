@@ -12,6 +12,9 @@ namespace RocamERP.Infra.Data.EntityConfiguration
             Property(b => b.Nome)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            Property(b => b.CodigoCompensacao)
+                .IsRequired();
         }
     }
 }

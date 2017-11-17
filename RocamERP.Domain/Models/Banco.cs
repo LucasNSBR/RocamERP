@@ -6,6 +6,7 @@ namespace RocamERP.Domain.Models
     {
         public int BancoId { get; set; }
         public string Nome { get; set; }
+        public int CodigoCompensacao { get; set; }
 
         public virtual ICollection<Cheque> Cheques { get; set; }
 

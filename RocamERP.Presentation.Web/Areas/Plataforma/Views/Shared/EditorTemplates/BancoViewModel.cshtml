@@ -5,7 +5,23 @@
 <div class="form-group">
     @Html.LabelFor(model => model.Nome, new { @class = "col-form-label" })
     <div class="col-12">
-        @Html.TextBoxFor(e => e.Nome, new { @class = "form-control" })
-        @Html.ValidationMessageFor(e => e.Nome, null, new { @class = "text-danger" })
+        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nome, null, new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Nome, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nome, null, new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CodigoCompensacao, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextBoxFor(model => model.CodigoCompensacao, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CodigoCompensacao, null, new { @class = "text-danger" })
     </div>
 </div>

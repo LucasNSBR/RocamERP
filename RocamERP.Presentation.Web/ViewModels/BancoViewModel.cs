@@ -14,6 +14,10 @@ namespace RocamERP.Presentation.Web.ViewModels
         [MaxLength(100, ErrorMessage = "O tamanho máximo é de 100 caracteres.")]
         public string Nome { get; set; }
 
+        [DisplayName("Código de Compensação")]
+        [MaxLength(4, ErrorMessage = "O tamanho máximo é de 4 caracteres.")]
+        public int CodigoCompensacao { get; set; }
+
         public virtual ICollection<ChequeViewModel> Cheques { get; set; }
 
         public BancoViewModel()

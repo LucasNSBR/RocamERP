@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RocamERP.Presentation.Web.Messager;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Web.Mvc;
@@ -7,11 +8,11 @@ namespace RocamERP.Presentation.Web.Extensions
 {
     public static class HtmlHelpers
     {
-        public static MvcHtmlString MessageAlert(this HtmlHelper helper, string message)
+        public static MvcHtmlString MessageAlert(this HtmlHelper helper, string message, MessageType messageType)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("<div class=\"alert alert-dismissible alert-success fade show col-12\">");
+            sb.AppendLine($"<div class=\"alert alert-dismissible alert-{Enum.GetName(messageType.GetType(), messageType).ToLower()} fade show col-12\">");
             sb.AppendLine($"{message}");
             sb.AppendLine("<button class=\"close\" data-dismiss=\"alert\">");
             sb.AppendLine("<span>&times;</span>");

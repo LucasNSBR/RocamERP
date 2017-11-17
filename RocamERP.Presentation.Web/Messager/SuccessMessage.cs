@@ -1,22 +1,21 @@
-﻿using System;
-
-namespace RocamERP.Presentation.Web.Messager
+﻿namespace RocamERP.Presentation.Web.Messager
 {
     public class SuccessMessage : BaseMessage
     {
-        public override void ShowMessage(string body)
+        public SuccessMessage(string title) : base(title)
         {
-
         }
 
-        public override void ShowMessage(string title, string body)
+        public SuccessMessage(string title, string body) : base(title, body)
         {
-            throw new NotImplementedException();
         }
 
-        public override void ShowMessage(string title, string body, object parameters)
+        public SuccessMessage(string title, MessageType messageType) : base(title, messageType)
         {
-            throw new NotImplementedException();
+        }
+
+        public SuccessMessage(string title, string body, MessageType messageType) : base(title, body, messageType)
+        {
         }
     }
 }

@@ -6,6 +6,7 @@ using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using RocamERP.Presentation.Web.Messager;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -47,7 +48,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var banco = Mapper.Map<BancoViewModel, Banco>(model);
                 _bancoApplicationService.Add(banco);
 
-                SendMessage("Banco cadastrado com sucesso.");
+                SendMessage(new ErrorMessage("Erro ao cadastrar.", "certo", MessageType.Success));
                 return RedirectToAction("Index");
             }
 
