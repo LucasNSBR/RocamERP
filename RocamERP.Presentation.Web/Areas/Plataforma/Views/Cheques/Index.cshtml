@@ -56,13 +56,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.BancoId)
+                    @Html.ActionLink(item.Banco.Nome, "Index", "Bancos", new { @prefix = item.Banco.Nome }, null)
                 </td>
                 <td>
                     @Html.DisplayFor(model => item.NumeroCheque)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.Pessoa.Nome)
+                    @Html.ActionLink(item.Pessoa.Nome, "Details", "Pessoas", new { @id = item.Pessoa.PessoaId }, null)
                 </td>
                 <td>
                     @Html.DisplayFor(model => item.DataRecebimento)

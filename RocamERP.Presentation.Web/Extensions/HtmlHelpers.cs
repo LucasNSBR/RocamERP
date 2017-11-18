@@ -1,6 +1,5 @@
-﻿using RocamERP.Presentation.Web.Messager;
+﻿using RocamERP.Domain.Models.Messages;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Web.Mvc;
 
@@ -32,60 +31,6 @@ namespace RocamERP.Presentation.Web.Extensions
             sb.AppendLine("</div>");
             sb.AppendLine("</div>");
 
-            return new MvcHtmlString(sb.ToString());
-        }
-
-        public static MvcHtmlString SubmitButtonExtended(this HtmlHelper helper, string text, object htmlAttributes = null)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine("<div class=\"form-group row pt-5\">");
-            sb.AppendLine("<div class=\"col-12\">");
-            sb.Append($"<input value=\"{text}\" ");
-
-            if(htmlAttributes != null) { 
-                Dictionary<string, string> values = new Dictionary<string, string>();
-                foreach (var v in htmlAttributes.GetType().GetProperties())
-                {
-                    values.Add(v.Name, (string)v.GetValue(htmlAttributes, null));
-                }
-
-                if (values != null)
-                {
-                    foreach (var htmlAttributte in values)
-                    {
-                        sb.Append($"{htmlAttributte.Key} = \"{htmlAttributte.Value}\"");
-                    }
-                }
-            }
-            sb.AppendLine("/>");
-            sb.AppendLine("</div>");
-            sb.AppendLine("</div>");
-
-            return new MvcHtmlString(sb.ToString());
-        }
-
-        public static MvcHtmlString SubmitButtonOk(this HtmlHelper helper, string text, object htmlAttributes = null)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            Dictionary<string, string> values = new Dictionary<string, string>();
-            foreach (var v in htmlAttributes.GetType().GetProperties())
-            {
-                values.Add(v.Name, (string)v.GetValue(htmlAttributes, null));
-            }
-
-            sb.Append("<button ");
-            if (values != null)
-            {
-                foreach (var htmlAttributte in values)
-                {
-                    sb.Append($"{htmlAttributte.Key} = \"{htmlAttributte.Value}\"");
-                }
-            }
-
-            sb.AppendLine($">{text}");
-            sb.AppendLine("</button>");
             return new MvcHtmlString(sb.ToString());
         }
     }

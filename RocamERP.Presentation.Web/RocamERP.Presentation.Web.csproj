@@ -178,9 +178,6 @@
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
-    <Compile Include="Messager\BaseMessage.cs" />
-    <Compile Include="Messager\ErrorMessage.cs" />
-    <Compile Include="Messager\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
     <Compile Include="ViewModels\CadastroEstadualViewModel.cs" />
@@ -293,6 +290,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
     <Folder Include="Areas\Plataforma\Views\Base\" />
+    <Folder Include="Messager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

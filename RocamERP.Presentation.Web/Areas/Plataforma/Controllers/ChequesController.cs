@@ -13,10 +13,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class ChequesController : Controller
     {
         private readonly IChequeApplicationService _chequeApplicationService;
+        private readonly IBancoApplicationService _bancoApplicationService;
+        private readonly IPessoaApplicationService _pessoaApplicationService;
 
-        public ChequesController(IChequeApplicationService chequeApplicationService)
+        public ChequesController(IChequeApplicationService chequeApplicationService, IBancoApplicationService bancoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
             _chequeApplicationService = chequeApplicationService;
+            _bancoApplicationService = bancoApplicationService;
+            _pessoaApplicationService = pessoaApplicationService;
         }
 
         public ActionResult Index(int? pessoaId, string prefix = "")
@@ -47,7 +51,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var bancos = _bancoApplicationService.GetAll();
+            var pessoas = _pessoaApplicationService.GetAll();
+            var bancosVM = Mapper.Map<IEnumerable<Banco>, IEnumerable<BancoViewModel>>(bancos);
+            var pessoasVM = Mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaViewModel>>(pessoas);
+            
+            ChequeViewModel chequeVM = new ChequeViewModel();
+            chequeVM.LoadBancosList(bancosVM);
+            chequeVM.LoadPessoasList(pessoasVM);
+            return View(chequeVM);
         }
 
         [HttpPost]
@@ -68,8 +80,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult Edit(int id)
         {
             var cheque = _chequeApplicationService.Get(id);
+            var bancos = _bancoApplicationService.GetAll();
+            var pessoas = _pessoaApplicationService.GetAll();
             var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
+            var bancosVM = Mapper.Map<IEnumerable<Banco>, IEnumerable<BancoViewModel>>(bancos);
+            var pessoasVM = Mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaViewModel>>(pessoas);
 
+            chequeVM.LoadBancosList(bancosVM);
+            chequeVM.LoadPessoasList(pessoasVM);
             return View(chequeVM);
         }
 

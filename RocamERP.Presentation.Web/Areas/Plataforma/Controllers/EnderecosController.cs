@@ -40,7 +40,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             var EnderecoVM = new EnderecoViewModel()
             {
-                PessoaId = id, 
+                PessoaId = id,
             };
 
             return View(EnderecoVM);
@@ -100,9 +100,9 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult ValidateCEP(string CEP)
         {
             var cidades = _enderecoApplicationService.GetAll();
-            var exists = !cidades.ToList().Any(e => e.CEP == CEP);
+            var exists = cidades.ToList().Any(e => e.CEP == CEP);
 
-            return Json(exists, JsonRequestBehavior.AllowGet);
+            return Json(!exists, JsonRequestBehavior.AllowGet);
         }
     }
 }

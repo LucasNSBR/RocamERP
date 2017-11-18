@@ -2,13 +2,13 @@
 
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-@*<div class="form-group">
+<div class="form-group">
     @Html.LabelFor(model => model.BancoId, new { @class = "col-form-label" })
     <div class="col-12">
-        @Html.DropDownListFor(model => model.BancosList, new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.BancoId, Model.BancosList, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.BancoId, "", new { @class = "text-danger" })
     </div>
-</div>*@
+</div>
 
 <div class="form-group">
     @Html.LabelFor(model => model.Agencia, new { @class = "control-label col-form-label" })
@@ -37,7 +37,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.PessoaId, new { @class = "col-form-label" })
     <div class="col-12">
-        @Html.TextBoxFor(model => model.PessoaId, new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.PessoaId, Model.PessoasList, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.PessoaId, "", new { @class = "text-danger" })
     </div>
 </div>

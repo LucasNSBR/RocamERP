@@ -43,6 +43,7 @@
     <Compile Include="BancoApplicationService.cs" />
     <Compile Include="BaseApplicationService.cs" />
     <Compile Include="ChequeApplicationService.cs" />
+    <Compile Include="Factories\AlertFactories\AbstractAlertFactory.cs" />
     <Compile Include="PessoaApplicationService.cs" />
     <Compile Include="ContatoApplicationService.cs" />
     <Compile Include="EnderecoApplicationService.cs" />

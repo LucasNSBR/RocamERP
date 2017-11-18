@@ -2,6 +2,12 @@
     border: 0!important;
 }
 
+
+.validation-summary-errors li {
+    list-style-type: none;
+}
+
+
 .height-5 {
     min-height: 1000px;
 }

@@ -20,7 +20,7 @@
         <div class="input-group">
             @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome do banco..." })
             <span class="input-group-btn">
-                @Html.SubmitButtonOk("Pesquisar", new { @type = "submit", @class = "btn btn-primary" })
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
         </div>
 
@@ -48,6 +48,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoCompensacao)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +59,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(model => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.CodigoCompensacao)
                 </td>
                 <td>
                     

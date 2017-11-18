@@ -6,7 +6,7 @@ using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
-using RocamERP.Presentation.Web.Messager;
+using RocamERP.Domain.FactoryInterfaces.Messages;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -14,13 +14,15 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class BancosController : BaseController
     {
         private readonly IBancoApplicationService _bancoApplicationService;
+        private readonly IBaseMessageSimpleFactory _baseMessageFactory;
 
-        public BancosController(IBancoApplicationService bancoApplicationService)
+        public BancosController(IBancoApplicationService bancoApplicationService, IBaseMessageSimpleFactory baseMessageFactory)
         {
             _bancoApplicationService = bancoApplicationService;
+            _baseMessageFactory = baseMessageFactory;
         }
 
-        public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
+        public ActionResult Index(string prefix = "", bool? hideEmptyCheques = false)
         {
             var bancosVM = new List<BancoViewModel>();
             var bancos = _bancoApplicationService.GetAll()
@@ -48,7 +50,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 var banco = Mapper.Map<BancoViewModel, Banco>(model);
                 _bancoApplicationService.Add(banco);
 
-                SendMessage(new ErrorMessage("Erro ao cadastrar.", "certo", MessageType.Success));
+                ThrowMessage(_baseMessageFactory.CreateSuccessMessage("Banco cadastrado com sucesso."));
                 return RedirectToAction("Index");
             }
 
@@ -91,6 +93,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             _bancoApplicationService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ValidateCodigoBanco(int codigoCompensacao)
+        {
+            var exists = _bancoApplicationService.GetAll().Any(b => b.CodigoCompensacao == codigoCompensacao);
+            return Json(!exists, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

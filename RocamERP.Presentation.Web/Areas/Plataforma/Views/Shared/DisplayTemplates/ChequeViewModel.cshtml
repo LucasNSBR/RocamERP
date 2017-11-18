@@ -19,7 +19,14 @@
         @Html.DisplayNameFor(model => model.BancoId)
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.BancoId)
+        @if(Model.Banco != null)
+        {
+            @Html.ActionLink(Model.Banco.Nome, "Details", "Bancos", new { @id = Model.BancoId })
+        }
+        else
+        {
+            @Html.Display("Dados não puderam ser recuperados.");
+        }
     </dd>
 
     <dt>

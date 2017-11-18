@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.ViewModels
 {
@@ -13,7 +15,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayName("Banco")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public string BancoId { get; set; }
-        public virtual BancoViewModel Banco { get; set; }
+        public BancoViewModel Banco { get; set; }
 
         [DisplayName("Agência")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
@@ -33,7 +35,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayName("Proprietário")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public int PessoaId { get; set; }
-        public virtual PessoaViewModel Pessoa { get; set; }
+        public PessoaViewModel Pessoa { get; set; }
 
         [DisplayName("Observações")]
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Não registrado.")]
@@ -62,6 +64,35 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [Range(0, 100000, ErrorMessage = "O valor deve ser entre 0 e 100.000.")]
         public decimal Valor { get; set; }
+
+        public ICollection<SelectListItem> BancosList { get; private set; }
+        public ICollection<SelectListItem> PessoasList { get; private set; }
+
+        public void LoadBancosList(IEnumerable<BancoViewModel> bancos)
+        {
+            BancosList = new List<SelectListItem>();
+            foreach (var banco in bancos)
+            {
+                BancosList.Add(new SelectListItem()
+                {
+                    Text = banco.Nome,
+                    Value = banco.BancoId.ToString(),
+                });
+            }
+        }
+
+        public void LoadPessoasList(IEnumerable<PessoaViewModel> pessoas)
+        {
+            PessoasList = new List<SelectListItem>();
+            foreach (var pessoa in pessoas)
+            {
+                PessoasList.Add(new SelectListItem()
+                {
+                    Text = pessoa.Nome,
+                    Value = pessoa.PessoaId.ToString(),
+                });
+            }
+        }
     }
 
     public enum SituacaoCheque 

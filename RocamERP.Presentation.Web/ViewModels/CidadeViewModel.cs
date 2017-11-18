@@ -29,7 +29,6 @@ namespace RocamERP.Presentation.Web.ViewModels
         public ICollection<SelectListItem> EstadosList { get; private set; }
         public void LoadEstadosList(IEnumerable<EstadoViewModel> estados)
         {
-            ICollection<SelectListItem> estadosList = new List<SelectListItem>();
             foreach(var estado in estados)
             {
                 EstadosList.Add(new SelectListItem()

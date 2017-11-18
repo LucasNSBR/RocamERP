@@ -29,11 +29,11 @@ namespace RocamERP.Presentation.Web.ViewModels
         public string Complemento { get; set; }
 
         [DisplayName("CEP")]
-        [DisplayFormat(DataFormatString = "{0:00000000000}")]
+        [DisplayFormat(DataFormatString = "{0:##.###-###}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
         [MinLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
-        [Remote("ValidateCEP", "Cidades", "Plataforma", ErrorMessage = "Já existe uma cidade com esse mesmo CEP.")]
+        [Remote("ValidateCEP", "Enderecos", "Plataforma", ErrorMessage = "Já existe uma cidade com esse mesmo CEP.")]
         public string CEP { get; set; }
 
         [DisplayName("Cidade")]
@@ -63,5 +63,4 @@ namespace RocamERP.Presentation.Web.ViewModels
         Rural,
         Outro, 
     }
-
 }
