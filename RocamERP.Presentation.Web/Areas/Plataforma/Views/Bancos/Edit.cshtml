@@ -16,6 +16,9 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
         <div>
+            @Html.HiddenFor(model => model.BancoId)
+            @Html.Hidden("initialCodigoCompensacaoValue", Model.CodigoCompensacao)
+            @Html.Hidden("initialNomeValue", Model.Nome)
             @Html.EditorForModel()
         </div>
 

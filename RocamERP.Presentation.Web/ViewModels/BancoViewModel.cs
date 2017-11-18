@@ -12,14 +12,16 @@ namespace RocamERP.Presentation.Web.ViewModels
         public int BancoId { get; set; }
 
         [DisplayName("Nome")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(100, ErrorMessage = "O tamanho máximo é de 100 caracteres.")]
+        [MinLength(3, ErrorMessage = "O tamanho mínimo é de 3 caracteres.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
+        [Remote("ValidateBancoNome", "Bancos", "Plataforma", AdditionalFields = "initialNomeValue", ErrorMessage = "Já existe um banco com esse nome.")]
         public string Nome { get; set; }
 
         [DisplayName("Código de Compensação")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        [Range(0, 9999, ErrorMessage = "O tamanho máximo é de 4 caracteres e o valor não pode ser negativo.")]
-        [Remote("ValidateCodigoBanco", "Bancos", "Plataforma", ErrorMessage = "Já existe um banco com esse código de compensação.")]
+        [Range(1, 9999, ErrorMessage = "O tamanho máximo é de 4 caracteres e o valor não pode ser negativo.")]
+        [Remote("ValidateCodigoBanco", "Bancos", "Plataforma", AdditionalFields = "initialCodigoCompensacaoValue", ErrorMessage = "Já existe um banco com esse código de compensação.")]
         public int CodigoCompensacao { get; set; }
 
         public ICollection<ChequeViewModel> Cheques { get; set; }

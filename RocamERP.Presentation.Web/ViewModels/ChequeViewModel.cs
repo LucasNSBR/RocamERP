@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RocamERP.Application.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -47,24 +48,25 @@ namespace RocamERP.Presentation.Web.ViewModels
         public SituacaoCheque SituacaoCheque { get; set; }
 
         [DisplayName("Data de Recebimento")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", NullDisplayText = "Não registrado.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public DateTime DataRecebimento { get; set; }
 
         [DisplayName("Data de Vencimento")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", NullDisplayText = "Não registrado.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public DateTime DataVencimento { get; set; }
 
         [DisplayName("Data de Pagamento")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", NullDisplayText = "Não registrado.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         public DateTime? DataPagamento { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:c}", NullDisplayText = "Não registrado.")]
+        [DisplayFormat(DataFormatString = "{0:c}", NullDisplayText = "Não registrado.", ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [Range(0, 100000, ErrorMessage = "O valor deve ser entre 0 e 100.000.")]
         public decimal Valor { get; set; }
 
+        #region ViewModel Attributes
         public ICollection<SelectListItem> BancosList { get; private set; }
         public ICollection<SelectListItem> PessoasList { get; private set; }
 
@@ -93,6 +95,8 @@ namespace RocamERP.Presentation.Web.ViewModels
                 });
             }
         }
+        #endregion
+
     }
 
     public enum SituacaoCheque 

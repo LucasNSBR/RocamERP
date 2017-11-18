@@ -33,7 +33,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
         [MinLength(8, ErrorMessage = "O campo deve ter 8 caracteres.")]
-        [Remote("ValidateCEP", "Enderecos", "Plataforma", ErrorMessage = "Já existe uma cidade com esse mesmo CEP.")]
+        [Remote("ValidateCEP", "Enderecos", "Plataforma", AdditionalFields = "InitialCEPValue", ErrorMessage = "Já existe uma cidade com esse mesmo CEP.")]
         public string CEP { get; set; }
 
         [DisplayName("Cidade")]

@@ -21,7 +21,7 @@
     <dd>
         @if(Model.Banco != null)
         {
-            @Html.ActionLink(Model.Banco.Nome, "Details", "Bancos", new { @id = Model.BancoId })
+            @Html.ActionLink(Model.Banco.Nome, "Index", "Bancos", new { @prefix = Model.Banco.Nome }, null)
         }
         else
         {
@@ -49,7 +49,7 @@
     <dd>
         @if (Model.Pessoa != null)
         {
-            @Html.ActionLink(Model.Pessoa.Nome, "Details", "Pessoas", new { @id = Model.PessoaId })
+            @Html.ActionLink(Model.Pessoa.Nome, "Details", "Pessoas", new { @id = Model.PessoaId }, null)
         }
         else
         {

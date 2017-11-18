@@ -13,7 +13,7 @@
     @Html.ActionLink("Novo", "Create")
 </p>
 
-<div class="pb-4 pt-0">
+<div>
     @using (Html.BeginForm("Index", "Pessoas", FormMethod.Get))
     {
         <div class="input-group">
@@ -94,6 +94,6 @@
 else
 {
     <div class="mt-5">
-        @Html.Raw("Nada encontrado")
+        @Html.Raw("Nada encontrado.")
     </div>
 }

@@ -97,12 +97,18 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
         }
 
-        public ActionResult ValidateCEP(string CEP)
+        public ActionResult ValidateCEP(string CEP, string initialCEPValue = null)
         {
-            var cidades = _enderecoApplicationService.GetAll();
-            var exists = cidades.ToList().Any(e => e.CEP == CEP);
+            if (_enderecoApplicationService.GetAll().Any(e => e.CEP == CEP))
+            {
+                if (initialCEPValue != null && CEP == initialCEPValue)
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                else
+                    return Json(false, JsonRequestBehavior.AllowGet);
+            }
 
-            return Json(!exists, JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }
+

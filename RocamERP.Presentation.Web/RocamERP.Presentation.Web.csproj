@@ -215,13 +215,9 @@
     <Content Include="Areas\Plataforma\Views\Bancos\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Bancos\Edit.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contatos\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Enderecos\Details.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Contatos\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Contatos\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Contatos\Edit.cshtml" />
     <Content Include="Areas\Plataforma\Views\Contatos\Delete.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Enderecos\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Enderecos\Create.cshtml" />
     <Content Include="Areas\Plataforma\Views\Enderecos\Edit.cshtml" />
     <Content Include="Areas\Plataforma\Views\Enderecos\Delete.cshtml" />

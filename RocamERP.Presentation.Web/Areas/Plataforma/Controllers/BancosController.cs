@@ -95,11 +95,30 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ValidateCodigoBanco(int codigoCompensacao)
+        public ActionResult ValidateBancoNome(string nome, string initialNomeValue = "")
         {
-            var exists = _bancoApplicationService.GetAll().Any(b => b.CodigoCompensacao == codigoCompensacao);
-            return Json(!exists, JsonRequestBehavior.AllowGet);
+            if(_bancoApplicationService.GetAll().Any(b => b.Nome == nome))
+            {
+                if (initialNomeValue != null && initialNomeValue == nome)
+                    return Json(true, JsonRequestBehavior.AllowGet);
 
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ValidateCodigoBanco(int codigoCompensacao, int? initialCodigoCompensacaoValue)
+        {
+            if(_bancoApplicationService.GetAll().Any(b => b.CodigoCompensacao == codigoCompensacao))
+            {
+                if (initialCodigoCompensacaoValue != null && codigoCompensacao == initialCodigoCompensacaoValue)
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

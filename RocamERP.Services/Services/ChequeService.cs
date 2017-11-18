@@ -1,6 +1,8 @@
-﻿using RocamERP.Domain.Models;
+﻿using System.Collections.Generic;
+using RocamERP.Domain.Models;
 using RocamERP.Domain.RepositoryInterfaces;
 using RocamERP.Domain.ServiceInterfaces;
+using System.Linq;
 
 namespace RocamERP.Services.Services
 {

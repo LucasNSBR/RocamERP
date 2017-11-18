@@ -11,7 +11,7 @@
     @Html.ActionLink("Novo", "Create")
 </p>
 
-<div class="pb-4 pt-0">
+<div>
     @using (Html.BeginForm("Index", "Cidades", FormMethod.Get))
     {
         <div class="form-group row">
@@ -30,6 +30,9 @@
     }
 </div>
 
+<div>
+
+</div>
 
 @if (Model.Any())
 {
@@ -67,6 +70,6 @@
 else
 {
     <div class="mt-5">
-        @Html.Raw("Nada encontrado")
+        @Html.Raw("Nada encontrado.")
     </div>
 }

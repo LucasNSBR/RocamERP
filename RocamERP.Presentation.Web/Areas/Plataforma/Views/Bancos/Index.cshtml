@@ -23,17 +23,15 @@
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
         </div>
-
-
-        <div>   
-            @{ 
+        <div>
+            @{
                 if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyCheques") == "true")
                 {
-                    <input type="checkbox" name="hideEmptyCheques" checked="checked" value="true"/>
+                    <input type="checkbox" name="hideEmptyCheques" checked="checked" value="true" />
                 }
                 else
                 {
-                    <input type="checkbox" name="hideEmptyCheques" value="true"/>
+                    <input type="checkbox" name="hideEmptyCheques" value="true" />
                 }
             }
             <span class="font-italic">Esconder bancos com sem cheques cadastrados</span>
@@ -41,51 +39,58 @@
     }
 </div>
 
-@if (Model.Any()) { 
-<table class="table">
-    <thead class="reset-border">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoCompensacao)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (Model.Any())
+{
+    <div class="mt-2">
+        <span class="text-muted font-italic">
+            @Html.Raw($"{Model.Count()} bancos encontrados")
+        </span>
+    </div>
+
+    <table class="table">
+        <thead class="reset-border">
             <tr>
-                <td>
-                    @Html.DisplayFor(model => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.CodigoCompensacao)
-                </td>
-                <td>
-                    
-                    @if (item.Cheques.Count > 0)
-                    {
-                        @Html.ActionLink($"{item.Cheques.Count} Cheques", "Index", "Cheques", new { @banco = item.Nome }, null)
-                    }
-                    else
-                    {
-                        @Html.Raw("Nenhum cheque encontrado")
-                    }
-                </td>
-                <td class="text-right">
-                    @Html.ActionLink("Editar", "Edit", new { id = item.BancoId }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.BancoId })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodigoCompensacao)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.CodigoCompensacao)
+                    </td>
+                    <td>
+
+                        @if (item.Cheques.Count > 0)
+                    {
+                            @Html.ActionLink($"{item.Cheques.Count} Cheques", "Index", "Cheques", new { @banco = item.Nome }, null)
+                        }
+                        else
+                        {
+                            @Html.Raw("Nenhum cheque encontrado")
+                        }
+                    </td>
+                    <td class="text-right">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.BancoId }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.BancoId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {
     <div class="mt-5">
-        @Html.Raw("Nada encontrado")
+        @Html.Raw("Nada encontrado.")
     </div>
 }
