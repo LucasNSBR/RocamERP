@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.ViewModels;
+using RocamERP.Presentation.Web.ViewModels.CidadeViewModels;
 
 namespace RocamERP.Presentation.Web.Mappers
 {

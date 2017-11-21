@@ -6,7 +6,7 @@ using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
-using RocamERP.Domain.FactoryInterfaces.Messages;
+using System;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -14,12 +14,10 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class BancosController : BaseController
     {
         private readonly IBancoApplicationService _bancoApplicationService;
-        private readonly IBaseMessageSimpleFactory _baseMessageFactory;
 
-        public BancosController(IBancoApplicationService bancoApplicationService, IBaseMessageSimpleFactory baseMessageFactory)
+        public BancosController(IBancoApplicationService bancoApplicationService)
         {
             _bancoApplicationService = bancoApplicationService;
-            _baseMessageFactory = baseMessageFactory;
         }
 
         public ActionResult Index(string prefix = "", bool? hideEmptyCheques = false)
@@ -31,7 +29,8 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                     return hideEmptyCheques == true ? b.Cheques.Any() : true;
                 })
                 .Where(b => b.Nome.ToLower().Contains(prefix.ToLower()))
-                .OrderByDescending(b => b.Cheques.Count);
+                .OrderByDescending(b => b.Cheques.Count)
+                .ThenBy(b => b.Nome);
 
             Mapper.Map(bancos, bancosVM);
             return View(bancosVM);
@@ -49,8 +48,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             {
                 var banco = Mapper.Map<BancoViewModel, Banco>(model);
                 _bancoApplicationService.Add(banco);
-
-                ThrowMessage(_baseMessageFactory.CreateSuccessMessage("Banco cadastrado com sucesso."));
+                
                 return RedirectToAction("Index");
             }
 
@@ -95,9 +93,10 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return RedirectToAction("Index");
         }
 
+        #region Validators
         public ActionResult ValidateBancoNome(string nome, string initialNomeValue = "")
         {
-            if(_bancoApplicationService.GetAll().Any(b => b.Nome == nome))
+            if (_bancoApplicationService.GetAll().Any(b => b.Nome == nome))
             {
                 if (initialNomeValue != null && initialNomeValue == nome)
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -110,16 +109,17 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult ValidateCodigoBanco(int codigoCompensacao, int? initialCodigoCompensacaoValue)
         {
-            if(_bancoApplicationService.GetAll().Any(b => b.CodigoCompensacao == codigoCompensacao))
+            if (_bancoApplicationService.GetAll().Any(b => b.CodigoCompensacao == codigoCompensacao))
             {
                 if (initialCodigoCompensacaoValue != null && codigoCompensacao == initialCodigoCompensacaoValue)
                     return Json(true, JsonRequestBehavior.AllowGet);
-                
+
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+        #endregion
     }
 }
 

@@ -5,10 +5,6 @@
 }
 
 <h2>Bancos</h2>
-
-
-@Html.Partial("PartialTemplates/MessagePartialView")
-
 <p>
     <span class="fa fa-plus text-primary"></span>
     @Html.ActionLink("Novo", "Create")
@@ -23,6 +19,7 @@
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
         </div>
+
         <div>
             @{
                 if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyCheques") == "true")
@@ -34,7 +31,7 @@
                     <input type="checkbox" name="hideEmptyCheques" value="true" />
                 }
             }
-            <span class="font-italic">Esconder bancos com sem cheques cadastrados</span>
+            <span class="font-italic">Esconder bancos sem cheques cadastrados</span>
         </div>
     }
 </div>
@@ -69,10 +66,9 @@
                         @Html.DisplayFor(model => item.CodigoCompensacao)
                     </td>
                     <td>
-
-                        @if (item.Cheques.Count > 0)
-                    {
-                            @Html.ActionLink($"{item.Cheques.Count} Cheques", "Index", "Cheques", new { @banco = item.Nome }, null)
+                        @if (item.Cheques.Any())
+                        {
+                            @Html.ActionLink($"{item.Cheques.Count()} Cheques", "Index", "Cheques", new { @bancoId = item.BancoId }, null)
                         }
                         else
                         {

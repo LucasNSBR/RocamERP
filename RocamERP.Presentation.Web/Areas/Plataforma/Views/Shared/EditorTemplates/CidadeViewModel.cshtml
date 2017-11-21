@@ -11,14 +11,6 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.CEP, new { @class = "col-form-label" })
-    <div class="col-12">
-        @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
-    </div>
-</div>
-
-<div class="form-group">
     @Html.LabelFor(model => model.EstadoId, new { @class = "col-form-label" })
     <div class="col-12">
         @Html.DropDownListFor(model => model.EstadoId, Model.EstadosList, new { @class = "form-control" })

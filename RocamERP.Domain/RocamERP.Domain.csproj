@@ -33,18 +33,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FactoryInterfaces\Messages\IBaseMessageSimpleFactory.cs" />
-    <Compile Include="Models\Messages\BaseMessageSimpleFactory.cs" />
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\CadastroEstadual.cs" />
     <Compile Include="Models\CadastroNacional.cs" />
     <Compile Include="Models\Cheque.cs" />
     <Compile Include="Models\Cidade.cs" />
-    <Compile Include="Models\Messages\BaseMessage.cs" />
-    <Compile Include="Models\Messages\ErrorMessage.cs" />
-    <Compile Include="Models\Messages\InformationMessage.cs" />
-    <Compile Include="Models\Messages\SuccessMessage.cs" />
-    <Compile Include="Models\Messages\WarningMessage.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Endereco.cs" />

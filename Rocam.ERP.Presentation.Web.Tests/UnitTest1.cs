@@ -12,11 +12,6 @@ namespace Rocam.ERP.Presentation.Web.Tests
     [TestClass]
     public class MiscellanousTests
     {
-        [TestMethod]
-        public void TestValidation()
-        {
-
-        }
 
         [TestMethod]
         public void TestConvert()

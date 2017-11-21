@@ -1,7 +1,0 @@
-﻿@using RocamERP.Domain.Models.Messages;
-
-@if (TempData["Message"] != null)
-{
-    BaseMessage message = (BaseMessage)TempData["message"];
-    @Html.MessageAlert(message.Title, message.MessageType);
-}

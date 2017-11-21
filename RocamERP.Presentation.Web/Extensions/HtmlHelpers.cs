@@ -1,5 +1,4 @@
-﻿using RocamERP.Domain.Models.Messages;
-using System;
+﻿using System;
 using System.Text;
 using System.Web.Mvc;
 
@@ -7,19 +6,19 @@ namespace RocamERP.Presentation.Web.Extensions
 {
     public static class HtmlHelpers
     {
-        public static MvcHtmlString MessageAlert(this HtmlHelper helper, string message, MessageType messageType)
-        {
-            StringBuilder sb = new StringBuilder();
+        //public static MvcHtmlString MessageAlert(this HtmlHelper helper, string message, MessageType messageType)
+        //{
+        //    StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"<div class=\"alert alert-dismissible alert-{Enum.GetName(messageType.GetType(), messageType).ToLower()} fade show col-12\">");
-            sb.AppendLine($"{message}");
-            sb.AppendLine("<button class=\"close\" data-dismiss=\"alert\">");
-            sb.AppendLine("<span>&times;</span>");
-            sb.AppendLine("</button>");
-            sb.AppendLine("</div>");
+        //    sb.AppendLine($"<div class=\"alert alert-dismissible alert-{Enum.GetName(messageType.GetType(), messageType).ToLower()} fade show col-12\">");
+        //    sb.AppendLine($"{message}");
+        //    sb.AppendLine("<button class=\"close\" data-dismiss=\"alert\">");
+        //    sb.AppendLine("<span>&times;</span>");
+        //    sb.AppendLine("</button>");
+        //    sb.AppendLine("</div>");
 
-            return new MvcHtmlString(sb.ToString());
-        }
+        //    return new MvcHtmlString(sb.ToString());
+        //}
 
         public static MvcHtmlString SubmitButton(this HtmlHelper helper, string text, object htmlAttributes = null)
         {

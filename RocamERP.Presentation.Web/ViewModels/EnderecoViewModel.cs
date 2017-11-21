@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using RocamERP.Presentation.Web.ViewModels.CidadeViewModels;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -49,6 +51,11 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayName("Tipo de endereço")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public TipoEndereco TipoEndereco { get; set; }
+
+
+        #region ViewModel Attributes
+        public ICollection<SelectListItem> CidadesList { get; set; }
+        #endregion
 
         public override string ToString()
         {

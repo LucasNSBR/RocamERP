@@ -23,7 +23,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = pessoaApplicationService;
         }
 
-        public ActionResult Index(int? pessoaId, string prefix = "")
+        public ActionResult Index(int? pessoaId, int? bancoId, string prefix = "")
         {
             var chequesVM = new List<ChequeViewModel>();
             var cheques = _chequeApplicationService.GetAll()
@@ -31,6 +31,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 {
                     if (pessoaId != null)
                         return c.PessoaId == pessoaId;
+                    else
+                        return true;
+                })
+                .Where(c =>
+                {
+                    if (bancoId != null)
+                        return c.BancoId == bancoId;
                     else
                         return true;
                 })

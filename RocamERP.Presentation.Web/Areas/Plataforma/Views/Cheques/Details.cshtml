@@ -9,8 +9,11 @@
 <hr/>
 
 <div>
-    @Html.DisplayForModel()
+    <div>
+        @Html.DisplayForModel()
+    </div>
 </div>
+
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.ChequeId }) |
     @Html.ActionLink("Página Anterior", "Index")

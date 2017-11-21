@@ -1,4 +1,4 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModels.CidadeViewModel
 
 <dl>
     <dt>
@@ -9,16 +9,16 @@
     </dd>
 
     <dt>
-        @Html.DisplayNameFor(model => model.CEP)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.CEP)
-    </dd>
-
-    <dt>
         @Html.DisplayNameFor(model => model.EstadoId)
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.EstadoId)
+        @if (Model.Estado != null)
+        {
+            @Html.DisplayFor(model => model.Estado.Nome)
+        }
+        else
+        {
+            @Html.Raw("Não foi possível recuperar os dados.")
+        }
     </dd>
 </dl>

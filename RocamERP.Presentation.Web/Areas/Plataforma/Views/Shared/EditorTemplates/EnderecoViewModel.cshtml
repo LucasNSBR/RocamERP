@@ -1,6 +1,6 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.EnderecoViewModel
 
-@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 <div class="form-group">
     @Html.LabelFor(model => model.Rua, new { @class = "col-form-label" })
@@ -47,5 +47,13 @@
     <div class="col-12">
         @Html.EnumDropDownListFor(model => model.TipoEndereco, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.TipoEndereco, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CidadeId, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.DropDownListFor(model => model.CidadeId, Model.CidadesList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CidadeId, "", new { @class = "text-danger" })
     </div>
 </div>

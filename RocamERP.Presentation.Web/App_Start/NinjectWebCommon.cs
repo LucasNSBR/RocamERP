@@ -17,8 +17,6 @@ namespace RocamERP.Presentation.Web.App_Start
     using RocamERP.Services.Services;
     using RocamERP.Domain.RepositoryInterfaces;
     using RocamERP.Infra.Data.Repositories;
-    using RocamERP.Domain.FactoryInterfaces.Messages;
-    using RocamERP.Domain.Models.Messages;
 
     public static class NinjectWebCommon 
     {
@@ -101,10 +99,6 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IEnderecoRepository>().To(typeof(EnderecoRepository));
             kernel.Bind<IChequeRepository>().To(typeof(ChequeRepository));
             kernel.Bind<IPessoaRepository>().To(typeof(PessoaRepository));
-
-
-            //MISC
-            kernel.Bind<IBaseMessageSimpleFactory>().To(typeof(BaseMessageSimpleFactory));
         }
     }
 }

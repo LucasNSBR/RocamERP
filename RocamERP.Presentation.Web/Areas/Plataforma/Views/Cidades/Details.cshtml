@@ -1,31 +1,97 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModels.DetailsCidadeViewModel
 
 @{
-    ViewBag.Title = $"Detalhes - {Model.Nome}";
+    ViewBag.Title = $"Detalhes - {Model.CidadeViewModel.Nome}";
 }
 
-<h2>@Model.Nome</h2>
+<h2>Detalhes</h2>
 <h6>Detalhes sobre a cidade</h6>
 <hr />
 
 <div>
-    @Html.DisplayForModel()
+    <div>
+        @Html.DisplayForModel(Model.CidadeViewModel)
+    </div>
+
+    @foreach (var group in Model.Enderecos)
+    {
+        <table class="table my-3">
+            <thead class="reset-border">
+                <tr>
+                    <th>
+                        @Html.DisplayFor(model => group.Key.Item1)
+                    </th>
+                    <th>
+                        @Html.ActionLink($"{group.Key.Item2}", "Details", "Pessoas", new { @id = group.Key.Item1 }, null)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var element in group)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => element.Numero)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => element.Rua)
+                        </td>
+
+                        <td class="text-right">
+                            @Html.DisplayFor(model => element.TipoEndereco)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+
+    @*@if (Model.Enderecos.Any())
+    {
+        <table class="table mt-5">
+            <thead>
+                <tr class="reset-border">
+                    <th>
+                        @Html.DisplayFor(model => model.Enderecos)
+                    </th> 
+                </tr>
+            </thead>
+            @foreach (var item in Model.Enderecos)
+            {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.Rua)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Bairro)
+                    </td>
+                    <td>
+                        @Html.ActionLink($"{item.Pessoa.Nome}", "Details", "Pessoas", new { @id = item.PessoaId })
+                    </td>
+                    <td class="text-right">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.EnderecoId }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.EnderecoId }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.EnderecoId })
+                    </td>
+                </tr>
+            </tbody>
+            }
+        </table>
+    }
+    else
+    {
+        @Html.Raw("Nenhum endereço encontrado.");
+    }
+</div>*@
 </div>
 
-@if (Model.Enderecos.Any())
-{
-    <div>
-        @Html.ActionLink($"{Model.Enderecos.Count().ToString()} endereços listados", "Index", "Enderecos", new { @cidade = Model.Nome, @prefix = "" }, null)
-    </div>
-}
-else
-{
-    <p>
-        Nenhum endereço listado. Clique @Html.ActionLink("aqui", "Create", "Enderecos") para adicionar.
-    </p>
-}
-
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Nome }) |
+<p class="pt-5">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CidadeViewModel.CidadeId }) |
     @Html.ActionLink("Página Anterior", "Index")
 </p>

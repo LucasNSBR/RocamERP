@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RocamERP.Presentation.Web.ViewModels.CidadeViewModel>
+﻿@model RocamERP.Presentation.Web.ViewModels.CidadeViewModels.IndexCidadeViewModel
 
 @{
     ViewBag.Title = "Cidades";
@@ -20,42 +20,68 @@
             </div>
             <div class="col-4 pl-1">
                 <div class="input-group">
-                    @Html.DropDownList("Estado", null, "Todos", new { @class = "form-control col-8" })
+                    @Html.DropDownList("estadoId", Model.EstadosList, "Todos", new { @class = "form-control" })
                     <span class="input-group-btn pl-1">
                         <button class="btn btn-primary" type="submit">Pesquisar</button>
                     </span>
                 </div>
             </div>
         </div>
+
+        <div>
+            @{
+                if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyEnderecos") == "true")
+                {
+                    <input type="checkbox" name="hideEmptyEnderecos" checked="checked" value="true" />
+                }
+                else
+                {
+                    <input type="checkbox" name="hideEmptyEnderecos" value="true" />
+                }
+            }
+            <span class="font-italic">Esconder cidades sem endereços cadastrados </span>
+        </div>
     }
 </div>
 
-<div>
-
-</div>
-
-@if (Model.Any())
+@if (Model.CidadeViewModel.Any())
 {
+    <div class="mt-2">
+        <span class="text-muted font-italic">
+            @Html.Raw($"{Model.CidadeViewModel.Count()} cidades encontradas")
+        </span>
+    </div>
+
     <table class="table">
         <thead class="reset-border">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    @Html.DisplayNameFor(model => model.CidadeViewModel.Single().Nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.EstadoId)
+                    @Html.DisplayNameFor(model => model.CidadeViewModel.Single().EstadoId)
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.CidadeViewModel)
             {
                 <tr>
                     <td>
                         @Html.DisplayFor(model => item.Nome)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.EstadoId)
+                        @Html.DisplayFor(model => item.Estado.Nome)
+                    </td>
+                    <td>
+                        @if (item.Enderecos.Any())
+                        {
+                            @Html.Raw($"{item.Enderecos.Count()} endereços encontrados");
+                        }
+                        else
+                        {
+                            @Html.Raw("Nenhum endereço encontrado")
+                        }
                     </td>
                     <td class="text-right">
                         @Html.ActionLink("Editar", "Edit", new { id = item.CidadeId }) |

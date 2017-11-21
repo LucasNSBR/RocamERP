@@ -13,9 +13,8 @@
     @Html.AntiForgeryToken()
 
     <div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div>
+            @Html.HiddenFor(model => model.PessoaId)
             @Html.EditorForModel()
         </div>
 

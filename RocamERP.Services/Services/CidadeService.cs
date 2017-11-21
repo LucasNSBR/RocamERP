@@ -1,7 +1,7 @@
-﻿using System;
-using RocamERP.Domain.Models;
+﻿using RocamERP.Domain.Models;
 using RocamERP.Domain.RepositoryInterfaces;
 using RocamERP.Domain.ServiceInterfaces;
+using System.Collections.Generic;
 
 namespace RocamERP.Services.Services
 {
@@ -12,6 +12,11 @@ namespace RocamERP.Services.Services
         public CidadeService(ICidadeRepository cidadeRepository) : base(cidadeRepository)
         {
             _cidadeRepository = cidadeRepository;
+        }
+
+        public IEnumerable<Cidade> GetByName(string prefix)
+        {
+            return _cidadeRepository.GetByName(prefix);
         }
     }
 }

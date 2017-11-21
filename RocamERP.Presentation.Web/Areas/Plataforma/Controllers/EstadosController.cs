@@ -18,7 +18,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _estadoApplicationService = estadoApplicationService;
         }
 
-        public ActionResult Index(string prefix = "", bool hideEmptyCidades = false)
+        public ActionResult Index(string prefix = "", bool? hideEmptyCidades = false)
         {
             var listVM = new List<EstadoViewModel>();
             var list = _estadoApplicationService.GetAll()

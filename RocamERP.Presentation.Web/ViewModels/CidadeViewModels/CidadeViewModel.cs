@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace RocamERP.Presentation.Web.ViewModels
+namespace RocamERP.Presentation.Web.ViewModels.CidadeViewModels
 {
     public class CidadeViewModel
     {
@@ -12,6 +12,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         public int CidadeId { get; set; }
 
         [DisplayName("Nome")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [MaxLength(100, ErrorMessage = "O campo deve ter no máximo 100 caracteres.")]
         [MinLength(2, ErrorMessage = "O campo deve ter no mínimo 3 caracteres")]
         public string Nome { get; set; }
@@ -20,24 +21,13 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public string EstadoId { get; set; }
 
-        [DisplayName("Estado")]
         public EstadoViewModel Estado { get; set; }
 
-        [DisplayName("Endereços")]
         public virtual ICollection<EnderecoViewModel> Enderecos { get; set; }
-
-        public ICollection<SelectListItem> EstadosList { get; private set; }
-        public void LoadEstadosList(IEnumerable<EstadoViewModel> estados)
-        {
-            foreach(var estado in estados)
-            {
-                EstadosList.Add(new SelectListItem()
-                {
-                    Text = estado.Nome,
-                    Value = estado.Nome,
-                }); 
-            }
-        }
+        
+        #region ViewModel Attributes
+        public ICollection<SelectListItem> EstadosList { get; set; }
+        #endregion
 
         public override string ToString()
         {
@@ -47,7 +37,6 @@ namespace RocamERP.Presentation.Web.ViewModels
         public CidadeViewModel()
         {
             Enderecos = new List<EnderecoViewModel>();
-            EstadosList = new List<SelectListItem>();
         }
     }
 }

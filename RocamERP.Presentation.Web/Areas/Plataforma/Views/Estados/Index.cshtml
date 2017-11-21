@@ -6,11 +6,11 @@
 
 <h2>Estados</h2>
 
-<div class="pt-4">
+<div>
     @using (Html.BeginForm("Index", "Estados", FormMethod.Get))
     {
         <div class="input-group">
-            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome da cidade..." })
+            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome do estado..." })
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>
@@ -32,36 +32,43 @@
     }
 </div>
 
-@if (Model.Any()) { 
-<table class="table">
-    <thead class="reset-border">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var estado in Model)
-        {
+@if (Model.Any())
+{
+    <div class="mt-2">
+        <span class="text-muted font-italic">
+            @Html.Raw($"{Model.Count()} estados encontrados")
+        </span>
+    </div>
+
+    <table class="table">
+        <thead class="reset-border">
             <tr>
-                <td>
-                    @Html.DisplayFor(model => estado.Nome)
-                </td>
-                <td>
-                    @if (estado.Cidades.Any())
-                    {
-                        @Html.ActionLink($"{estado.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estado = estado.Nome }, null)
-                    }
-                    else
-                    {
-                        @Html.Raw("Nenhuma cidade encontrada");
-                    }
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var estado in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => estado.Nome)
+                    </td>
+                    <td>
+                        @if (estado.Cidades.Any())
+                    {
+                            @Html.ActionLink($"{estado.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estado = estado.Nome }, null)
+                        }
+                        else
+                        {
+                            @Html.Raw("Nenhuma cidade encontrada");
+                    }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {

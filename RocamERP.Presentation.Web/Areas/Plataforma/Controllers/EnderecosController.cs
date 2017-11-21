@@ -2,6 +2,7 @@
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
+using RocamERP.Presentation.Web.Extensions;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class EnderecosController : Controller
     {
         private readonly IEnderecoApplicationService _enderecoApplicationService;
+        private readonly ICidadeApplicationService _cidadeApplicationService;
 
-        public EnderecosController(IEnderecoApplicationService enderecoApplicationService)
+        public EnderecosController(IEnderecoApplicationService enderecoApplicationService, ICidadeApplicationService cidadeApplicationService)
         {
             _enderecoApplicationService = enderecoApplicationService;
+            _cidadeApplicationService = cidadeApplicationService;
         }
 
         public ActionResult Index()
@@ -41,6 +44,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var EnderecoVM = new EnderecoViewModel()
             {
                 PessoaId = id,
+                CidadesList = _cidadeApplicationService.GetAll().ToSelectItemList(model => model.Nome, model => model.CidadeId.ToString())
             };
 
             return View(EnderecoVM);

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Exceptions\ExtendedHandleErrorAttribute.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
+    <Compile Include="Extensions\LINQExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,7 +184,9 @@
     <Compile Include="ViewModels\CadastroEstadualViewModel.cs" />
     <Compile Include="ViewModels\CadastroNacionalViewModel.cs" />
     <Compile Include="ViewModels\ChequeViewModel.cs" />
-    <Compile Include="ViewModels\CidadeViewModel.cs" />
+    <Compile Include="ViewModels\CidadeViewModels\CidadeViewModel.cs" />
+    <Compile Include="ViewModels\CidadeViewModels\DetailsCidadeViewModel.cs" />
+    <Compile Include="ViewModels\CidadeViewModels\IndexCidadeViewModel.cs" />
     <Compile Include="ViewModels\PessoaViewModel.cs" />
     <Compile Include="ViewModels\ContatoViewModel.cs" />
     <Compile Include="ViewModels\EnderecoViewModel.cs" />
@@ -207,7 +210,6 @@
     <Content Include="Areas\Plataforma\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Plataforma\Views\Estados\Index.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Index.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Cidades\Details.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Delete.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Edit.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cidades\Create.cshtml" />
@@ -236,8 +238,6 @@
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\BancoViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\ContatoViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Pessoas\Edit.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\SearchBar.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\SearchBarExtended.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\PessoaViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\CidadeViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\BancoViewModel.cshtml" />
@@ -247,7 +247,7 @@
     <Content Include="Areas\Plataforma\Views\Shared\EditorTemplates\ChequeViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\DisplayTemplates\ChequeViewModel.cshtml" />
     <Content Include="Areas\Plataforma\Views\Cheques\Create.cshtml" />
-    <Content Include="Areas\Plataforma\Views\Shared\PartialTemplates\MessagePartialView.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Cidades\Details.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -285,7 +285,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
-    <Folder Include="Areas\Plataforma\Views\Base\" />
+    <Folder Include="Areas\Plataforma\Views\Shared\PartialTemplates\" />
     <Folder Include="Messager\" />
   </ItemGroup>
   <ItemGroup>
