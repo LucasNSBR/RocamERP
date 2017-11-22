@@ -56,7 +56,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(new DetailsCidadeViewModel()
             {
                 CidadeViewModel = cidadeVM,
-                Enderecos = cidadeVM.Enderecos.GroupBy(k => Tuple.Create(k.PessoaId, k.Pessoa.Nome), e => e)
+                Enderecos = cidadeVM.Enderecos.GroupBy(k => new KeyValuePair<int, string>(k.PessoaId, k.Pessoa.Nome))
             });
         }
 

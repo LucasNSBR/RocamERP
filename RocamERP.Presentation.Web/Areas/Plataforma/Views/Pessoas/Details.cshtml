@@ -66,7 +66,7 @@
             @if (Model.Cheques.Any())
             {
             <table class="table">
-                <thead>
+                <thead class="reset-border">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(modelItem => modelItem.Cheques.First().BancoId)
@@ -90,19 +90,32 @@
                     {
                         <tr>
                             <td>
-                                @cheque.BancoId
+                                @if(cheque.Banco != null)
+                                {
+                                    @Html.DisplayFor(model => cheque.Banco.Nome)
+                                }
+                                else
+                                {
+                                    Html.Raw("Os dados não puderam ser recuperados.");
+                                }
                             </td>
                             <td>
-                                @cheque.Agencia
+                                @Html.DisplayFor(model => cheque.Agencia)
                             </td>
                             <td>
-                                @cheque.ContaCorrente
+                                @Html.DisplayFor(model => cheque.ContaCorrente)
                             </td>
                             <td>
-                                @cheque.NumeroCheque
+                                @Html.DisplayFor(model => cheque.NumeroCheque)
                             </td>
                             <td>
-                                @cheque.Valor
+                                @Html.DisplayFor(model => cheque.Valor)
+                            </td>
+
+                            <td class="text-right">
+                                @Html.ActionLink("Editar", "Edit", "Enderecos", new { id = cheque.ChequeId }, null) |
+                                @Html.ActionLink("Detalhes", "Details", "Enderecos", new { id = cheque.ChequeId }, null) |
+                                @Html.ActionLink("Excluir", "Delete", "Enderecos", new { id = cheque.ChequeId }, null)
                             </td>
                         </tr>
                     }
@@ -126,7 +139,7 @@
             @if (Model.Enderecos.Any())
             {
             <table class="table">
-                <thead>
+                <thead class="reset-border">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(modelItem => modelItem.Enderecos.First().Rua)
@@ -150,19 +163,31 @@
                     {
                         <tr>
                             <td>
-                                @endereco.Rua
+                                @Html.DisplayFor(model => endereco.Rua)
                             </td>
                             <td>
-                                @endereco.Numero
+                                @Html.DisplayFor(model => endereco.Numero)
                             </td>
                             <td>
-                                @endereco.Bairro
+                                @Html.DisplayFor(model => endereco.Bairro)
                             </td>
                             <td>
-                                @endereco.TipoEndereco
+                                @Html.DisplayFor(model => endereco.TipoEndereco)
                             </td>
                             <td>
-                                @endereco.Cidade
+                                @if(endereco.Cidade != null)
+                                {
+                                    @Html.ActionLink($"{endereco.Cidade.Nome}", "Details", "Cidades", new { @id = endereco.CidadeId })
+                                }
+                                else
+                                {
+                                    @Html.Raw("Os dados não puderam ser recuperados.");
+                                }
+                            </td>
+                            <td class="text-right">
+                                @Html.ActionLink("Editar", "Edit", "Enderecos", new { id = endereco.EnderecoId }, null) |
+                                @Html.ActionLink("Detalhes", "Details", "Enderecos", new { id = endereco.EnderecoId }, null) |
+                                @Html.ActionLink("Excluir", "Delete", "Enderecos", new { id = endereco.EnderecoId }, null)
                             </td>
                         </tr>
                     }
@@ -185,13 +210,16 @@
             @if (Model.Contatos.Any())
             {
                 <table class="table">
-                    <thead>
+                    <thead class="reset-border">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.First().TipoContato)
+                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.Single().TipoContato)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.First().Observacao)
+                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.Single().Informacao)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => modelItem.Contatos.Single().Observacao)
                             </th>
                         </tr>
                     </thead>
@@ -200,10 +228,18 @@
                         {
                             <tr>
                                 <td>
-                                    @contato.TipoContato
+                                    @Html.DisplayFor(model => contato.Informacao)
                                 </td>
                                 <td>
-                                    @contato.Observacao
+                                    @Html.DisplayFor(model => contato.TipoContato)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => contato.Observacao)
+                                </td>
+                                <td class="text-right">
+                                    @Html.ActionLink("Editar", "Edit", "Contatos", new { id = contato.PessoaId }, null) |
+                                    @Html.ActionLink("Detalhes", "Details", "Contatos", new { id = contato.PessoaId }, null) |
+                                    @Html.ActionLink("Excluir", "Delete", "Contatos", new { id = contato.PessoaId }, null)
                                 </td>
                             </tr>
                         }

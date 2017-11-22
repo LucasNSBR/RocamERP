@@ -37,6 +37,20 @@
     </dd>
 
     <dt>
+        @Html.DisplayNameFor(model => model.CidadeId)
+    </dt>
+    <dd>
+        @if (Model.Cidade != null)
+        {
+            @Html.ActionLink($"{Model.Cidade.Nome}", "Details", "Cidades", new { @id = Model.CidadeId })
+        }
+        else
+        {
+            @Html.Raw("Os dados não puderam ser recuperados.");
+        }    
+    </dd>
+
+    <dt>
         @Html.DisplayNameFor(model => model.TipoEndereco)
     </dt>
     <dd>

@@ -1,7 +1,7 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.EnderecoViewModel
 
 @{
-    ViewBag.Title = $"Excluir - {Model.Rua.Take(20)}..., {Model.Numero}";
+    ViewBag.Title = $"Excluir - {Model.Rua}";
 }
 
 <h2>Excluir</h2>
@@ -20,6 +20,6 @@
     }
 
     <div>
-        @Html.ActionLink("Página Anterior", "Index")
+        @Html.ActionLink("Página Anterior", "Details", "Pessoas", new { @id = Model.PessoaId }, null)
     </div>
 </div>

@@ -3,8 +3,6 @@ using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
@@ -13,34 +11,24 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     public class ContatosController : Controller
     {
         private readonly IContatoApplicationService _contatoApplicationService;
+        private readonly IPessoaApplicationService _pessoaApplicationService;
 
-        public ContatosController(IContatoApplicationService contatoApplicationService)
+        public ContatosController(IContatoApplicationService contatoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
             _contatoApplicationService = contatoApplicationService;
-        }
-
-        public ActionResult Index()
-        {
-            var contatosVM = new List<ContatoViewModel>();
-            var contatos = _contatoApplicationService.GetAll();
-
-            Mapper.Map(contatos, contatosVM);
-            return View(contatosVM.OrderBy(c => c.PessoaId));
-        }
-
-        public ActionResult Details(int id)
-        {
-            var contato = _contatoApplicationService.Get(id);
-            var contatoVM = Mapper.Map<Contato, ContatoViewModel>(contato);
-
-            return View(contatoVM);
+            _pessoaApplicationService = pessoaApplicationService;
         }
 
         public ActionResult Create(int id)
         {
+            var pessoa = _pessoaApplicationService.Get(id);
+            var pessoaVM = Mapper.Map<Pessoa, PessoaViewModel>(pessoa);
+
+
             ContatoViewModel contatoVM = new ContatoViewModel()
             {
-                PessoaId = id
+                PessoaId = id,
+                Pessoa = pessoaVM,
             };
 
             return View(contatoVM);

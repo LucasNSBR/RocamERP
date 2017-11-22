@@ -286,7 +286,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Models\" />
     <Folder Include="Areas\Plataforma\Views\Shared\PartialTemplates\" />
-    <Folder Include="Messager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

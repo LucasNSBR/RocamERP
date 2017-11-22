@@ -2,6 +2,11 @@
     border: 0!important;
 }
 
+.td-main {
+    width: 200px;
+    min-width: 100px;
+}
+
 
 .validation-summary-errors li {
     list-style-type: none;

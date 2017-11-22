@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.ViewModels
 {
@@ -26,7 +22,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayName("Pessoa")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public int PessoaId { get; set; }
-        [DisplayName("Pessoa")]
+
         public PessoaViewModel Pessoa { get; set; }
 
         [DisplayName("Tipo de Contato")]

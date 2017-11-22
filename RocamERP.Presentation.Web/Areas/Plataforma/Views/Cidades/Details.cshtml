@@ -10,85 +10,78 @@
 
 <div>
     <div>
-        @Html.DisplayForModel(Model.CidadeViewModel)
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.CidadeViewModel.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CidadeViewModel.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CidadeViewModel.EstadoId)
+            </dt>
+            <dd>
+                @if (Model.CidadeViewModel.Estado != null)
+                {
+                    @Html.DisplayFor(model => model.CidadeViewModel.Estado.Nome)
+                }
+                else
+                {
+                    @Html.Raw("Não foi possível recuperar os dados.")
+                }
+            </dd>
+        </dl>
     </div>
 
-    @foreach (var group in Model.Enderecos)
-    {
-        <table class="table my-3">
-            <thead class="reset-border">
-                <tr>
-                    <th>
-                        @Html.DisplayFor(model => group.Key.Item1)
-                    </th>
-                    <th>
-                        @Html.ActionLink($"{group.Key.Item2}", "Details", "Pessoas", new { @id = group.Key.Item1 }, null)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var element in group)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(model => element.Numero)
-                        </td>
+    <div class="mt-4">
+        @if (Model.Enderecos.Any())
+        {
+            <h6><strong>Endereços/pessoas encontradas:</strong></h6>
 
-                        <td>
-                            @Html.DisplayFor(model => element.Rua)
-                        </td>
-
-                        <td class="text-right">
-                            @Html.DisplayFor(model => element.TipoEndereco)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-
-
-    @*@if (Model.Enderecos.Any())
-    {
-        <table class="table mt-5">
-            <thead>
-                <tr class="reset-border">
-                    <th>
-                        @Html.DisplayFor(model => model.Enderecos)
-                    </th> 
-                </tr>
-            </thead>
-            @foreach (var item in Model.Enderecos)
+            foreach (var group in Model.Enderecos)
             {
-            <tbody>
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => item.Rua)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => item.Numero)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => item.Bairro)
-                    </td>
-                    <td>
-                        @Html.ActionLink($"{item.Pessoa.Nome}", "Details", "Pessoas", new { @id = item.PessoaId })
-                    </td>
-                    <td class="text-right">
-                        @Html.ActionLink("Editar", "Edit", new { id = item.EnderecoId }) |
-                        @Html.ActionLink("Detalhes", "Details", new { id = item.EnderecoId }) |
-                        @Html.ActionLink("Excluir", "Delete", new { id = item.EnderecoId })
-                    </td>
-                </tr>
-            </tbody>
+                <table class="table">
+                    <thead class="reset-border">
+                        <tr>
+                            <th>
+                                @Html.ActionLink($"{group.Key.Value}", "Details", "Pessoas", new { @id = group.Key.Key }, null)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var element in group)
+                        {
+                            <tr>
+                                <td class="td-main">
+                                    @Html.DisplayFor(model => element.Rua)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => element.Numero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => element.Bairro)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => element.TipoEndereco)
+                                </td>
+
+                                <td class="text-right">
+                                    @Html.ActionLink("Editar", "Edit", new { id = element.EnderecoId }) |
+                                    @Html.ActionLink("Detalhes", "Details", new { id = element.EnderecoId }) |
+                                    @Html.ActionLink("Excluir", "Delete", new { id = element.EnderecoId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             }
-        </table>
-    }
-    else
-    {
-        @Html.Raw("Nenhum endereço encontrado.");
-    }
-</div>*@
+        }
+        else
+        {
+            @Html.Raw("Sem endereços encontrados.")
+        }
+    </div>
 </div>
 
 <p class="pt-5">
