@@ -1,4 +1,4 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.PessoaViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.PessoaViewModels.PessoaViewModel
 
 @{
     ViewBag.Title = $"{Model.Nome} - Detalhes";
@@ -177,7 +177,7 @@
                             <td>
                                 @if(endereco.Cidade != null)
                                 {
-                                    @Html.ActionLink($"{endereco.Cidade.Nome}", "Details", "Cidades", new { @id = endereco.CidadeId })
+                                    @Html.ActionLink($"{endereco.Cidade.Nome}", "Details", "Cidades", new { @id = endereco.CidadeId }, null)
                                 }
                                 else
                                 {

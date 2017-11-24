@@ -1,6 +1,4 @@
-﻿@using RocamERP.Presentation.Web.Extensions;
-
-@model IEnumerable<RocamERP.Presentation.Web.ViewModels.PessoaViewModel>
+﻿@model RocamERP.Presentation.Web.ViewModels.PessoaViewModels.IndexPessoaViewModel
 
 @{
     ViewBag.Title = "Pessoas";
@@ -16,11 +14,18 @@
 <div>
     @using (Html.BeginForm("Index", "Pessoas", FormMethod.Get))
     {
-        <div class="input-group">
-            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome da pessoa..." })
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Pesquisar</button>
-            </span>
+        <div class="form-group row">
+            <div class="col-8 pr-0">
+                @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o nome da pessoa..." })
+            </div>
+            <div class="col-4 pl-1">
+                <div class="input-group">
+                    @Html.DropDownList("cidadeId", Model.CidadesList, "Todas", new { @class = "form-control" })
+                    <span class="input-group-btn pl-1">
+                        <button class="btn btn-primary" type="submit">Pesquisar</button>
+                    </span>
+                </div>
+            </div>
         </div>
 
         <div>
@@ -34,32 +39,44 @@
                     <input type="checkbox" name="hideEmptyCheques" value="true" />
                 }
             }
-            <span class="font-italic">Esconder clientes sem cheques cadastrados</span>
+            <span class="font-italic">Esconder pessoas sem cheques cadastrados</span>
         </div>
     }
 </div>
 
-@if (Model.Any())
+@if (Model.Pessoas.Any())
 {
+    <div class="mt-2">
+        <span class="text-muted font-italic">
+            @Html.Raw($"{Model.Pessoas.Count()} pessoas encontradas")
+        </span>
+    </div>
+
     <table class="table">
         <thead class="reset-border">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    @Html.DisplayNameFor(model => model.Pessoas.Single().Nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CadastroNacional.NumeroDocumento)
+                    @Html.DisplayNameFor(model => model.Pessoas.Single().CadastroNacional.NumeroDocumento)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CadastroEstadual.NumeroDocumento)
+                    @Html.DisplayNameFor(model => model.Pessoas.Single().CadastroEstadual.NumeroDocumento)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Cheques)
+                    @Html.DisplayNameFor(model => model.Pessoas.Single().Cheques)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pessoas.Single().Enderecos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pessoas.Single().Contatos)
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var pessoa in Model)
+            @foreach (var pessoa in Model.Pessoas)
             {
                 <tr>
                     <td>
@@ -70,6 +87,26 @@
                     </td>
                     <td>
                         @Html.DisplayFor(model => pessoa.CadastroNacional.NumeroDocumento)
+                    </td>
+                    <td>
+                        @if (pessoa.Cheques.Any())
+                        {
+                            @Html.ActionLink($"{pessoa.Cheques.Count()}", "Index", "Cheques", new { @pessoaId = pessoa.PessoaId }, null)
+                        }
+                        else
+                        {
+                            @Html.Raw("Nenhum")
+                        }
+                    </td>
+                    <td>
+                        @if (pessoa.Enderecos.Any())
+                        {
+                            @Html.ActionLink($"{pessoa.Enderecos.Count()}", "Details", "Details", new { @pessoaId = pessoa.PessoaId }, null)
+                        }
+                        else
+                        {
+                            @Html.Raw("Nenhum")
+                        }
                     </td>
                     <td>
                         @if (pessoa.Cheques.Any())

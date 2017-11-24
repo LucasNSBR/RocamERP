@@ -3,6 +3,7 @@ using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
+using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
 using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
@@ -30,6 +31,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 PessoaId = id,
                 Pessoa = pessoaVM,
             };
+
+            return View(contatoVM);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var contato = _contatoApplicationService.Get(id);
+            var contatoVM = Mapper.Map<Contato, EnderecoViewModel>(contato);
 
             return View(contatoVM);
         }

@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
+using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
-using RocamERP.Presentation.Web.Extensions;
 using RocamERP.Presentation.Web.ViewModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -22,15 +21,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _cidadeApplicationService = cidadeApplicationService;
         }
 
-        public ActionResult Index()
-        {
-            var enderecosVM = new List<EnderecoViewModel>();
-            var enderecos = _enderecoApplicationService.GetAll();
-
-            Mapper.Map(enderecos, enderecosVM);
-            return View(enderecosVM.OrderBy(c => c.PessoaId));
-        }
-
         public ActionResult Details(int id)
         {
             var endereco = _enderecoApplicationService.Get(id);
@@ -44,7 +34,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var EnderecoVM = new EnderecoViewModel()
             {
                 PessoaId = id,
-                CidadesList = _cidadeApplicationService.GetAll().ToSelectItemList(model => model.Nome, model => model.CidadeId.ToString())
+                CidadesList = _cidadeApplicationService.GetAll().ToSelectItemList(c => c.Nome, c => c.CidadeId)
             };
 
             return View(EnderecoVM);
@@ -101,6 +91,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return RedirectToAction("Details", "Pessoas", new { id = model.PessoaId });
         }
 
+        #region Validators
         public ActionResult ValidateCEP(string CEP, string initialCEPValue = null)
         {
             if (_enderecoApplicationService.GetAll().Any(e => e.CEP == CEP))
@@ -113,6 +104,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+        #endregion
     }
 }
 

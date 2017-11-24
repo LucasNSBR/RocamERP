@@ -1,50 +1,49 @@
-﻿@model RocamERP.Presentation.Web.ViewModels.PessoaViewModel
+﻿@model RocamERP.Presentation.Web.ViewModels.PessoaViewModels.PessoaViewModel
 
 @{
     ViewBag.Title = "Novo";
 }
 
 <h2>Novo</h2>
-<h6>Adicionar novo cliente</h6>
+<h6>Adicionar nova pessoa</h6>
 <hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal px-4">
-        <div>
-            <div class="mx-2 pt-2">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <fieldset>
-                    <legend>
-                        Cadastro Nacional (CNPJ/CPF)
-                    </legend>
-
-                    <div class="px-4">
-                        @Html.EditorForModel("CadastroNacionalViewModel", "CadastroNacional")
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>
-                        Cadastro Estadual (Inscrição Estadual/RG)
-                    </legend>
-
-                    <div class="px-4">
-                        @Html.EditorForModel("CadastroEstadualViewModel", "CadastroEstadual")
-                    </div>
-                </fieldset>
-
-                <div>
-                    @Html.EditorForModel()
-                </div>
+        <fieldset>
+            <legend>Dados básicos</legend>
+            <div>
+                @Html.EditorForModel()
             </div>
-        </div>
+        </fieldset>
 
-        @Html.SubmitButton("Adicionar")
+        <fieldset class="my-4">
+            <legend>
+                Cadastro Nacional (CNPJ/CPF)
+            </legend>
+
+            <div class="px-4">
+                @Html.EditorForModel("CadastroNacionalViewModel", "CadastroNacional")
+            </div>
+        </fieldset>
+
+        <fieldset class="my-4">
+            <legend>
+                Cadastro Estadual (Inscrição Estadual/RG)
+            </legend>
+
+            <div class="px-4">
+                @Html.EditorForModel("CadastroEstadualViewModel", "CadastroEstadual")
+            </div>
+        </fieldset>
     </div>
+
+    @Html.SubmitButton("Adicionar")
 }
 
 <div>

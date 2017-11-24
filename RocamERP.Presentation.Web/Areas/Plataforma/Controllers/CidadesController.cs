@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 using RocamERP.Presentation.Web.Exceptions;
-using RocamERP.Presentation.Web.Extensions;
 using RocamERP.Presentation.Web.ViewModels.CidadeViewModels;
-using System;
+using RocamERP.CrossCutting.Extensions;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -17,11 +16,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     {
         private readonly ICidadeApplicationService _cidadeApplicationService;
         private readonly IEstadoApplicationService _estadoApplicationService;
+        private readonly IPessoaApplicationService _pessoaApplicationService; 
         
-        public CidadesController(ICidadeApplicationService cidadeApplicationService, IEstadoApplicationService estadoApplicationService)
+        public CidadesController(ICidadeApplicationService cidadeApplicationService, IEstadoApplicationService estadoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
             _cidadeApplicationService = cidadeApplicationService;
             _estadoApplicationService = estadoApplicationService;
+            _pessoaApplicationService = pessoaApplicationService;
         }
 
         public ActionResult Index(int? estadoId, string prefix = "", bool hideEmptyEnderecos = false)
@@ -40,23 +41,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 .ThenBy(c => c.Nome);
 
             Mapper.Map(cidades, cidadesVM);
-            
+
+            cidadesVM.ForEach(c => c.PessoasCidadeCount = _pessoaApplicationService.GetAll().Count(e => e.Enderecos.Any(en => en.CidadeId == c.CidadeId)));
+
             return View(new IndexCidadeViewModel()
             {
-                CidadeViewModel = cidadesVM,
-                EstadosList = _estadoApplicationService.GetAll().ToSelectItemList(model => model.Nome, model => model.EstadoId.ToString())
-            });
-        }
-
-        public ActionResult Details(int id)
-        {
-            var cidade = _cidadeApplicationService.Get(id);
-            var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
-
-            return View(new DetailsCidadeViewModel()
-            {
-                CidadeViewModel = cidadeVM,
-                Enderecos = cidadeVM.Enderecos.GroupBy(k => new KeyValuePair<int, string>(k.PessoaId, k.Pessoa.Nome))
+                Cidades = cidadesVM,
+                EstadosList = _estadoApplicationService.GetAll().ToSelectItemList(model => model.Nome, model => model.EstadoId),
             });
         }
 
@@ -64,7 +55,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             CidadeViewModel cidadeVM = new CidadeViewModel();
             cidadeVM.EstadosList = Mapper.Map<IEnumerable<Estado>, IEnumerable<EstadoViewModel>>(_estadoApplicationService.GetAll())
-                .ToSelectItemList(model => model.Nome, model => model.EstadoId.ToString());
+                .ToSelectItemList(model => model.Nome, model => model.EstadoId);
             
             return View(cidadeVM);
         }
@@ -88,7 +79,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
             cidadeVM.EstadosList = Mapper.Map<IEnumerable<Estado>, IEnumerable<EstadoViewModel>>(_estadoApplicationService.GetAll())
-                .ToSelectItemList(model => model.Nome, model => model.EstadoId.ToString());
+                .ToSelectItemList(model => model.Nome, model => model.EstadoId);
            
            
             return View(cidadeVM);

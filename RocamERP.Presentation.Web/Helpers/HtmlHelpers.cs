@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Web.Mvc;
 
-namespace RocamERP.Presentation.Web.Extensions
+namespace RocamERP.Presentation.Web.Helpers
 {
     public static class HtmlHelpers
     {

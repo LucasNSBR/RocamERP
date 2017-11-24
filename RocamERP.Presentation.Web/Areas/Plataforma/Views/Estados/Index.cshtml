@@ -58,7 +58,7 @@
                     <td>
                         @if (estado.Cidades.Any())
                     {
-                            @Html.ActionLink($"{estado.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estado = estado.Nome }, null)
+                            @Html.ActionLink($"{estado.Cidades.Count()} Cidades listadas", "Index", "Cidades", new { @estadoId = estado.EstadoId }, null)
                         }
                         else
                         {

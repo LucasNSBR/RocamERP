@@ -3,10 +3,9 @@
 }
 
 .td-main {
-    width: 200px;
+    width: 350px;
     min-width: 100px;
 }
-
 
 .validation-summary-errors li {
     list-style-type: none;

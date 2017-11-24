@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace RocamERP.Presentation.Web.ViewModels

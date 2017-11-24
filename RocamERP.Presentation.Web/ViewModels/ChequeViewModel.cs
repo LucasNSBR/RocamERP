@@ -1,4 +1,5 @@
 ﻿using RocamERP.Application.Interfaces;
+using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,34 +68,8 @@ namespace RocamERP.Presentation.Web.ViewModels
         public decimal Valor { get; set; }
 
         #region ViewModel Attributes
-        public ICollection<SelectListItem> BancosList { get; private set; }
-        public ICollection<SelectListItem> PessoasList { get; private set; }
-
-        public void LoadBancosList(IEnumerable<BancoViewModel> bancos)
-        {
-            BancosList = new List<SelectListItem>();
-            foreach (var banco in bancos)
-            {
-                BancosList.Add(new SelectListItem()
-                {
-                    Text = banco.Nome,
-                    Value = banco.BancoId.ToString(),
-                });
-            }
-        }
-
-        public void LoadPessoasList(IEnumerable<PessoaViewModel> pessoas)
-        {
-            PessoasList = new List<SelectListItem>();
-            foreach (var pessoa in pessoas)
-            {
-                PessoasList.Add(new SelectListItem()
-                {
-                    Text = pessoa.Nome,
-                    Value = pessoa.PessoaId.ToString(),
-                });
-            }
-        }
+        public IEnumerable<SelectListItem> BancosList { get; set; }
+        public IEnumerable<SelectListItem> PessoasList { get; set; }
         #endregion
 
     }

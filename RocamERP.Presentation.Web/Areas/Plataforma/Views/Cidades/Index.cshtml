@@ -5,7 +5,6 @@
 }
 
 <h2>Cidades</h2>
-
 <p>
     <span class="fa fa-plus text-primary"></span>
     @Html.ActionLink("Novo", "Create")
@@ -44,11 +43,11 @@
     }
 </div>
 
-@if (Model.CidadeViewModel.Any())
+@if (Model.Cidades.Any())
 {
     <div class="mt-2">
         <span class="text-muted font-italic">
-            @Html.Raw($"{Model.CidadeViewModel.Count()} cidades encontradas")
+            @Html.Raw($"{Model.Cidades.Count()} cidades encontradas")
         </span>
     </div>
 
@@ -56,15 +55,15 @@
         <thead class="reset-border">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.CidadeViewModel.Single().Nome)
+                    @Html.DisplayNameFor(model => model.Cidades.Single().Nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CidadeViewModel.Single().EstadoId)
+                    @Html.DisplayNameFor(model => model.Cidades.Single().EstadoId)
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.CidadeViewModel)
+            @foreach (var item in Model.Cidades)
             {
                 <tr>
                     <td>
@@ -76,7 +75,7 @@
                     <td>
                         @if (item.Enderecos.Any())
                         {
-                            @Html.Raw($"{item.Enderecos.Count()} endereços encontrados");
+                            @Html.ActionLink($"{item.PessoasCidadeCount} pessoas encontradas", "Index", "Pessoas", new { cidadeId = item.CidadeId }, null)
                         }
                         else
                         {
@@ -85,7 +84,6 @@
                     </td>
                     <td class="text-right">
                         @Html.ActionLink("Editar", "Edit", new { id = item.CidadeId }) |
-                        @Html.ActionLink("Detalhes", "Details", new { id = item.CidadeId }) |
                         @Html.ActionLink("Excluir", "Delete", new { id = item.CidadeId })
                     </td>
                 </tr>

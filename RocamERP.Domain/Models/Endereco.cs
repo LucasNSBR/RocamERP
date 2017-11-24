@@ -8,6 +8,7 @@
         public int Numero { get; set; }
         public string Complemento { get; set; }
         public string CEP { get; set; }
+        public string Observacao { get; set; }
 
         public int CidadeId { get; set; }
         public virtual Cidade Cidade { get; set; }

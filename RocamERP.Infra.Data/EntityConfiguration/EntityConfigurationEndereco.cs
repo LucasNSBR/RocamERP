@@ -24,6 +24,10 @@ namespace RocamERP.Infra.Data.EntityConfiguration
                 .HasMaxLength(50)
                 .IsOptional();
 
+            Property(e => e.Complemento)
+                .HasMaxLength(1000)
+                .IsOptional();
+
             Property(c => c.CEP)
                 .HasMaxLength(8)
                 .IsRequired();

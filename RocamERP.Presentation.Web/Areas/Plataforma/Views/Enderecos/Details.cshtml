@@ -1,0 +1,20 @@
+﻿@model RocamERP.Presentation.Web.ViewModels.EnderecoViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+<h6>Detalhes sobre o endereço</h6>
+<hr />
+
+<div>
+    <dl>
+        @Html.DisplayForModel()
+    </dl>
+</div>
+
+<p class="pt-5">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.EnderecoId }) |
+    @Html.ActionLink("Página Anterior", "Details", "Pessoas", new { @id = Model.PessoaId }, null)
+</p>

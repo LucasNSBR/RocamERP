@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
+using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
@@ -29,17 +30,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cheques = _chequeApplicationService.GetAll()
                 .Where(c =>
                 {
-                    if (pessoaId != null)
-                        return c.PessoaId == pessoaId;
-                    else
-                        return true;
+                    return pessoaId != null ? c.PessoaId == pessoaId : true;
                 })
                 .Where(c =>
                 {
-                    if (bancoId != null)
-                        return c.BancoId == bancoId;
-                    else
-                        return true;
+                    return bancoId != null ? c.BancoId == bancoId : true; 
                 })
                 .Where(c => c.NumeroCheque.ToLower().Contains(prefix.ToLower()))
                 .OrderBy(c => c.PessoaId);
@@ -60,12 +55,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             var bancos = _bancoApplicationService.GetAll();
             var pessoas = _pessoaApplicationService.GetAll();
-            var bancosVM = Mapper.Map<IEnumerable<Banco>, IEnumerable<BancoViewModel>>(bancos);
-            var pessoasVM = Mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaViewModel>>(pessoas);
-            
-            ChequeViewModel chequeVM = new ChequeViewModel();
-            chequeVM.LoadBancosList(bancosVM);
-            chequeVM.LoadPessoasList(pessoasVM);
+
+            ChequeViewModel chequeVM = new ChequeViewModel()
+            {
+                BancosList = bancos.ToSelectItemList(b => b.Nome, b => b.BancoId),
+                PessoasList = pessoas.ToSelectItemList(p => p.Nome, p => p.PessoaId),
+            };
+
             return View(chequeVM);
         }
 
@@ -87,14 +83,10 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         public ActionResult Edit(int id)
         {
             var cheque = _chequeApplicationService.Get(id);
-            var bancos = _bancoApplicationService.GetAll();
-            var pessoas = _pessoaApplicationService.GetAll();
             var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
-            var bancosVM = Mapper.Map<IEnumerable<Banco>, IEnumerable<BancoViewModel>>(bancos);
-            var pessoasVM = Mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaViewModel>>(pessoas);
 
-            chequeVM.LoadBancosList(bancosVM);
-            chequeVM.LoadPessoasList(pessoasVM);
+            chequeVM.BancosList = _bancoApplicationService.GetAll().ToSelectItemList(b => b.Nome, b => b.BancoId);
+            chequeVM.PessoasList = _pessoaApplicationService.GetAll().ToSelectItemList(p => p.Nome, p => p.PessoaId);
             return View(chequeVM);
         }
 

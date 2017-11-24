@@ -30,6 +30,13 @@
     </dd>
 
     <dt>
+        @Html.DisplayNameFor(model => model.Observacao)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Observacao)
+    </dd>
+
+    <dt>
         @Html.DisplayNameFor(model => model.CEP)
     </dt>
     <dd>
@@ -48,6 +55,20 @@
         {
             @Html.Raw("Os dados não puderam ser recuperados.");
         }    
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.PessoaId)
+    </dt>
+    <dd>
+        @if (Model.Pessoa != null)
+        {
+            @Html.ActionLink($"{Model.Pessoa.Nome}", "Details", "Pessoas", new { @id = Model.PessoaId })
+        }
+        else
+        {
+            @Html.Raw("Os dados não puderam ser recuperados.");
+        }
     </dd>
 
     <dt>

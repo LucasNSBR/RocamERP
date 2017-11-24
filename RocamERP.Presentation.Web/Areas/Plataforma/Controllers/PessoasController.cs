@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
+using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
-using RocamERP.Presentation.Web.ViewModels;
+using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,23 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     [ExtendedHandleError()]
     public class PessoasController : Controller
     {
-        IPessoaApplicationService _pessoaApplicationService;
+        private readonly IPessoaApplicationService _pessoaApplicationService;
+        private readonly ICidadeApplicationService _cidadeApplicationService;
 
-        public PessoasController(IPessoaApplicationService clienteApplicationService)
+        public PessoasController(IPessoaApplicationService clienteApplicationService, ICidadeApplicationService cidadeApplicationService)
         {
             _pessoaApplicationService = clienteApplicationService;
+            _cidadeApplicationService = cidadeApplicationService;
         }
 
-        public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
+        public ActionResult Index(int? cidadeId, string prefix = "", bool hideEmptyCheques = false)
         {
             var pessoasVM = new List<PessoaViewModel>();
             var pessoas = _pessoaApplicationService.GetAll()
+                .Where(p =>
+                {
+                    return cidadeId != null ? p.Enderecos.Any(e => e.CidadeId == cidadeId) : true;
+                })
                 .Where(p =>
                 {
                     return hideEmptyCheques == true ? p.Cheques.Any() : true;
@@ -32,7 +39,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 .OrderBy(p => p.Nome);
 
             Mapper.Map(pessoas, pessoasVM);
-            return View(pessoasVM);
+            return View(new IndexPessoaViewModel()
+            {
+                Pessoas = pessoasVM,
+                CidadesList = _cidadeApplicationService.GetAll().ToSelectItemList(c => c.Nome, c => c.CidadeId)
+            });
         }
 
         public ActionResult Details(int id)
@@ -45,8 +56,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.TipoCadastroEstadual = new SelectList(Enum.GetNames(typeof(TipoCadastroEstadual)));
-            ViewBag.TipoCadastroNacional = new SelectList(Enum.GetNames(typeof(TipoCadastroNacional)));
             return View();
         }
 
@@ -61,8 +70,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TipoCadastroEstadual = new SelectList(Enum.GetNames(typeof(TipoCadastroEstadual)), model.CadastroEstadual.TipoCadastroEstadual);
-            ViewBag.TipoCadastroNacional = new SelectList(Enum.GetNames(typeof(TipoCadastroNacional)), model.CadastroEstadual.TipoCadastroEstadual);
             return View(model);
         }
 
@@ -77,7 +84,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         [HttpPost]
         public ActionResult Edit(int id, PessoaViewModel model)
         {
-
             if (ModelState.IsValid)
             {
                 var pessoa = Mapper.Map<PessoaViewModel, Pessoa>(model);

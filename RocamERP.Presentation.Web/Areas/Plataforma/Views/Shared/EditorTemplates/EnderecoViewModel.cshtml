@@ -35,6 +35,14 @@
 </div>
 
 <div class="form-group">
+    @Html.LabelFor(model => model.Observacao, new { @class = "col-form-label" })
+    <div class="col-12">
+        @Html.TextAreaFor(model => model.Observacao, new { @class = "form-control col-8", @rows = 10 })
+        @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
     @Html.LabelFor(model => model.CEP, new { @class = "col-form-label" })
     <div class="col-12">
         @Html.TextBoxFor(model => model.CEP, new { @class = "form-control" })

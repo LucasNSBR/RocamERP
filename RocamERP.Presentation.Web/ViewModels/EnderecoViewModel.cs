@@ -1,4 +1,5 @@
 ﻿using RocamERP.Presentation.Web.ViewModels.CidadeViewModels;
+using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -30,6 +31,10 @@ namespace RocamERP.Presentation.Web.ViewModels
         [MaxLength(50, ErrorMessage = "O tamanho máximo para o campo é de 50 caracteres.")]
         public string Complemento { get; set; }
 
+        [DisplayName("Observação")]
+        [MaxLength(1000, ErrorMessage = "O tamanho máximo para o campo é de 1000 caracteres.")]
+        public string Observacao { get; set; }
+
         [DisplayName("CEP")]
         [DisplayFormat(DataFormatString = "{0:##.###-###}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
@@ -40,7 +45,7 @@ namespace RocamERP.Presentation.Web.ViewModels
 
         [DisplayName("Cidade")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        public string CidadeId { get; set; }
+        public int CidadeId { get; set; }
         public CidadeViewModel Cidade { get; set; }
 
         [DisplayName("Pessoa")]
@@ -52,9 +57,8 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public TipoEndereco TipoEndereco { get; set; }
 
-
         #region ViewModel Attributes
-        public ICollection<SelectListItem> CidadesList { get; set; }
+        public IEnumerable<SelectListItem> CidadesList { get; set; }
         #endregion
 
         public override string ToString()

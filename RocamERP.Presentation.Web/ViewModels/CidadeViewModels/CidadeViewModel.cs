@@ -27,6 +27,7 @@ namespace RocamERP.Presentation.Web.ViewModels.CidadeViewModels
         
         #region ViewModel Attributes
         public ICollection<SelectListItem> EstadosList { get; set; }
+        public int PessoasCidadeCount { get; set; }
         #endregion
 
         public override string ToString()

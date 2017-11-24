@@ -33,7 +33,7 @@ namespace RocamERP.Infra.Data.Repositories
             return dbContext.Set<TEntity>().Find(id);
         }
 
-        public void Update(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
             dbContext.Entry(obj).State = EntityState.Modified;
             dbContext.SaveChanges();
