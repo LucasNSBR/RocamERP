@@ -17,9 +17,6 @@ namespace RocamERP.Infra.Data
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Contato> Contatos { get; set; }
 
-        public DbSet<CadastroEstadual> CadastroEstadual { get; set; }
-        public DbSet<CadastroNacional> CadastroNacional { get; set; }
-
         public RocamDbContext() : base("name=RocamDb") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,15 +24,16 @@ namespace RocamERP.Infra.Data
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-            
-            modelBuilder.Configurations.Add(new EntityConfigurationPesoa());
+
             modelBuilder.Configurations.Add(new EntityConfigurationEstado());
             modelBuilder.Configurations.Add(new EntityConfigurationCidade());
             modelBuilder.Configurations.Add(new EntityConfigurationEndereco());
             modelBuilder.Configurations.Add(new EntityConfigurationBanco());
             modelBuilder.Configurations.Add(new EntityConfigurationContato());
-            modelBuilder.Configurations.Add(new EntityConfigurationCadastroEstadual());
-            modelBuilder.Configurations.Add(new EntityConfigurationCadastroNacional());
+            modelBuilder.Configurations.Add(new EntityConfigurationPessoa());
+
+            modelBuilder.Configurations.Add(new ComplexTypeConfigurationCadastroEstadual());
+            modelBuilder.Configurations.Add(new ComplexTypeConfigurationCadastroNacional());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -2,13 +2,8 @@
 {
     public class CadastroEstadual
     {
-        public int CadastroEstadualId { get; set; }
         public string NumeroDocumento { get; set; }
-        public virtual TipoCadastroEstadual TipoCadastroEstadual { get; set; }
-
-        public int PessoaId { get; set; }
-        public Pessoa Pessoa { get; set; }
-
+        public TipoCadastroEstadual TipoCadastroEstadual { get; set; }
         public override string ToString()
         {
             return NumeroDocumento;

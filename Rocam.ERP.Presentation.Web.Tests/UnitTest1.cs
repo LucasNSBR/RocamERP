@@ -6,12 +6,44 @@ using System.Collections.Generic;
 using RocamERP.Infra.Data.Repositories;
 using System.Linq;
 using RocamERP.Presentation.Web.Areas.Plataforma.Controllers;
+using RocamERP.Infra.Data.QuerySpecifications;
 
 namespace Rocam.ERP.Presentation.Web.Tests
 {
     [TestClass]
     public class MiscellanousTests
     {
+
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            List<Cidade> Cidades = new List<Cidade> {
+                new Cidade()
+                {
+                    Nome = "Nova Serrana"
+                },
+                new Cidade()
+                {
+                    Nome = "Belo Horizonte"
+                },
+                new Cidade()
+                {
+                    Nome = "Perdigão"
+                },
+                new Cidade()
+                {
+                    Nome = "Vila Cruzeiro"
+                },
+            };
+
+            CidadeSpecificationService spec = new CidadeSpecificationService("Nova Serrana");
+
+            var list = Cidades.AsQueryable().Where(spec.ToExpression());
+            var lists = Cidades.Where(c => spec.IsSatisfied(c));
+
+            Assert.AreEqual(1, list.Count());
+            Assert.AreEqual("Nova Serrana", list.First().Nome);
+        }
 
         [TestMethod]
         public void TestConvert()

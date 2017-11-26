@@ -7,13 +7,13 @@ namespace RocamERP.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ObservacaoEndereco : IMigrationMetadata
+    public sealed partial class ChangedCadastroColumnNames : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ObservacaoEndereco));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedCadastroColumnNames));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711222221473_ObservacaoEndereco"; }
+            get { return "201711242114072_ChangedCadastroColumnNames"; }
         }
         
         string IMigrationMetadata.Source

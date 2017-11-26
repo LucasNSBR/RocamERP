@@ -3,10 +3,10 @@ using RocamERP.Domain.Models;
 
 namespace RocamERP.Infra.Data.EntityConfiguration
 {
-    public class EntityConfigurationPesoa : EntityTypeConfiguration<Pessoa>
+    public class EntityConfigurationPessoa : EntityTypeConfiguration<Pessoa>
     {
-        public EntityConfigurationPesoa() : base()
-        {
+        public EntityConfigurationPessoa() : base()
+        { 
             HasKey(c => c.PessoaId);
 
             Property(c => c.Nome)

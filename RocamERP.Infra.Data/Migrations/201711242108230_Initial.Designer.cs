@@ -13,7 +13,7 @@ namespace RocamERP.Infra.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711162204256_Initial"; }
+            get { return "201711242108230_Initial"; }
         }
         
         string IMigrationMetadata.Source

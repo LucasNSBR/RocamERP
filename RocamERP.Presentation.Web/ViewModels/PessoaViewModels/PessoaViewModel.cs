@@ -16,20 +16,21 @@ namespace RocamERP.Presentation.Web.ViewModels.PessoaViewModels
         public string Nome { get; set; }
 
         [DisplayName("Descrição")]
+        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Não registrado.")]
         [MaxLength(100, ErrorMessage = "O tamanho máximo para o campo é de 1000 caracteres.")]
         public string Descricao { get; set; }
 
         [DisplayName("Contatos")]
-        public virtual ICollection<ContatoViewModel> Contatos { get; set; }
+        public ICollection<ContatoViewModel> Contatos { get; set; }
         [DisplayName("Cheques")]
-        public virtual ICollection<ChequeViewModel> Cheques { get; set; }
+        public ICollection<ChequeViewModel> Cheques { get; set; }
         [DisplayName("Endereços")]
-        public virtual ICollection<EnderecoViewModel> Enderecos { get; set; }
+        public ICollection<EnderecoViewModel> Enderecos { get; set; }
 
         [DisplayName("Cadastro Estadual")]
-        public virtual CadastroEstadualViewModel CadastroEstadual { get; set; }
+        public CadastroEstadualViewModel CadastroEstadual { get; set; }
         [DisplayName("Cadastro Nacional")]
-        public virtual CadastroNacionalViewModel CadastroNacional { get; set; }
+        public CadastroNacionalViewModel CadastroNacional { get; set; }
 
         public override string ToString()
         {

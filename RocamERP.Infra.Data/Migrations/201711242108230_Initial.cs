@@ -13,6 +13,7 @@ namespace RocamERP.Infra.Data.Migrations
                     {
                         BancoId = c.Int(nullable: false, identity: true),
                         Nome = c.String(nullable: false, maxLength: 100),
+                        CodigoCompensacao = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.BancoId);
             
@@ -46,34 +47,12 @@ namespace RocamERP.Infra.Data.Migrations
                         PessoaId = c.Int(nullable: false, identity: true),
                         Nome = c.String(nullable: false, maxLength: 100),
                         Descricao = c.String(maxLength: 1000),
+                        CadastroEstadual_NumeroDocumento = c.String(),
+                        CadastroEstadual_TipoCadastroEstadual = c.Int(nullable: false),
+                        CadastroNacional_NumeroDocumento = c.String(),
+                        CadastroNacional_TipoCadastroNacional = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PessoaId);
-            
-            CreateTable(
-                "dbo.CadastroEstadual",
-                c => new
-                    {
-                        CadastroEstadualId = c.Int(nullable: false),
-                        NumeroDocumento = c.String(nullable: false, maxLength: 12),
-                        TipoCadastroEstadual = c.Int(nullable: false),
-                        PessoaId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.CadastroEstadualId)
-                .ForeignKey("dbo.Pessoa", t => t.CadastroEstadualId)
-                .Index(t => t.CadastroEstadualId);
-            
-            CreateTable(
-                "dbo.CadastroNacional",
-                c => new
-                    {
-                        CadastroNacionalId = c.Int(nullable: false),
-                        NumeroDocumento = c.String(nullable: false, maxLength: 14),
-                        TipoCadastroNacional = c.Int(nullable: false),
-                        PessoaId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.CadastroNacionalId)
-                .ForeignKey("dbo.Pessoa", t => t.CadastroNacionalId)
-                .Index(t => t.CadastroNacionalId);
             
             CreateTable(
                 "dbo.Contato",
@@ -97,8 +76,9 @@ namespace RocamERP.Infra.Data.Migrations
                         Rua = c.String(nullable: false, maxLength: 50),
                         Bairro = c.String(nullable: false, maxLength: 30),
                         Numero = c.Int(nullable: false),
-                        Complemento = c.String(maxLength: 50),
+                        Complemento = c.String(maxLength: 1000),
                         CEP = c.String(nullable: false, maxLength: 8),
+                        Observacao = c.String(),
                         CidadeId = c.Int(nullable: false),
                         PessoaId = c.Int(nullable: false),
                         TipoEndereco = c.Int(nullable: false),
@@ -139,23 +119,17 @@ namespace RocamERP.Infra.Data.Migrations
             DropForeignKey("dbo.Cidade", "EstadoId", "dbo.Estado");
             DropForeignKey("dbo.Contato", "PessoaId", "dbo.Pessoa");
             DropForeignKey("dbo.Cheque", "PessoaId", "dbo.Pessoa");
-            DropForeignKey("dbo.CadastroNacional", "CadastroNacionalId", "dbo.Pessoa");
-            DropForeignKey("dbo.CadastroEstadual", "CadastroEstadualId", "dbo.Pessoa");
             DropForeignKey("dbo.Cheque", "BancoId", "dbo.Banco");
             DropIndex("dbo.Cidade", new[] { "EstadoId" });
             DropIndex("dbo.Endereco", new[] { "PessoaId" });
             DropIndex("dbo.Endereco", new[] { "CidadeId" });
             DropIndex("dbo.Contato", new[] { "PessoaId" });
-            DropIndex("dbo.CadastroNacional", new[] { "CadastroNacionalId" });
-            DropIndex("dbo.CadastroEstadual", new[] { "CadastroEstadualId" });
             DropIndex("dbo.Cheque", new[] { "PessoaId" });
             DropIndex("dbo.Cheque", new[] { "BancoId" });
             DropTable("dbo.Estado");
             DropTable("dbo.Cidade");
             DropTable("dbo.Endereco");
             DropTable("dbo.Contato");
-            DropTable("dbo.CadastroNacional");
-            DropTable("dbo.CadastroEstadual");
             DropTable("dbo.Pessoa");
             DropTable("dbo.Cheque");
             DropTable("dbo.Banco");

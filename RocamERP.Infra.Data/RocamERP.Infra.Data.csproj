@@ -50,27 +50,29 @@
     <Compile Include="Context\RocamDbContext.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationPessoa.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationBanco.cs" />
-    <Compile Include="EntityConfiguration\EntityConfigurationCadastroEstadual.cs" />
-    <Compile Include="EntityConfiguration\EntityConfigurationCadastroNacional.cs" />
+    <Compile Include="EntityConfiguration\ComplexTypeConfigurationCadastroEstadual.cs" />
+    <Compile Include="EntityConfiguration\ComplexTypeConfigurationCadastroNacional.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationCheque.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationCidade.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationContato.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEndereco.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEstado.cs" />
-    <Compile Include="Migrations\201711162204256_Initial.cs" />
-    <Compile Include="Migrations\201711162204256_Initial.Designer.cs">
-      <DependentUpon>201711162204256_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711242108230_Initial.cs" />
+    <Compile Include="Migrations\201711242108230_Initial.Designer.cs">
+      <DependentUpon>201711242108230_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711170046011_CodigoCompensacaoBanco.cs" />
-    <Compile Include="Migrations\201711170046011_CodigoCompensacaoBanco.Designer.cs">
-      <DependentUpon>201711170046011_CodigoCompensacaoBanco.cs</DependentUpon>
+    <Compile Include="Migrations\201711242114072_ChangedCadastroColumnNames.cs" />
+    <Compile Include="Migrations\201711242114072_ChangedCadastroColumnNames.Designer.cs">
+      <DependentUpon>201711242114072_ChangedCadastroColumnNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711222221473_ObservacaoEndereco.cs" />
-    <Compile Include="Migrations\201711222221473_ObservacaoEndereco.Designer.cs">
-      <DependentUpon>201711222221473_ObservacaoEndereco.cs</DependentUpon>
+    <Compile Include="Migrations\201711242127272_ChangedCadastroColumnNmaes.cs" />
+    <Compile Include="Migrations\201711242127272_ChangedCadastroColumnNmaes.Designer.cs">
+      <DependentUpon>201711242127272_ChangedCadastroColumnNmaes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuerySpecifications\CidadeSpecificationService.cs" />
+    <Compile Include="QuerySpecifications\BaseQuerySpecification.cs" />
     <Compile Include="Repositories\BancoRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ChequeRepository.cs" />
@@ -91,15 +93,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711162204256_Initial.resx">
-      <DependentUpon>201711162204256_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711242108230_Initial.resx">
+      <DependentUpon>201711242108230_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711170046011_CodigoCompensacaoBanco.resx">
-      <DependentUpon>201711170046011_CodigoCompensacaoBanco.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711242114072_ChangedCadastroColumnNames.resx">
+      <DependentUpon>201711242114072_ChangedCadastroColumnNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711222221473_ObservacaoEndereco.resx">
-      <DependentUpon>201711222221473_ObservacaoEndereco.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711242127272_ChangedCadastroColumnNmaes.resx">
+      <DependentUpon>201711242127272_ChangedCadastroColumnNmaes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

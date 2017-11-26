@@ -8,10 +8,6 @@ namespace RocamERP.Presentation.Web.ViewModels
 {
     public class CadastroNacionalViewModel
     {
-        [Key]
-        [DisplayName("Chave")]
-        public int CadastroNacionalId { get; set; }
-
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Não cadastrado")]
         [DisplayName("CPF/CNPJ")]
         [MaxLength(14, ErrorMessage = "O tamanho máximo para o campo é 14 caracteres.")]
@@ -22,11 +18,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required]
         [DisplayName("Tipo de documento")]
         public TipoCadastroNacional TipoCadastroNacional { get; set; }
-
-        [Required]
-        public int PessoaId { get; set; }
-        public virtual PessoaViewModel Pessoa { get; set; }
-
+        
         public override string ToString()
         {
             return NumeroDocumento;
