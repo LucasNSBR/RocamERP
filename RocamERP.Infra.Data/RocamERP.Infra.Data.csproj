@@ -71,8 +71,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuerySpecifications\CidadeSpecificationService.cs" />
-    <Compile Include="QuerySpecifications\BaseQuerySpecification.cs" />
+    <Compile Include="QuerySpecifications\AndSpecification.cs" />
+    <Compile Include="QuerySpecifications\CidadeQuerySpecifications\EstadoIdCidadeSpecification.cs" />
+    <Compile Include="QuerySpecifications\CidadeQuerySpecifications\EnderecosCidadeSpecification.cs" />
+    <Compile Include="QuerySpecifications\CidadeQuerySpecifications\NomeCidadeSpecification.cs" />
+    <Compile Include="QuerySpecifications\BaseSpecification.cs" />
+    <Compile Include="QuerySpecifications\EstadoQuerySpecifications\CidadesEstadoSpecification.cs" />
+    <Compile Include="QuerySpecifications\EstadoQuerySpecifications\NomeEstadoSpecification.cs" />
+    <Compile Include="QuerySpecifications\ParameterReplacer.cs" />
+    <Compile Include="QuerySpecifications\NotSpecification.cs" />
+    <Compile Include="QuerySpecifications\OrSpecification.cs" />
     <Compile Include="Repositories\BancoRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ChequeRepository.cs" />

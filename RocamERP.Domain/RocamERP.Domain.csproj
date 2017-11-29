@@ -43,7 +43,7 @@
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuerySpecificationInterfaces\IBaseQuerySpecification.cs" />
+    <Compile Include="QuerySpecificationInterfaces\ISpecification.cs" />
     <Compile Include="RepositoryInterfaces\IBancoRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICidadeRepository.cs" />
     <Compile Include="RepositoryInterfaces\IBaseRepository.cs" />
