@@ -15,7 +15,7 @@
     @using (Html.BeginForm("Index", "Cheques", FormMethod.Get))
     {
         <div class="input-group">
-            @Html.TextBox("prefix", null, new { @class = "form-control col-12", @placeholder = "Digite o número do cheque..." })
+            @Html.TextBox("numeroCheque", null, new { @class = "form-control col-12", @placeholder = "Digite o número do cheque..." })
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit">Pesquisar</button>
             </span>

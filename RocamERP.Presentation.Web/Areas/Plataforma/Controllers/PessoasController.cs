@@ -2,9 +2,10 @@
 using RocamERP.Application.Interfaces;
 using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
+using RocamERP.Domain.QuerySpecificationInterfaces;
+using RocamERP.Infra.Data.QuerySpecifications.PessoaQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,6 +18,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         private readonly IPessoaApplicationService _pessoaApplicationService;
         private readonly ICidadeApplicationService _cidadeApplicationService;
 
+        private ISpecification<Pessoa> _pessoaNomeSpecification;
+        private ISpecification<Pessoa> _pessoaChequesSpecification;
+        private ISpecification<Pessoa> _pessoaCidadeIdSpecification;
+
+
         public PessoasController(IPessoaApplicationService clienteApplicationService, ICidadeApplicationService cidadeApplicationService)
         {
             _pessoaApplicationService = clienteApplicationService;
@@ -25,17 +31,18 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index(int? cidadeId, string prefix = "", bool hideEmptyCheques = false)
         {
+            _pessoaNomeSpecification = new PessoaNomeSpecification(prefix);
+            _pessoaChequesSpecification = new PessoaChequesSpecification(hideEmptyCheques);
+            _pessoaCidadeIdSpecification = new PessoaCidadeIdSpecification(cidadeId);
+
             var pessoasVM = new List<PessoaViewModel>();
+
             var pessoas = _pessoaApplicationService.GetAll()
-                .Where(p =>
-                {
-                    return cidadeId != null ? p.Enderecos.Any(e => e.CidadeId == cidadeId) : true;
-                })
-                .Where(p =>
-                {
-                    return hideEmptyCheques == true ? p.Cheques.Any() : true;
-                })
-                .Where(p => p.Nome.ToLower().Contains(prefix.ToLower()))
+                .AsQueryable()
+                .Where(_pessoaNomeSpecification
+                .And(_pessoaChequesSpecification)
+                .And(_pessoaCidadeIdSpecification)
+                .ToExpression())
                 .OrderBy(p => p.Nome);
 
             Mapper.Map(pessoas, pessoasVM);

@@ -161,7 +161,6 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
-    <Compile Include="Areas\Plataforma\Controllers\BaseController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ChequesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\PessoasController.cs" />

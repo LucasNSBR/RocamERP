@@ -20,10 +20,10 @@ namespace RocamERP.Infra.Data.QuerySpecifications
             ParameterExpression param = Expression.Parameter(typeof(T));
 
             var leftExpr = _left.ToExpression();
-            var left = new ParameterReplacer(leftExpr.Parameters[0], param).Visit(leftExpr);
+            var left = new ParameterReplacer(leftExpr.Parameters[0], param).Visit(leftExpr.Body);
 
             var rightExpr = _right.ToExpression();
-            var right = new ParameterReplacer(leftExpr.Parameters[0], param).Visit(rightExpr);
+            var right = new ParameterReplacer(rightExpr.Parameters[0], param).Visit(rightExpr.Body);
 
             BinaryExpression body = Expression.And(left, right);
             Expression<Func<T, bool>> expression = Expression.Lambda<Func<T, bool>>(body, param);

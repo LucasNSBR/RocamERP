@@ -29,16 +29,16 @@
 
         <div>
             @{
-                if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyEnderecos") == "true")
+                if (Request.QueryString.Keys.Count > 0 && Request.QueryString.Get("hideEmptyPessoas") == "true")
                 {
-                    <input type="checkbox" name="hideEmptyEnderecos" checked="checked" value="true" />
+                    <input type="checkbox" name="hideEmptyPessoas" checked="checked" value="true" />
                 }
                 else
                 {
-                    <input type="checkbox" name="hideEmptyEnderecos" value="true" />
+                    <input type="checkbox" name="hideEmptyPessoas" value="true" />
                 }
             }
-            <span class="font-italic">Esconder cidades sem endereços cadastrados </span>
+            <span class="font-italic">Esconder cidades sem pessoas cadastradas </span>
         </div>
     }
 </div>
@@ -79,7 +79,7 @@
                         }
                         else
                         {
-                            @Html.Raw("Nenhum endereço encontrado")
+                            @Html.Raw("Nenhuma pessoa encontrada")
                         }
                     </td>
                     <td class="text-right">

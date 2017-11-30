@@ -25,7 +25,7 @@ namespace RocamERP.Infra.Data.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            return dbContext.Set<TEntity>().ToList();
+            return dbContext.Set<TEntity>().ToList().AsReadOnly();
         }
 
         public TEntity Get(int id)

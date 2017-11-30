@@ -13,8 +13,8 @@ namespace RocamERP.Infra.Data.EntityConfiguration
                     .HasMaxLength(100)
                     .IsRequired();
 
-                HasRequired(e => e.Estado)
-                    .WithMany(c => c.Cidades)
+                HasRequired(c => c.Estado)
+                    .WithMany(e => e.Cidades)
                     .HasForeignKey(c => c.EstadoId);
         }
     }

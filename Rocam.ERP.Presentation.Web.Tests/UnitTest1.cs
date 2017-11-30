@@ -7,6 +7,7 @@ using RocamERP.Infra.Data.Repositories;
 using System.Linq;
 using RocamERP.Presentation.Web.Areas.Plataforma.Controllers;
 using RocamERP.Infra.Data.QuerySpecifications;
+using RocamERP.Infra.Data.QuerySpecifications.CidadeQuerySpecifications;
 
 namespace Rocam.ERP.Presentation.Web.Tests
 {
@@ -36,13 +37,14 @@ namespace Rocam.ERP.Presentation.Web.Tests
                 },
             };
 
-            CidadeSpecificationService spec = new CidadeSpecificationService("Nova Serrana");
+            NomeCidadeEspecification spec = new NomeCidadeEspecification("o");
+            NomeCidadeEspecification specTwo = new NomeCidadeEspecification("z");
 
-            var list = Cidades.AsQueryable().Where(spec.ToExpression());
-            var lists = Cidades.Where(c => spec.IsSatisfied(c));
+            var list = Cidades.AsQueryable().Where(spec.And(specTwo).ToExpression());
+            var lists = Cidades.Where(c => spec.IsSatisfiedBy(c));
 
-            Assert.AreEqual(1, list.Count());
-            Assert.AreEqual("Nova Serrana", list.First().Nome);
+            Assert.AreEqual(2, list.Count());
+            //Assert.AreEqual("Vila Cruzeiro", list.First().Nome);
         }
 
         [TestMethod]

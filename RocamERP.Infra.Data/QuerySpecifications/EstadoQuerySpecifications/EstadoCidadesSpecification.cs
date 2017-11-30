@@ -6,18 +6,18 @@ using System.Linq.Expressions;
 
 namespace RocamERP.Infra.Data.QuerySpecifications.EstadoQuerySpecifications
 {
-    public class CidadesEstadoSpecification : BaseSpecification<Estado>, ISpecification<Estado>
+    public class EstadoCidadesSpecification : BaseSpecification<Estado>, ISpecification<Estado>
     {
         private readonly bool _hideEmpty = false;
 
-        public CidadesEstadoSpecification(bool hideEmpty)
+        public EstadoCidadesSpecification(bool hideEmpty)
         {
             _hideEmpty = hideEmpty;
         }
 
         public override Expression<Func<Estado, bool>> ToExpression()
         {
-            return estado => _hideEmpty != false ? estado.Cidades.Any() : true;
+            return estado => _hideEmpty ? estado.Cidades.Any() : true;
         }
     }
 }

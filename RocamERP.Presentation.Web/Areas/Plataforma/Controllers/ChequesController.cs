@@ -2,6 +2,8 @@
 using RocamERP.Application.Interfaces;
 using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
+using RocamERP.Domain.QuerySpecificationInterfaces;
+using RocamERP.Infra.Data.QuerySpecifications.ChequeQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
@@ -17,6 +19,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         private readonly IBancoApplicationService _bancoApplicationService;
         private readonly IPessoaApplicationService _pessoaApplicationService;
 
+        private ISpecification<Cheque> _chequePessoaIdSpecification;
+        private ISpecification<Cheque> _chequeBancoIdSpecification;
+        private ISpecification<Cheque> _chequeNumeroSpecification;
+
+
         public ChequesController(IChequeApplicationService chequeApplicationService, IBancoApplicationService bancoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
             _chequeApplicationService = chequeApplicationService;
@@ -24,19 +31,19 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = pessoaApplicationService;
         }
 
-        public ActionResult Index(int? pessoaId, int? bancoId, string prefix = "")
+        public ActionResult Index(int? pessoaId, int? bancoId, string numeroCheque = "")
         {
+            _chequeBancoIdSpecification = new ChequePessoaIdSpecification(pessoaId);
+            _chequeBancoIdSpecification = new ChequeBancoIdSpecification(bancoId);
+            _chequeNumeroSpecification = new ChequeNumeroSpecification(numeroCheque);
+
             var chequesVM = new List<ChequeViewModel>();
             var cheques = _chequeApplicationService.GetAll()
-                .Where(c =>
-                {
-                    return pessoaId != null ? c.PessoaId == pessoaId : true;
-                })
-                .Where(c =>
-                {
-                    return bancoId != null ? c.BancoId == bancoId : true; 
-                })
-                .Where(c => c.NumeroCheque.ToLower().Contains(prefix.ToLower()))
+                .AsQueryable()
+                .Where(_chequeNumeroSpecification
+                .And(_chequeBancoIdSpecification)
+                .And(_chequePessoaIdSpecification)
+                .ToExpression())
                 .OrderBy(c => c.PessoaId);
 
             Mapper.Map(cheques, chequesVM);

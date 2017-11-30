@@ -8,6 +8,8 @@ using System.Linq;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels.CidadeViewModels;
 using RocamERP.CrossCutting.Extensions;
+using RocamERP.Domain.QuerySpecificationInterfaces;
+using RocamERP.Infra.Data.QuerySpecifications.CidadeQuerySpecifications;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -16,8 +18,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     {
         private readonly ICidadeApplicationService _cidadeApplicationService;
         private readonly IEstadoApplicationService _estadoApplicationService;
-        private readonly IPessoaApplicationService _pessoaApplicationService; 
-        
+        private readonly IPessoaApplicationService _pessoaApplicationService;
+
+        private ISpecification<Cidade> _cidadeNomeSpecification;
+        private ISpecification<Cidade> _cidadePessoasSpecification;
+        private ISpecification<Cidade> _cidadeEstadoIdSpecification;
+         
+
         public CidadesController(ICidadeApplicationService cidadeApplicationService, IEstadoApplicationService estadoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
             _cidadeApplicationService = cidadeApplicationService;
@@ -25,20 +32,19 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = pessoaApplicationService;
         }
 
-        public ActionResult Index(int? estadoId, string prefix = "", bool hideEmptyEnderecos = false)
+        public ActionResult Index(int? estadoId, string prefix = "", bool hideEmptyPessoas = false)
         {
+            _cidadeNomeSpecification = new CidadeNomeSpecification(prefix);
+            _cidadePessoasSpecification = new CidadePessoasSpecification(hideEmptyPessoas);
+            _cidadeEstadoIdSpecification = new CidadeEstadoIdSpecification(estadoId);
+
             var cidadesVM = new List<CidadeViewModel>();
-            var cidades = _cidadeApplicationService.GetByName(prefix)
-                .Where(c =>
-                {
-                    return estadoId != null ? c.EstadoId == estadoId : true;
-                })
-                .Where(c =>
-                {
-                    return hideEmptyEnderecos == true ? c.Enderecos.Any() : true;
-                })
-                .OrderBy(c => c.EstadoId)
-                .ThenBy(c => c.Nome);
+            var cidades = _cidadeApplicationService.GetAll()
+                .AsQueryable()
+                .Where(_cidadeNomeSpecification
+                .And(_cidadePessoasSpecification)
+                .ToExpression())
+                .OrderBy(c => c.Nome);
 
             Mapper.Map(cidades, cidadesVM);
 

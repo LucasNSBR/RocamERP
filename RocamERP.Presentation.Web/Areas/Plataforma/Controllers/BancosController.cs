@@ -6,7 +6,7 @@ using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
-using System;
+using RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
@@ -20,15 +20,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _bancoApplicationService = bancoApplicationService;
         }
 
-        public ActionResult Index(string prefix = "", bool? hideEmptyCheques = false)
+        public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
         {
-            var bancosVM = new List<BancoViewModel>();
-            var bancos = _bancoApplicationService.GetAll()
-                .Where(b =>
-                {
-                    return hideEmptyCheques == true ? b.Cheques.Any() : true;
-                })
-                .Where(b => b.Nome.ToLower().Contains(prefix.ToLower()))
+            BancoNomeSpecification nomeSpecification = new BancoNomeSpecification(prefix);
+            BancoChequesSpecification bancoContainsCheque = new BancoChequesSpecification(hideEmptyCheques);
+
+            IReadOnlyList<BancoViewModel> bancosVM = new List<BancoViewModel>();
+            var bancos = _bancoApplicationService.GetAll().AsQueryable()
+                .Where(nomeSpecification.And(bancoContainsCheque).ToExpression())
                 .OrderByDescending(b => b.Cheques.Count)
                 .ThenBy(b => b.Nome);
 
