@@ -15,7 +15,7 @@ namespace RocamERP.Infra.Data.QuerySpecifications.PessoaQuerySpecifications
 
         public override Expression<Func<Pessoa, bool>> ToExpression()
         {
-            return pessoa => pessoa.Nome.ToLower().Contains(_prefix.ToLower());
+            return pessoa => !(_prefix.Trim() == string.Empty) ? pessoa.Nome.ToLower().Contains(_prefix.ToLower()) : true;
         }
     }
 }

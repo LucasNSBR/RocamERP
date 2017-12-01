@@ -6,6 +6,7 @@ using RocamERP.Domain.QuerySpecificationInterfaces;
 using RocamERP.Infra.Data.QuerySpecifications.PessoaQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -22,6 +23,16 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         private ISpecification<Pessoa> _pessoaChequesSpecification;
         private ISpecification<Pessoa> _pessoaCidadeIdSpecification;
 
+        private IEnumerable<SelectListItem> _cidades
+        {
+            get
+            {
+                if (_cidadeApplicationService != null)
+                    return _cidadeApplicationService.GetAll().ToSelectItemList(c => c.Nome, c => c.CidadeId);
+
+                throw new Exception();
+            }
+        }
 
         public PessoasController(IPessoaApplicationService clienteApplicationService, ICidadeApplicationService cidadeApplicationService)
         {
@@ -37,19 +48,17 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
             var pessoasVM = new List<PessoaViewModel>();
 
-            var pessoas = _pessoaApplicationService.GetAll()
-                .AsQueryable()
-                .Where(_pessoaNomeSpecification
+            var pessoas = _pessoaApplicationService.GetAll(_pessoaNomeSpecification
                 .And(_pessoaChequesSpecification)
-                .And(_pessoaCidadeIdSpecification)
-                .ToExpression())
+                .And(_pessoaCidadeIdSpecification))
                 .OrderBy(p => p.Nome);
 
             Mapper.Map(pessoas, pessoasVM);
+
             return View(new IndexPessoaViewModel()
             {
                 Pessoas = pessoasVM,
-                CidadesList = _cidadeApplicationService.GetAll().ToSelectItemList(c => c.Nome, c => c.CidadeId)
+                CidadesList = _cidades
             });
         }
 
@@ -67,6 +76,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(PessoaViewModel model)
         {
             if (ModelState.IsValid)
@@ -89,6 +99,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, PessoaViewModel model)
         {
             if (ModelState.IsValid)
@@ -98,7 +109,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
                 return RedirectToAction("Index");
             }
-
+            
             return View(model);
         }
 
@@ -106,17 +117,19 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             var cliente = _pessoaApplicationService.Get(id);
             var clienteVM = Mapper.Map<Pessoa, PessoaViewModel>(cliente);
-            return View(clienteVM);
 
+            return View(clienteVM);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, PessoaViewModel model)
         {
             _pessoaApplicationService.Delete(id);
             return RedirectToAction("Index");
         }
 
+        #region Validators
         public JsonResult ValidateCadastroEstadual([Bind(Prefix = "CadastroEstadual.NumeroDocumento")]string value)
         {
             var exists = _pessoaApplicationService.GetAll().Any(p =>
@@ -142,5 +155,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
             return Json(!exists, JsonRequestBehavior.AllowGet);
         }
+        #endregion
     }
 }

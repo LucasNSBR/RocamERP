@@ -15,7 +15,7 @@ namespace RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications
 
         public override Expression<Func<Banco, bool>> ToExpression()
         {
-            return banco => banco.Nome.ToLower().Contains(_prefix.ToLower());
+            return banco => !(_prefix.Trim() == string.Empty) ? banco.Nome.ToLower().Contains(_prefix.ToLower()) : true;
         }
     }
 }

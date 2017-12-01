@@ -9,8 +9,8 @@ namespace RocamERP.Presentation.Web.ViewModels
     {
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "Não cadastrado")]
         [DisplayName("RG/Inscr. Estadual")]
-        //[MaxLength(14, ErrorMessage = "O tamanho máximo para o campo é 13 caracteres.")]
-        //[MinLength(11, ErrorMessage = "O tamanho mínimo para o campo é 11 caracteres.")]
+        [MaxLength(14, ErrorMessage = "O tamanho máximo para o campo é 13 caracteres.")]
+        [MinLength(11, ErrorMessage = "O tamanho mínimo para o campo é 11 caracteres.")]
         [Remote("ValidateCadastroEstadual", "Pessoas", ErrorMessage = "O número de documento já está em uso.")]
         public string NumeroDocumento { get; set; }
 

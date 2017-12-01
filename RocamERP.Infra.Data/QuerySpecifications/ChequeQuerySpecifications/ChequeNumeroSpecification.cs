@@ -15,7 +15,7 @@ namespace RocamERP.Infra.Data.QuerySpecifications.ChequeQuerySpecifications
 
         public override Expression<Func<Cheque, bool>> ToExpression()
         {
-            return cheque => cheque.NumeroCheque.ToLower().Contains(_numeroCheque.ToLower());
+            return cheque => !(_numeroCheque.Trim() == string.Empty) ? cheque.NumeroCheque.ToLower().Contains(_numeroCheque.ToLower()) : true;
         }
     }
 }

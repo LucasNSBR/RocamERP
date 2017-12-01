@@ -1,19 +1,24 @@
 ﻿using AutoMapper;
 using RocamERP.Application.Interfaces;
 using RocamERP.Domain.Models;
+using RocamERP.Domain.QuerySpecificationInterfaces;
+using RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using System.Linq;
-using RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications;
+using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
     [ExtendedHandleError()]
-    public class BancosController : BaseController
+    public class BancosController : Controller
     {
         private readonly IBancoApplicationService _bancoApplicationService;
+
+        private ISpecification<Banco> _bancoNomeSpecification;
+        private ISpecification<Banco> _bancoChequesSpecification;
+
 
         public BancosController(IBancoApplicationService bancoApplicationService)
         {
@@ -22,12 +27,11 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
         {
-            BancoNomeSpecification nomeSpecification = new BancoNomeSpecification(prefix);
-            BancoChequesSpecification bancoContainsCheque = new BancoChequesSpecification(hideEmptyCheques);
+            _bancoNomeSpecification = new BancoNomeSpecification(prefix);
+            _bancoChequesSpecification = new BancoChequesSpecification(hideEmptyCheques);
 
-            IReadOnlyList<BancoViewModel> bancosVM = new List<BancoViewModel>();
-            var bancos = _bancoApplicationService.GetAll().AsQueryable()
-                .Where(nomeSpecification.And(bancoContainsCheque).ToExpression())
+            var bancosVM = new List<BancoViewModel>();
+            var bancos = _bancoApplicationService.GetAll(_bancoNomeSpecification.And(_bancoChequesSpecification))
                 .OrderByDescending(b => b.Cheques.Count)
                 .ThenBy(b => b.Nome);
 
@@ -41,6 +45,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(BancoViewModel model)
         {
             if (ModelState.IsValid)
@@ -64,6 +69,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, BancoViewModel model)
         {
             if (ModelState.IsValid)
@@ -86,6 +92,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, BancoViewModel model)
         {
             _bancoApplicationService.Delete(id);

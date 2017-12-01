@@ -31,12 +31,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _estadoCidadesSpecification = new EstadoCidadesSpecification(hideEmptyCidades);
 
             var listVM = new List<EstadoViewModel>();
-
-            var list = _estadoApplicationService.GetAll()
-                .AsQueryable()
-                .Where(_estadoNomeSpecification
-                .And(_estadoCidadesSpecification)
-                .ToExpression())
+            var list = _estadoApplicationService.GetAll(_estadoNomeSpecification.And(_estadoCidadesSpecification))
                 .OrderByDescending(e => e.Cidades.Count());
 
             Mapper.Map(list, listVM);

@@ -15,7 +15,7 @@ namespace RocamERP.Infra.Data.QuerySpecifications.EstadoQuerySpecifications
         
         public override Expression<Func<Estado, bool>> ToExpression()
         {
-            return estado => estado.Nome.ToLower().Contains(_estadoNome.ToLower());
+            return estado => !(_estadoNome.Trim() == string.Empty) ? estado.Nome.ToLower().Contains(_estadoNome.ToLower()) : true;
         }
     }
 }

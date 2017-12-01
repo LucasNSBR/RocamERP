@@ -4,6 +4,8 @@ using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -14,6 +16,17 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     {
         private readonly IEnderecoApplicationService _enderecoApplicationService;
         private readonly ICidadeApplicationService _cidadeApplicationService;
+
+        private IEnumerable<SelectListItem> _cidades
+        {
+            get
+            {
+                if (_cidadeApplicationService != null)
+                    return _cidadeApplicationService.GetAll().ToSelectItemList(c => c.Nome, c => c.CidadeId);
+
+                throw new Exception();
+            }
+        }
 
         public EnderecosController(IEnderecoApplicationService enderecoApplicationService, ICidadeApplicationService cidadeApplicationService)
         {
@@ -34,13 +47,14 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var EnderecoVM = new EnderecoViewModel()
             {
                 PessoaId = id,
-                CidadesList = _cidadeApplicationService.GetAll().ToSelectItemList(c => c.Nome, c => c.CidadeId)
+                CidadesList = _cidades,
             };
 
             return View(EnderecoVM);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EnderecoViewModel model)
         {
             if (ModelState.IsValid)
@@ -63,6 +77,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EnderecoViewModel model)
         {
             if (ModelState.IsValid)
@@ -85,6 +100,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, EnderecoViewModel model)
         {
             _enderecoApplicationService.Delete(id);

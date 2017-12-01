@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using RocamERP.Domain.ServiceInterfaces;
 using RocamERP.Domain.RepositoryInterfaces;
+using RocamERP.Domain.QuerySpecificationInterfaces;
+using System;
 
 namespace RocamERP.Services.Services
 {
@@ -26,6 +28,11 @@ namespace RocamERP.Services.Services
         public IEnumerable<TEntity> GetAll()
         {
             return _repository.GetAll();
+        }
+
+        public IEnumerable<TEntity> GetAll(ISpecification<TEntity> specification)
+        {
+            return _repository.GetAll(specification);
         }
 
         public TEntity Get(int id)

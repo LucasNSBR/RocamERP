@@ -25,7 +25,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var pessoa = _pessoaApplicationService.Get(id);
             var pessoaVM = Mapper.Map<Pessoa, PessoaViewModel>(pessoa);
 
-
             ContatoViewModel contatoVM = new ContatoViewModel()
             {
                 PessoaId = id,
@@ -44,6 +43,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ContatoViewModel model)
         {
             if (ModelState.IsValid)
@@ -66,6 +66,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ContatoViewModel model)
         {
             if (ModelState.IsValid)
@@ -88,6 +89,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, ContatoViewModel model)
         {
             _contatoApplicationService.Delete(id);

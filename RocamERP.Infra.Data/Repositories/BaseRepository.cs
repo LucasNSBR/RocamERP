@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using RocamERP.Domain.QuerySpecificationInterfaces;
 
 namespace RocamERP.Infra.Data.Repositories
 {
@@ -26,6 +27,11 @@ namespace RocamERP.Infra.Data.Repositories
         public IEnumerable<TEntity> GetAll()
         {
             return dbContext.Set<TEntity>().ToList().AsReadOnly();
+        }
+
+        public IEnumerable<TEntity> GetAll(ISpecification<TEntity> specification)
+        {
+            return dbContext.Set<TEntity>().Where(specification.ToExpression());
         }
 
         public TEntity Get(int id)

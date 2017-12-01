@@ -101,7 +101,7 @@
                     <td>
                         @if (pessoa.Enderecos.Any())
                         {
-                            @Html.ActionLink($"{pessoa.Enderecos.Count()}", "Details", "Details", new { @pessoaId = pessoa.PessoaId }, null)
+                            @Html.ActionLink($"{pessoa.Enderecos.Count()}", "Pessoas", "Details", new { @pessoaId = pessoa.PessoaId }, null)
                         }
                         else
                         {

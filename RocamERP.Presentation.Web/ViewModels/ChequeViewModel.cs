@@ -1,5 +1,4 @@
-﻿using RocamERP.Application.Interfaces;
-using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
+﻿using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +15,7 @@ namespace RocamERP.Presentation.Web.ViewModels
 
         [DisplayName("Banco")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        public string BancoId { get; set; }
+        public int BancoId { get; set; }
         public BancoViewModel Banco { get; set; }
 
         [DisplayName("Agência")]
@@ -48,30 +47,34 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public SituacaoCheque SituacaoCheque { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayName("Data de Recebimento")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataRecebimento { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayName("Data de Vencimento")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataVencimento { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayName("Data de Pagamento")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ConvertEmptyStringToNull = true, ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         public DateTime? DataPagamento { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:c}", NullDisplayText = "Não registrado.", ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true)]
+        [DataType(DataType.Currency)]
+        [DisplayName("Valor")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
-        [Range(0, 100000, ErrorMessage = "O valor deve ser entre 0 e 100.000.")]
+        [Range(1, 100000, ErrorMessage = "O valor deve ser entre 1R$ e 100.000R$.")]
         public decimal Valor { get; set; }
 
         #region ViewModel Attributes
         public IEnumerable<SelectListItem> BancosList { get; set; }
         public IEnumerable<SelectListItem> PessoasList { get; set; }
         #endregion
-
     }
 
     public enum SituacaoCheque 

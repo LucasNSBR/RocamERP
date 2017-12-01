@@ -15,7 +15,7 @@ namespace RocamERP.Infra.Data.QuerySpecifications.CidadeQuerySpecifications
 
         public override Expression<Func<Cidade, bool>> ToExpression()
         {
-            return cidade => cidade.Nome.ToLower().Contains(_prefix.ToLower());
+            return cidade => !(_prefix.Trim() == string.Empty) ? cidade.Nome.ToLower().Contains(_prefix.ToLower()) : true;
         }
     }
 }

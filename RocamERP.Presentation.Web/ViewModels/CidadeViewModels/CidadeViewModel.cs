@@ -23,10 +23,10 @@ namespace RocamERP.Presentation.Web.ViewModels.CidadeViewModels
 
         public EstadoViewModel Estado { get; set; }
 
-        public virtual ICollection<EnderecoViewModel> Enderecos { get; set; }
+        public virtual IReadOnlyCollection<EnderecoViewModel> Enderecos { get; set; }
         
         #region ViewModel Attributes
-        public ICollection<SelectListItem> EstadosList { get; set; }
+        public IEnumerable<SelectListItem> EstadosList { get; set; }
         public int PessoasCidadeCount { get; set; }
         #endregion
 

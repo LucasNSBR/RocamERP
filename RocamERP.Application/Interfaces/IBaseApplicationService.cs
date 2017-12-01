@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using RocamERP.Domain.QuerySpecificationInterfaces;
+using System.Collections.Generic;
 
 namespace RocamERP.Application.Interfaces
 {
-    public interface IBaseApplicationService<T> where T : class
+    public interface IBaseApplicationService<TEntity> where TEntity : class
     {
-        void Add(T obj);
+        void Add(TEntity obj);
 
-        IEnumerable<T> GetAll();
-        T Get(int id);
+        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(ISpecification<TEntity> specification);
 
-        void Update(T obj);
+        TEntity Get(int id);
+
+        void Update(TEntity obj);
         void Delete(int id);
     }
 }
