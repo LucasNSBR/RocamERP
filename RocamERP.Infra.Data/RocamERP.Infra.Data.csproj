@@ -57,17 +57,9 @@
     <Compile Include="EntityConfiguration\EntityConfigurationContato.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEndereco.cs" />
     <Compile Include="EntityConfiguration\EntityConfigurationEstado.cs" />
-    <Compile Include="Migrations\201711242108230_Initial.cs" />
-    <Compile Include="Migrations\201711242108230_Initial.Designer.cs">
-      <DependentUpon>201711242108230_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711242114072_ChangedCadastroColumnNames.cs" />
-    <Compile Include="Migrations\201711242114072_ChangedCadastroColumnNames.Designer.cs">
-      <DependentUpon>201711242114072_ChangedCadastroColumnNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711242127272_ChangedCadastroColumnNmaes.cs" />
-    <Compile Include="Migrations\201711242127272_ChangedCadastroColumnNmaes.Designer.cs">
-      <DependentUpon>201711242127272_ChangedCadastroColumnNmaes.cs</DependentUpon>
+    <Compile Include="Migrations\201712022241015_Initial.cs" />
+    <Compile Include="Migrations\201712022241015_Initial.Designer.cs">
+      <DependentUpon>201712022241015_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +69,7 @@
     <Compile Include="QuerySpecifications\ChequeQuerySpecifications\ChequeBancoIdSpecification.cs" />
     <Compile Include="QuerySpecifications\ChequeQuerySpecifications\ChequeNumeroSpecification.cs" />
     <Compile Include="QuerySpecifications\ChequeQuerySpecifications\ChequePessoaIdSpecification.cs" />
+    <Compile Include="QuerySpecifications\ChequeQuerySpecifications\ChequeVencidoSpecification.cs" />
     <Compile Include="QuerySpecifications\CidadeQuerySpecifications\CidadeEstadoIdSpecification.cs" />
     <Compile Include="QuerySpecifications\CidadeQuerySpecifications\CidadePessoasSpecification.cs" />
     <Compile Include="QuerySpecifications\CidadeQuerySpecifications\CidadeNomeSpecification.cs" />
@@ -109,16 +102,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711242108230_Initial.resx">
-      <DependentUpon>201711242108230_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711242114072_ChangedCadastroColumnNames.resx">
-      <DependentUpon>201711242114072_ChangedCadastroColumnNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711242127272_ChangedCadastroColumnNmaes.resx">
-      <DependentUpon>201711242127272_ChangedCadastroColumnNmaes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712022241015_Initial.resx">
+      <DependentUpon>201712022241015_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

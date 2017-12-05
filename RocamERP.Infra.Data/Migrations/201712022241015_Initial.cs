@@ -47,10 +47,10 @@ namespace RocamERP.Infra.Data.Migrations
                         PessoaId = c.Int(nullable: false, identity: true),
                         Nome = c.String(nullable: false, maxLength: 100),
                         Descricao = c.String(maxLength: 1000),
-                        CadastroEstadual_NumeroDocumento = c.String(),
-                        CadastroEstadual_TipoCadastroEstadual = c.Int(nullable: false),
-                        CadastroNacional_NumeroDocumento = c.String(),
-                        CadastroNacional_TipoCadastroNacional = c.Int(nullable: false),
+                        CadastroEstadualNumeroDocumento = c.String(nullable: false, maxLength: 13),
+                        CadastroEstadualTipoDocumento = c.Int(nullable: false),
+                        CadastroNacionalNumeroDocumento = c.String(nullable: false, maxLength: 14),
+                        CadastroNacionalTipoDocumento = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PessoaId);
             

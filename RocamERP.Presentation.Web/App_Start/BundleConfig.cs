@@ -28,7 +28,7 @@ namespace RocamERP.Presentation.Web
                       "~/Content/site.css",
                       "~/Content/custom.css"));
 
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

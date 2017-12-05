@@ -23,6 +23,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         private ISpecification<Cheque> _chequePessoaIdSpecification;
         private ISpecification<Cheque> _chequeBancoIdSpecification;
         private ISpecification<Cheque> _chequeNumeroSpecification;
+        private ISpecification<Cheque> _chequeVencidoSpecification;
 
         private IEnumerable<SelectListItem> _bancos
         {
@@ -52,14 +53,16 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             _pessoaApplicationService = pessoaApplicationService;
         }
 
-        public ActionResult Index(int? pessoaId, int? bancoId, string numeroCheque = "")
+        public ActionResult Index(int? pessoaId, int? bancoId, string numeroCheque = "", bool vencidos = false)
         {
             _chequePessoaIdSpecification = new ChequePessoaIdSpecification(pessoaId);
             _chequeBancoIdSpecification = new ChequeBancoIdSpecification(bancoId);
             _chequeNumeroSpecification = new ChequeNumeroSpecification(numeroCheque);
+            _chequeVencidoSpecification = new ChequeVencidoSpecification(vencidos);
 
             var chequesVM = new List<ChequeViewModel>();
             var cheques = _chequeApplicationService.GetAll(_chequeNumeroSpecification.And(_chequeBancoIdSpecification).And(_chequePessoaIdSpecification))
+                .Where(c => _chequeVencidoSpecification.IsSatisfiedBy(c))
                 .OrderBy(c => c.PessoaId);
 
             Mapper.Map(cheques, chequesVM);

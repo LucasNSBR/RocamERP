@@ -4,6 +4,7 @@ using RocamERP.Domain.Models;
 using RocamERP.Domain.QuerySpecificationInterfaces;
 using RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
+using RocamERP.Presentation.Web.Filters;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
     {
         private readonly IBancoApplicationService _bancoApplicationService;
 
-        private ISpecification<Banco> _bancoNomeSpecification;
+        public ISpecification<Banco> _bancoNomeSpecification;
         private ISpecification<Banco> _bancoChequesSpecification;
 
 
@@ -24,12 +25,12 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             _bancoApplicationService = bancoApplicationService;
         }
-
+        
         public ActionResult Index(string prefix = "", bool hideEmptyCheques = false)
         {
             _bancoNomeSpecification = new BancoNomeSpecification(prefix);
             _bancoChequesSpecification = new BancoChequesSpecification(hideEmptyCheques);
-
+            
             var bancosVM = new List<BancoViewModel>();
             var bancos = _bancoApplicationService.GetAll(_bancoNomeSpecification.And(_bancoChequesSpecification))
                 .OrderByDescending(b => b.Cheques.Count)

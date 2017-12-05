@@ -170,6 +170,7 @@
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Exceptions\ExtendedHandleErrorAttribute.cs" />
+    <Compile Include="Filters\SpecificationBindFilter.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -283,7 +284,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Views\Shared\PartialTemplates\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -23,6 +23,11 @@ namespace RocamERP.Domain.Models
         public DateTime DataVencimento { get; set; }
         public DateTime? DataPagamento { get; set; }
         public decimal Valor { get; set; }
+
+        public bool ChequeVencido()
+        {
+            return DateTime.Now > DataVencimento;
+        }
     }
 
     public enum SituacaoCheque 

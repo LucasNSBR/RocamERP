@@ -47,7 +47,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         public SituacaoCheque SituacaoCheque { get; set; }
 
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [DisplayName("Data de Recebimento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "O campo é requerido.")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -59,7 +59,7 @@ namespace RocamERP.Presentation.Web.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataVencimento { get; set; }
 
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [DisplayName("Data de Pagamento")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ConvertEmptyStringToNull = true, ApplyFormatInEditMode = true, NullDisplayText = "Não registrado.")]
         public DateTime? DataPagamento { get; set; }

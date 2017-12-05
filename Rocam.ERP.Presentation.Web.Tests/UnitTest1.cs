@@ -8,12 +8,52 @@ using System.Linq;
 using RocamERP.Presentation.Web.Areas.Plataforma.Controllers;
 using RocamERP.Infra.Data.QuerySpecifications;
 using RocamERP.Infra.Data.QuerySpecifications.CidadeQuerySpecifications;
+using AutoMapper;
+using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
 
 namespace Rocam.ERP.Presentation.Web.Tests
 {
     [TestClass]
     public class MiscellanousTests
     {
+        [TestMethod]
+        public void BoolTests()
+        {
+            Cheque c = new Cheque()
+            {
+                DataVencimento = DateTime.Now.AddYears(-1)
+            };
+
+            Trace.WriteLine(c.DataVencimento);
+           // Assert.AreEqual(true, c.ChequeVencido);
+
+        }
+
+        [TestMethod]
+        public void ReflectionTests()
+        {
+            Pessoa _pessoa = new Pessoa()
+            {
+                Nome = "Lucas Pereira"
+            };
+
+            PessoaViewModel _pessoaVM = new PessoaViewModel()
+            {
+                Nome = "Lucas Pereira"
+            };
+
+            Type _sourceType = typeof(Pessoa);
+            Type _destionationType = typeof(PessoaViewModel);
+
+            var obj = _sourceType.GetConstructor(new Type[] { });
+            var p = obj.Invoke(new object[] { });
+
+
+            var mapped = Mapper.Map(_sourceType.GetType(), _destionationType.GetType());
+
+            Assert.AreEqual(typeof(Pessoa), mapped.GetType());
+
+        }
 
         [TestMethod]
         public void MyTestMethod()
@@ -37,14 +77,14 @@ namespace Rocam.ERP.Presentation.Web.Tests
                 },
             };
 
-            NomeCidadeEspecification spec = new NomeCidadeEspecification("o");
-            NomeCidadeEspecification specTwo = new NomeCidadeEspecification("z");
+            //NomeCidadeEspecification spec = new NomeCidadeEspecification("o");
+            //sNomeCidadeEspecification specTwo = new NomeCidadeEspecification("z");
 
-            var list = Cidades.AsQueryable().Where(spec.And(specTwo).ToExpression());
-            var lists = Cidades.Where(c => spec.IsSatisfiedBy(c));
+            //var list = Cidades.AsQueryable().Where(spec.And(specTwo).ToExpression());
+            //var lists = Cidades.Where(c => spec.IsSatisfiedBy(c));
 
-            Assert.AreEqual(2, list.Count());
-            //Assert.AreEqual("Vila Cruzeiro", list.First().Nome);
+            //Assert.AreEqual(2, list.Count());
+            ////Assert.AreEqual("Vila Cruzeiro", list.First().Nome);
         }
 
         [TestMethod]
