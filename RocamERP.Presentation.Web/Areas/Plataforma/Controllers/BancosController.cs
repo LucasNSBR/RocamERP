@@ -4,7 +4,6 @@ using RocamERP.Domain.Models;
 using RocamERP.Domain.QuerySpecificationInterfaces;
 using RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
-using RocamERP.Presentation.Web.Filters;
 using RocamERP.Presentation.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
