@@ -17,6 +17,12 @@ namespace RocamERP.Presentation.Web.App_Start
     using RocamERP.Services.Services;
     using RocamERP.Domain.RepositoryInterfaces;
     using RocamERP.Infra.Data.Repositories;
+    using RocamERP.CrossCutting.Identity.Managers;
+    using System.Web;
+    using Microsoft.AspNet.Identity;
+    using RocamERP.CrossCutting.Identity.Models;
+    using RocamERP.CrossCutting.Identity.Context;
+    using Microsoft.Owin.Security;
 
     public static class NinjectWebCommon 
     {
@@ -99,6 +105,15 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IEnderecoRepository>().To(typeof(EnderecoRepository));
             kernel.Bind<IChequeRepository>().To(typeof(ChequeRepository));
             kernel.Bind<IPessoaRepository>().To(typeof(PessoaRepository));
+
+            
+            //TODO: FIX THESE INJECTIONS
+            kernel.Bind<RocamAppDbContext>().ToSelf().InRequestScope();
+            kernel.Bind<IUserStore<RocamAppUser>>().To<RocamAppUserStore>();
+            kernel.Bind<RocamAppUserStore>().ToSelf().InRequestScope();
+            kernel.Bind<IAuthenticationManager>().ToMethod(m => HttpContext.Current.GetOwinContext().Authentication);
+            kernel.Bind<RocamAppSignInManager>().ToSelf().InRequestScope();
+
         }
     }
 }

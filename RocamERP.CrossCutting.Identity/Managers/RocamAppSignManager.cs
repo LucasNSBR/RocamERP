@@ -5,9 +5,9 @@ using RocamERP.CrossCutting.Identity.Models;
 
 namespace RocamERP.CrossCutting.Identity.Managers
 {
-    public class RocamAppSignManager : SignInManager<RocamAppUser, string>
+    public class RocamAppSignInManager : SignInManager<RocamAppUser, string>
     {
-        public RocamAppSignManager(UserManager<RocamAppUser, string> userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
+        public RocamAppSignInManager(RocamAppUserManager userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
         {
         }
     }

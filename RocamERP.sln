@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rocam.ERP.Presentation.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocamERP.CrossCutting.Identity", "RocamERP.CrossCutting.Identity\RocamERP.CrossCutting.Identity.csproj", "{A75B37D1-2A5C-4245-899A-EDA532868662}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocamERP.CrossCutting.IoC", "RocamERP.CrossCutting.IoC\RocamERP.CrossCutting.IoC.csproj", "{A39343A4-D15D-4B56-8C51-760B1418D3E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{A75B37D1-2A5C-4245-899A-EDA532868662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A75B37D1-2A5C-4245-899A-EDA532868662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A75B37D1-2A5C-4245-899A-EDA532868662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39343A4-D15D-4B56-8C51-760B1418D3E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39343A4-D15D-4B56-8C51-760B1418D3E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39343A4-D15D-4B56-8C51-760B1418D3E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39343A4-D15D-4B56-8C51-760B1418D3E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,5 +88,6 @@ Global
 		{261C3C12-867A-4942-8BD0-4489A9DBA05F} = {BC7F755D-92DB-42C2-BAC0-5DB52C2D9544}
 		{CDACE344-329D-467F-843C-B2BF643D99CE} = {0A1ECB9A-9D66-481A-BD79-A7724EEBA615}
 		{A75B37D1-2A5C-4245-899A-EDA532868662} = {A4E20528-B6D9-452D-B8F4-F80C73AC5D11}
+		{A39343A4-D15D-4B56-8C51-760B1418D3E0} = {A4E20528-B6D9-452D-B8F4-F80C73AC5D11}
 	EndGlobalSection
 EndGlobal

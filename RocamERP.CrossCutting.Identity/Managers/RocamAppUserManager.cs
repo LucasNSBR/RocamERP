@@ -6,7 +6,7 @@ namespace RocamERP.CrossCutting.Identity.Managers
 {
     public class RocamAppUserManager : UserManager<RocamAppUser>
     {
-        public RocamAppUserManager(IUserStore<RocamAppUser> store) : base(store)
+        public RocamAppUserManager(IUserStore<RocamAppUser> userStore) : base(userStore)
         {
             ConfigurePasswordValidator();
             ConfigureUserNameValidator();
