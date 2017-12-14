@@ -47,6 +47,12 @@ namespace RocamERP.CrossCutting.Identity.Managers
             SmsService = IdentitySmsService.Create();
             EmailService = IdentityEmailService.Create();
         }
+
+        private void ConfigureTwoFactorAuthentication()
+        {
+            TwoFactorProviders.Add("TwoFactorEmailAuth", new EmailTokenProvider<RocamAppUser, string>());
+            //TwoFactorProviders.Add("TwoFactorSmsAuth", new PhoneNumberTokenProvider<RocamAppUser, string>());
+        }
         #endregion
     }
 }

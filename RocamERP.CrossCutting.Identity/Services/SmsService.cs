@@ -16,7 +16,7 @@ namespace RocamERP.CrossCutting.Identity.Services
 
         public async Task SendAsync(IdentityMessage message)
         {
-            
+            await Task.FromResult(0);
         }
     }
 }

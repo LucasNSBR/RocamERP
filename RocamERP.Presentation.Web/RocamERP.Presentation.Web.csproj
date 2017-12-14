@@ -203,8 +203,9 @@
     <Compile Include="Areas\Plataforma\PlataformaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Exceptions\ExtendedHandleErrorAttribute.cs" />
-    <Compile Include="Filters\SpecificationBindFilter.cs" />
+    <Compile Include="Filters\ModelStateValidationFilter.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -322,10 +323,19 @@
     <Content Include="Views\Shared\EditorTemplates\RegisterViewModel.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ForgotPasswordViewModel.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordTokenSent.cshtml" />
+    <Content Include="Views\Account\AccountLocked.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\VerifyTwoFactorTokenViewModel.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ConfirmEmailViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ResetPasswordViewModel.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\_PartialViews\_loginInfomation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Views\Shared\PartialTemplates\" />
+    <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

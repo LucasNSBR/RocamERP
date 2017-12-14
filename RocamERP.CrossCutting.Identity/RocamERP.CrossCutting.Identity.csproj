@@ -84,10 +84,13 @@
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\SmsService.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmEmailViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PasswordResetTokenSentViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\VerifyTwoFactorTokenViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

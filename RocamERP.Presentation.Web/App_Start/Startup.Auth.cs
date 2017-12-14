@@ -1,15 +1,22 @@
-﻿using Microsoft.Owin.Security;
-using Owin;
-using RocamERP.CrossCutting.Identity.Managers;
-using System.Web.Mvc;
+﻿using Owin;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
+using System;
+using Microsoft.AspNet.Identity;
 
 namespace RocamERP.Presentation.Web
 {
-	public partial class Startup
+    public partial class Startup
 	{
 		public void ConfigureAuth(IAppBuilder app)
         {
-            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<RocamAppUserManager>());
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                LoginPath = new PathString("/Account/Login"),
+                LogoutPath = new PathString("/Account/Logout"),
+                ExpireTimeSpan = TimeSpan.FromDays(7),
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+            });           
         }
 	}
 }

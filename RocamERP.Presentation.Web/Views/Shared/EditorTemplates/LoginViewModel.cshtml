@@ -11,20 +11,19 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.Password, new { @class = "form-control" })
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.RememberPassword, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        <div class="checkbox">
-            @Html.EditorFor(model => model.RememberPassword)
-            @Html.ValidationMessageFor(model => model.RememberPassword, "", new { @class = "text-danger" })
-        </div>
+        @Html.CheckBoxFor(model => model.IsPersistent, new { @class = "col-form-check" })
+        @Html.LabelFor(model => model.IsPersistent, new { @class = "col-form-label" })
     </div>
 </div>
+
+
 

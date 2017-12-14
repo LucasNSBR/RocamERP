@@ -5,15 +5,23 @@
 <div class="jumbotron">
     <h1>Rocam ERP</h1>
     <p class="lead">Sistema experimental para cadastro de cheques e clientes de Centro Automotivo Rocam Ltda.</p>
-    <p>
-        <a class="btn btn-success text-white btn-lg" href="Accounts/LoginAccount">
-            Login &raquo;
-        </a>
-    </p>
 
-    <a href="Accounts/CreateAccount">
-        Criar conta
-    </a>
+    @if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Minha Conta", "Index", "Manage", null, new { @class = "btn btn-success btn-lg text-white" })
+        </p>
+
+        @Html.ActionLink("Logout", "Logout", "Account", null, null)
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-success btn-lg text-white" })
+        </p>
+
+        @Html.ActionLink("Criar conta", "Register", "Account", null, null)
+    }
 </div>
 
 <div class="row">

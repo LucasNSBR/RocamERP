@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 {
+    [Authorize]
     [ExtendedHandleError()]
     public class EstadosController : Controller
     {

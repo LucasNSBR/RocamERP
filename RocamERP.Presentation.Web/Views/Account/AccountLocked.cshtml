@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Conta Bloqueada";
+}
+
+<h2>Conta bloqueada</h2>
+<h6>Tentativa de Login bloqueada</h6>
+<hr />
+
+<div>
+    @Html.Raw($"Sua conta está bloqueada, tente novamente mais tarde.")
+</div>
+
+<div>
+    @Html.ActionLink("Página Anterior", "Index")
+</div>

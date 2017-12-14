@@ -15,6 +15,7 @@ namespace RocamERP.CrossCutting.Identity.ViewModels
         [StringLength(maximumLength: 24, MinimumLength = 6, ErrorMessage = "A senha deve ter entre 6 e 24 caracteres.")]
         public string Password { get; set; }
 
-        public bool RememberPassword { get; set; }
+        [DisplayName("Permanecer conectado")]
+        public bool IsPersistent { get; set; }
     }
 }
