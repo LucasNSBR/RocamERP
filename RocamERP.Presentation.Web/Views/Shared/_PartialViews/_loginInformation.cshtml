@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNet.Identity;
+
+@if (Request.IsAuthenticated)
+{
+    @Html.ActionLink("Minha Conta", "AccountOverview", "Manage", null, new { @class = "nav-link nav-item nav-btn pl-3 pr-3", @id = "btn-account" })
+}
+else
+{
+    @Html.ActionLink("Entrar", "Login", "Account", null, new { @class = "nav-link nav-item nav-btn pl-4 pr-4", @id = "btn-login" })
+}

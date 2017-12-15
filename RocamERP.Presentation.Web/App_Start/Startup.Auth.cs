@@ -3,6 +3,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using System;
 using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
+using RocamERP.CrossCutting.IoC;
 
 namespace RocamERP.Presentation.Web
 {
@@ -16,7 +18,9 @@ namespace RocamERP.Presentation.Web
                 LogoutPath = new PathString("/Account/Logout"),
                 ExpireTimeSpan = TimeSpan.FromDays(7),
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
-            });           
+            });
+
+            DependencyResolver.Current.GetService<IdentityContainer>();
         }
 	}
 }

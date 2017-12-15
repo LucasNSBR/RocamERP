@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\RocamAppDbContext.cs" />
+    <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="Managers\RocamAppSignManager.cs" />
     <Compile Include="Managers\RocamAppUserStore.cs" />
     <Compile Include="Managers\RocamAppUserManager.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="ViewModels\ConfirmEmailViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\PasswordResetTokenSentViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ResetPasswordViewModel.cs" />

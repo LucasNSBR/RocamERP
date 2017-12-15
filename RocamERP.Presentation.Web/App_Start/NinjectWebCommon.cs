@@ -104,12 +104,12 @@ namespace RocamERP.Presentation.Web.App_Start
             kernel.Bind<IPessoaRepository>().To(typeof(PessoaRepository));
 
             
-            //TODO: FIX THESE INJECTIONS
-            kernel.Bind<RocamAppDbContext>().ToSelf().InRequestScope();
-            kernel.Bind<IUserStore<RocamAppUser>>().To<RocamAppUserStore>();
-            kernel.Bind<RocamAppUserStore>().ToSelf().InRequestScope();
-            kernel.Bind<IAuthenticationManager>().ToMethod(m => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
-            kernel.Bind<RocamAppSignInManager>().ToSelf().InRequestScope();
+            ////TODO: FIX THESE INJECTIONS
+            //kernel.Bind<RocamAppDbContext>().ToSelf().InRequestScope();
+            //kernel.Bind<IUserStore<RocamAppUser>>().To<RocamAppUserStore>();
+            //kernel.Bind<RocamAppUserStore>().ToSelf().InRequestScope();
+            //kernel.Bind<IAuthenticationManager>().ToMethod(m => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
+            //kernel.Bind<RocamAppSignInManager>().ToSelf().InRequestScope();
 
         }
     }

@@ -326,16 +326,17 @@
     <Content Include="Views\Account\ForgotPasswordTokenSent.cshtml" />
     <Content Include="Views\Account\AccountLocked.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\VerifyTwoFactorTokenViewModel.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Manage\ConfirmEmail.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ConfirmEmailViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ResetPasswordViewModel.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Shared\_PartialViews\_loginInfomation.cshtml" />
+    <Content Include="Views\Shared\_PartialViews\_loginInformation.cshtml" />
+    <Content Include="Views\Account\VerifyTwoFactorToken.cshtml" />
+    <Content Include="Views\Manage\AccountOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Plataforma\Views\Shared\PartialTemplates\" />
-    <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -351,6 +352,10 @@
     <ProjectReference Include="..\RocamERP.CrossCutting.Identity\RocamERP.CrossCutting.Identity.csproj">
       <Project>{A75B37D1-2A5C-4245-899A-EDA532868662}</Project>
       <Name>RocamERP.CrossCutting.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RocamERP.CrossCutting.IoC\RocamERP.CrossCutting.IoC.csproj">
+      <Project>{A39343A4-D15D-4B56-8C51-760B1418D3E0}</Project>
+      <Name>RocamERP.CrossCutting.IoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\RocamERP.CrossCutting\RocamERP.CrossCutting.csproj">
       <Project>{ed7b6e6f-1d17-46f0-bfe3-fa0c1e505075}</Project>

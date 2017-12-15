@@ -1,0 +1,90 @@
+﻿@model RocamERP.CrossCutting.Identity.ViewModels.AccountOverviewViewModel
+
+@{
+    ViewBag.Title = "Visão Geral - Conta";
+}
+
+<h2>Visão geral da conta</h2>
+<h6>Informações e opções gerais sobre usuário e conta</h6>
+<hr />
+
+
+<table class="table mt-5 mb-5">
+    <tbody>
+        <tr class="reset-border">
+            <td>
+                @Html.DisplayNameFor(model => model.EmailConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.EmailConfirmed, new { htmlAttributes = new { @class = "col-form-check" } })
+            </td>
+            <td class="text-right">
+                @if (!Model.EmailConfirmed)
+                {
+                    @Html.ActionLink("Confirmar e-mail", "ConfirmEmail")
+                }
+                else
+                {
+                    @Html.Raw("Seu e-mail já foi confirmado")
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TwoFactorEnabled, new { htmlAttributes = new { @class = "col-form-check" } })
+            </td>
+            <td class="text-right">
+                @if (!Model.TwoFactorEnabled)
+                {
+                    @Html.ActionLink("Ativar Autenticação em dois passos", "ActivateTwoFactorAuthentication")
+                }
+                else
+                {
+                    @Html.ActionLink("Desativar Autenticação em dois passos", "ActivateTwoFactorAuthentication")
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.PhoneNumberConfirmed, new { htmlAttributes = new { @class = "col-form-check" } })
+            </td>
+            <td class="text-right">
+                @if (!Model.PhoneNumberConfirmed)
+                {
+                    @Html.ActionLink("Adicionar Número de Telefone", "ConfirmPhoneNumber")
+                }
+                else
+                {
+                    @Html.ActionLink("Remover número de Telefone", "ConfirmPhoneNumber")
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="form-group form-inline m-0">
+    @Html.LabelFor(model => model.Logins, htmlAttributes: new { @class = "col-form-label col-md-4 font-weight-bold" })
+    <div class="col-md-8">
+        @if (Model.Logins.Any())
+        {
+            foreach (var login in Model.Logins)
+            {
+                @Html.DisplayFor(model => login.LoginProvider, new { htmlAttributes = new { @class = "form-control" } })
+            }
+        }
+        else
+        {
+            @Html.Raw("Nenhum login externo")
+        }
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Página Anterior", "Index")
+</div>

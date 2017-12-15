@@ -12,6 +12,8 @@ namespace RocamERP.CrossCutting.Identity.Managers
             ConfigureUserNameValidator();
             ConfigureLockoutOptions();
             ConfigureMessagingServices();
+            ConfigureTwoFactorAuthentication();
+            ConfigureUserTokens();
         }
 
         #region Configuration
@@ -46,6 +48,11 @@ namespace RocamERP.CrossCutting.Identity.Managers
         {
             SmsService = IdentitySmsService.Create();
             EmailService = IdentityEmailService.Create();
+        }
+
+        private void ConfigureUserTokens()
+        {
+            UserTokenProvider = new EmailTokenProvider<RocamAppUser, string>();
         }
 
         private void ConfigureTwoFactorAuthentication()

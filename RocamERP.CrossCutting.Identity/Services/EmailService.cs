@@ -18,7 +18,7 @@ namespace RocamERP.CrossCutting.Identity.Services
 
         public async Task SendAsync(IdentityMessage message)
         {
-            string messageSender = ConfigurationManager.AppSettings["Email"];
+            string messageSender = "lucaspereirans2017@gmail.com";
             string messageDestination = message.Destination;
             string messageSubject = message.Subject;
             string messageBody = message.Body;
@@ -27,7 +27,7 @@ namespace RocamERP.CrossCutting.Identity.Services
 
             using (SmtpClient smtpClient = new SmtpClient())
             {
-                await Task.Run(() => smtpClient.SendAsync(mail, null));
+                await smtpClient.SendMailAsync(mail);
             }
         }
 

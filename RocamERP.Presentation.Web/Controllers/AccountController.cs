@@ -6,7 +6,9 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using RocamERP.Presentation.Web.Exceptions;
+using System;
 using Microsoft.Owin.Security;
+using RocamERP.CrossCutting.Identity.Extensions;
 
 namespace RocamERP.Presentation.Web.Controllers
 {
@@ -25,6 +27,8 @@ namespace RocamERP.Presentation.Web.Controllers
             _authManager = authManager;
         }
 
+        #region Register
+
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -36,20 +40,23 @@ namespace RocamERP.Presentation.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View();
-
             var user = new RocamAppUser { UserName = model.Email, Email = model.Email, Age = model.Age, FirstName = model.FirstName, LastName = model.LastName };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
-                return RedirectToAction("Login");
-            else
             {
-                ModelState.AddModelError("Um erro foi encontrado", "Ocorreu um erro ao fazer essa operação");
-                return View();
+                await SendConfirmationEmail(model.Email);
+                return RedirectToAction("Login");
             }
+
+            ModelState.AddModelError("Um erro ocorreu", "Alguns dados podem estar incorretos.");
+            return View();
         }
+        
+        #endregion
+
+
+        #region Login 
 
         [AllowAnonymous]
         public ActionResult Login()
@@ -62,10 +69,8 @@ namespace RocamERP.Presentation.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View();
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.IsPersistent, true);
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.IsPersistent, false);
             switch (result)
             {
                 case SignInStatus.RequiresVerification:
@@ -75,33 +80,27 @@ namespace RocamERP.Presentation.Web.Controllers
                 case SignInStatus.LockedOut:
                     return RedirectToAction("AccountLocked");
                 case SignInStatus.Failure:
-                default:
-                    return RedirectToAction("Login");
+                    return RedirectToAction("IncorrectCredentials");
             }
-        }
-
-        public async Task<ActionResult> VerifyEmail()
-        {
-            var userId = User.Identity.GetUserId();
-
-            if (await _userManager.IsEmailConfirmedAsync(userId))
-                return RedirectToAction("Index");
 
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyEmail(ConfirmEmailViewModel model)
+        public ActionResult AccountLocked()
         {
-            var userId = User.Identity.GetUserId();
-
-            var result = await _userManager.ConfirmEmailAsync(userId, model.Token);
-            if (result.Succeeded)
-                return RedirectToAction("Index");
-
             return View();
         }
+
+        public ActionResult IncorrectCredentials()
+        {
+            ModelState.AddModelError("Credenciais incorretas", "Seu usuário e/ou senha estão incorretos");
+            return View("Login");
+        }
+
+        #endregion
+
+
+        #region Two Factor Authentication
 
         public async Task<ActionResult> VerifyTwoFactorToken()
         {
@@ -116,19 +115,36 @@ namespace RocamERP.Presentation.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> VerifyTwoFactorToken(string token, string provider)
-        //{
-        //    var result = await _signInManager.TwoFactorSignInAsync(provider, token, false, false);
-        //    if (result == SignInStatus.Success)
-
-        //}
-
-        public ActionResult AccountLocked()
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> VerifyTwoFactorToken(string token)
         {
+            var result = await _signInManager.TwoFactorSignInAsync("TwoFactorEmailAuth", token, false, false);
+
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToAction("Index", "Home");
+                case SignInStatus.LockedOut:
+                    return RedirectToAction("AccountLocked");
+                case SignInStatus.Failure:
+                    return RedirectToAction("IncorrectCredentials");
+            }
+
             return View();
         }
+
+        #endregion 
+
+
+        #region Confirm Email
+        private async Task SendConfirmationEmail(string userEmail)
+        {
+            await _userManager.SendConfirmationEmailAsync(userEmail);
+        }
+        #endregion
+
 
         #region Password Reset
 
@@ -182,10 +198,15 @@ namespace RocamERP.Presentation.Web.Controllers
 
         #endregion
 
+
+        #region Logout
+
         public ActionResult Logout()
         {
             _authManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        #endregion
     }
 }

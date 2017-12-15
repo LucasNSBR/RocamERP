@@ -31,3 +31,36 @@
 .height-1 {
     min-height: 300px;
 }
+
+.border-radius-0 {
+}
+
+.nav-item.nav-link {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.nav-btn {
+    border-radius: 0px;
+    color: white!important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#btn-login {
+    background-color: mediumseagreen;
+}
+
+#btn-login:hover {
+    transition: background-color ease 0.3s 0s;
+    background-color: seagreen;
+}
+
+#btn-account {
+    background-color: mediumturquoise;
+}
+
+#btn-account:hover {
+    transition: background-color ease 0.3s 0s;
+    background-color: turquoise;
+}

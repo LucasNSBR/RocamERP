@@ -1,0 +1,29 @@
+﻿@model RocamERP.CrossCutting.Identity.ViewModels.VerifyTwoFactorTokenViewModel
+
+@{
+    ViewBag.Title = "Confirmar segundo fator de autenticação";
+}
+
+<h2>Autenticação em dois passos</h2>
+<h6>Confirme o segundo fator de autenticação usando o código que foi enviado por Email ou SMS</h6>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div>
+            @Html.EditorForModel()
+            @Html.ActionLink("Enviar novo e-mail de confirmação", "")
+        </div>
+
+        @Html.SubmitButton("Confirmar")
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Página Anterior", "Index")
+</div>
