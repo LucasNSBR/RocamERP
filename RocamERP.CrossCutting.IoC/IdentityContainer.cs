@@ -2,7 +2,6 @@
 using RocamERP.CrossCutting.Identity.Managers;
 using RocamERP.CrossCutting.Identity.Models;
 using SimpleInjector;
-using SimpleInjector.Integration.Web;
 using RocamERP.CrossCutting.Identity.Context;
 
 namespace RocamERP.CrossCutting.IoC
@@ -11,8 +10,6 @@ namespace RocamERP.CrossCutting.IoC
     {
         public static void RegisterServices(Container container)
         {
-            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
-
             container.Register<IUserStore<RocamAppUser>, RocamAppUserStore>(Lifestyle.Scoped);
             container.Register<RocamAppDbContext, RocamAppDbContext>(Lifestyle.Scoped);
             container.Register<RocamAppUserManager, RocamAppUserManager>(Lifestyle.Scoped);

@@ -10,12 +10,25 @@ using RocamERP.Infra.Data.QuerySpecifications;
 using RocamERP.Infra.Data.QuerySpecifications.CidadeQuerySpecifications;
 using AutoMapper;
 using RocamERP.Presentation.Web.ViewModels.PessoaViewModels;
+using System.Text;
 
 namespace Rocam.ERP.Presentation.Web.Tests
 {
     [TestClass]
     public class MiscellanousTests
     {
+        [TestMethod]    
+        public void UrlTests()
+        {
+            var token = "123";
+            var url = "http://localhost:57756/Manage/ConfirmEmail";
+            var body = new StringBuilder();
+            body.Append($"<a href=\"{url}?token={token}\">");
+            body.Append($"</a>");
+
+            Assert.AreEqual("<a href=\"http://localhost:57756/Manage/ConfirmEmail?token=123\"></a>", body.ToString());
+        }
+
         [TestMethod]
         public void BoolTests()
         {

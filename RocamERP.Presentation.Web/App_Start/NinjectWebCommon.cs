@@ -3,17 +3,12 @@
 
 namespace RocamERP.Presentation.Web.App_Start
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.Owin.Security;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
     using RocamERP.Application;
     using RocamERP.Application.Interfaces;
-    using RocamERP.CrossCutting.Identity.Context;
-    using RocamERP.CrossCutting.Identity.Managers;
-    using RocamERP.CrossCutting.Identity.Models;
     using RocamERP.Domain.RepositoryInterfaces;
     using RocamERP.Domain.ServiceInterfaces;
     using RocamERP.Infra.Data.Repositories;
@@ -30,9 +25,9 @@ namespace RocamERP.Presentation.Web.App_Start
         /// </summary>
         public static void Start() 
         {
-            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
-            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+          //  DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+           // DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
+            //bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>

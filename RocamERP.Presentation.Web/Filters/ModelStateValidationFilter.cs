@@ -7,10 +7,10 @@ namespace RocamERP.Presentation.Web.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var modelState = filterContext.Controller.ViewData.ModelState;
+            var modelState = filterContext.Controller.ViewData.ModelState as ModelStateDictionary;
 
-            if (!modelState.IsValid)
-                filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //if (!modelState.IsValid)
+            //    OnResultExecuting(filterContext.Result);
         }
     }
 }

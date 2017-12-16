@@ -3,8 +3,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using System;
 using Microsoft.AspNet.Identity;
-using System.Web.Mvc;
-using RocamERP.CrossCutting.IoC;
 
 namespace RocamERP.Presentation.Web
 {
@@ -20,7 +18,6 @@ namespace RocamERP.Presentation.Web
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
             });
 
-            DependencyResolver.Current.GetService<IdentityContainer>();
         }
 	}
 }

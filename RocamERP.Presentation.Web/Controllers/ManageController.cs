@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using RocamERP.CrossCutting.Identity.Extensions;
 using RocamERP.CrossCutting.Identity.Managers;
+using RocamERP.CrossCutting.Identity.Models;
 using RocamERP.CrossCutting.Identity.ViewModels;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -22,50 +25,43 @@ namespace RocamERP.Presentation.Web.Controllers
             _authManager = authManager;
         }
 
-        public async Task<ActionResult> AccountOverview()
+        public async Task<ActionResult> Overview()
         {
             var userId = User.Identity.GetUserId();
             var user = await _userManager.FindByIdAsync(userId);
-
-            AccountOverviewViewModel account = new AccountOverviewViewModel
-            {
-                EmailConfirmed = user.EmailConfirmed,
-                PhoneNumber = user.PhoneNumber,
-                TwoFactorEnabled = user.TwoFactorEnabled,
-            };
+            var account = Mapper.Map<RocamAppUser, OverviewViewModel>(user);
 
             return View(account);
         }
 
-        private async Task SendConfirmationEmail(string userEmail)
-        {
-            await _userManager.SendConfirmationEmailAsync(userEmail);
-        }
-        
-        public async Task<ActionResult> ConfirmEmail()
+        public async Task<ActionResult> SendConfirmationEmail()
         {
             var userId = User.Identity.GetUserId();
             var user = await _userManager.FindByIdAsync(userId);
 
             if (await _userManager.IsEmailConfirmedAsync(userId))
-                return RedirectToAction("AccountOverview");
-            else
-                await SendConfirmationEmail(user.Email);
+            {
+                ModelState.AddModelError("Erro de confirmação", "Seu e-mail já está confirmado.");
+                return RedirectToAction("Overview");
+            }
 
-            return View();
+            await _userManager.SendConfirmationEmailAsync(user.Email);
+            return RedirectToAction("Overview");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ConfirmEmail(ConfirmEmailViewModel model)
-        {
+        public async Task<ActionResult> ConfirmEmail(string token)
+        {   
             var userId = User.Identity.GetUserId();
+            var user = await _userManager.FindByIdAsync(userId);
 
-            var result = await _userManager.ConfirmEmailAsync(userId, model.Token);
+            var result = await _userManager.ConfirmEmailAsync(userId, token);
             if (result.Succeeded)
-                return RedirectToAction("AccountOverview");
+            {
+                return RedirectToAction("Overview");
+            }
 
-            return View();
+            ModelState.AddModelError("Erro de confirmação", "Não foi possível confirmar seu e-mail.");
+            return RedirectToAction("Overview");
         }
     }
 }

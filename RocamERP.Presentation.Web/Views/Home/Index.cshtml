@@ -9,7 +9,7 @@
     @if (Request.IsAuthenticated)
     {
         <p>
-            @Html.ActionLink("Minha Conta", "Index", "Manage", null, new { @class = "btn btn-success btn-lg text-white" })
+            @Html.ActionLink("Minha Conta", "Overview", "Manage", null, new { @class = "btn btn-success btn-lg text-white border-radius-0" })
         </p>
 
         @Html.ActionLink("Logout", "Logout", "Account", null, null)
@@ -17,7 +17,7 @@
     else
     {
         <p>
-            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-success btn-lg text-white" })
+            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-success btn-lg text-white border-radius-0" })
         </p>
 
         @Html.ActionLink("Criar conta", "Register", "Account", null, null)

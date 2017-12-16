@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RocamERP.CrossCutting.Identity.ViewModels
 {
-    public class AccountOverviewViewModel
+    public class OverviewViewModel
     {
         [DisplayName("Endereço de Email Confirmado")]
         public bool EmailConfirmed { get; set; }
@@ -24,7 +24,7 @@ namespace RocamERP.CrossCutting.Identity.ViewModels
         public ICollection<UserLoginInfo> Logins { get; set; }
 
 
-        public AccountOverviewViewModel()
+        public OverviewViewModel()
         {
             Logins = new List<UserLoginInfo>();
         }

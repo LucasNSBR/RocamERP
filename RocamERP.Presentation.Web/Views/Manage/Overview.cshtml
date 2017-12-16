@@ -1,4 +1,4 @@
-﻿@model RocamERP.CrossCutting.Identity.ViewModels.AccountOverviewViewModel
+﻿@model RocamERP.CrossCutting.Identity.ViewModels.OverviewViewModel
 
 @{
     ViewBag.Title = "Visão Geral - Conta";
@@ -21,7 +21,7 @@
             <td class="text-right">
                 @if (!Model.EmailConfirmed)
                 {
-                    @Html.ActionLink("Confirmar e-mail", "ConfirmEmail")
+                    @Html.ActionLink("Confirmar e-mail", "SendConfirmationEmail")
                 }
                 else
                 {

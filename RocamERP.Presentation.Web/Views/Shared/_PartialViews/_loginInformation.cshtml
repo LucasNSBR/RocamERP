@@ -1,10 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity;
 
 @if (Request.IsAuthenticated)
-{
-    @Html.ActionLink("Minha Conta", "AccountOverview", "Manage", null, new { @class = "nav-link nav-item nav-btn pl-3 pr-3", @id = "btn-account" })
+{    
+    @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link nav-item pl-5" })
+    @Html.ActionLink("Minha Conta", "Overview", "Manage", new { area = "" }, new { @class = "nav-link nav-item nav-btn pl-3 pr-3", @id = "btn-account" })
 }
 else
 {
-    @Html.ActionLink("Entrar", "Login", "Account", null, new { @class = "nav-link nav-item nav-btn pl-4 pr-4", @id = "btn-login" })
+    @Html.ActionLink("Criar Conta", "Register", "Account", null, new { @class = "nav-link nav-item pl-4 pr-4" })
+    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link nav-item nav-btn pl-4 pr-4", @id = "btn-login" })
 }

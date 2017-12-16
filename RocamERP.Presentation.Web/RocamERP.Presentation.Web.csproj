@@ -97,6 +97,15 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleInjector, Version=4.0.12.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.0.12\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web, Version=4.0.12.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.4.0.12\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=4.0.12.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.4.0.12\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -193,6 +202,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="Areas\Plataforma\Controllers\BancosController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\ChequesController.cs" />
     <Compile Include="Areas\Plataforma\Controllers\CidadesController.cs" />
@@ -205,6 +215,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Exceptions\ExtendedHandleErrorAttribute.cs" />
+    <Compile Include="Filters\ClaimsAuthorize.cs" />
     <Compile Include="Filters\ModelStateValidationFilter.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +224,7 @@
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Mappers\CustomMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
@@ -326,13 +338,11 @@
     <Content Include="Views\Account\ForgotPasswordTokenSent.cshtml" />
     <Content Include="Views\Account\AccountLocked.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\VerifyTwoFactorTokenViewModel.cshtml" />
-    <Content Include="Views\Manage\ConfirmEmail.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\ConfirmEmailViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ResetPasswordViewModel.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_PartialViews\_loginInformation.cshtml" />
     <Content Include="Views\Account\VerifyTwoFactorToken.cshtml" />
-    <Content Include="Views\Manage\AccountOverview.cshtml" />
+    <Content Include="Views\Manage\Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

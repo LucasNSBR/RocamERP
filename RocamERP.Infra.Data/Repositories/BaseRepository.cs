@@ -47,8 +47,8 @@ namespace RocamERP.Infra.Data.Repositories
 
         public void Dispose()
         {
-            Dispose();
-            GC.SuppressFinalize(this);
+            dbContext.Dispose();
+            GC.SuppressFinalize(dbContext);
         }
     }
 }

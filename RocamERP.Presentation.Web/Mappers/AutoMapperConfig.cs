@@ -10,6 +10,7 @@ namespace RocamERP.Presentation.Web.Mappers
             {
                 m.AddProfile(new DomainToViewModelMappingProfile());
                 m.AddProfile(new ViewModelToDomainMappingProfile());
+                m.AddProfile(new CustomMappingProfile());
             });
         }
     }

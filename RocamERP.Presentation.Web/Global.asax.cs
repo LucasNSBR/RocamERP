@@ -14,6 +14,7 @@ namespace RocamERP.Presentation.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.RegisterMappings();
+            //DependencyResolver.Current.GetService<SimpleInjectorInitializer>();
         }
     }
 }
