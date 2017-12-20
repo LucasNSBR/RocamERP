@@ -15,9 +15,23 @@
     <div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div>
-            @Html.EditorForModel()
+        <div class="row">
+            <div class="col-6">
+                @Html.EditorForModel()
+            </div>
+            <div class="col-6">
+                <p class="lead">
+                    Ou use um dos provedores de identidade
+                </p>
+
+                <hr class="float-left w-50 mt-0 pt-0"/>
+                
+                <div class="clear">
+                    @Html.Partial("_PartialViews/_loginProviders")
+                </div>
+            </div>
         </div>
+
         @Html.ActionLink("Esqueci minha senha", "ForgotPassword")
 
         @Html.SubmitButton("Entrar")

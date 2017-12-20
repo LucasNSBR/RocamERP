@@ -3,7 +3,9 @@ using RocamERP.Application.Interfaces;
 using RocamERP.CrossCutting.Extensions;
 using RocamERP.Domain.Models;
 using RocamERP.Domain.QuerySpecificationInterfaces;
+using RocamERP.Infra.Data.QuerySpecifications.BancoQuerySpecifications;
 using RocamERP.Infra.Data.QuerySpecifications.ChequeQuerySpecifications;
+using RocamERP.Infra.Data.QuerySpecifications.PessoaQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.ViewModels;
 using System;
@@ -25,27 +27,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         private ISpecification<Cheque> _chequeBancoIdSpecification;
         private ISpecification<Cheque> _chequeNumeroSpecification;
         private ISpecification<Cheque> _chequeVencidoSpecification;
-
-        private IEnumerable<SelectListItem> _bancos
-        {
-            get
-            {
-                if (_bancoApplicationService != null)
-                    return _bancoApplicationService.GetAll().ToSelectItemList(b => b.Nome, b => b.BancoId);
-
-                throw new Exception();
-            }
-        }
-        private IEnumerable<SelectListItem> _pessoas
-        {
-            get
-            {
-                if (_pessoaApplicationService != null)
-                    return _pessoaApplicationService.GetAll().ToSelectItemList(p => p.Nome, p => p.PessoaId);
-
-                throw new Exception();
-            }
-        }
 
         public ChequesController(IChequeApplicationService chequeApplicationService, IBancoApplicationService bancoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
@@ -80,13 +61,7 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
 
         public ActionResult Create()
         {
-            ChequeViewModel chequeVM = new ChequeViewModel()
-            {
-                BancosList = _bancos,
-                PessoasList = _pessoas,
-            };
-
-            return View(chequeVM);
+            return View();
         }
 
         [HttpPost]
@@ -101,8 +76,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
-            model.BancosList = _bancos;
-            model.PessoasList = _pessoas;
             return View(model);
         }
 
@@ -111,8 +84,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cheque = _chequeApplicationService.Get(id);
             var chequeVM = Mapper.Map<Cheque, ChequeViewModel>(cheque);
 
-            chequeVM.BancosList = _bancos;
-            chequeVM.PessoasList = _pessoas;
             return View(chequeVM);
         }
 
@@ -128,8 +99,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
-            model.BancosList = _bancos;
-            model.PessoasList = _pessoas;
             return View(model);
         }
 
@@ -147,6 +116,18 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         {
             _chequeApplicationService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public PartialViewResult GetPessoas(string pessoaPrefix = "")
+        {
+            ISpecification<Pessoa> pessoaNomeSpecification = new PessoaNomeSpecification(pessoaPrefix);
+            return PartialView("_PartialViews/_pessoasInformation", _pessoaApplicationService.GetAll(pessoaNomeSpecification));
+        }
+
+        public PartialViewResult GetBancos(string bancoPrefix = "")
+        {
+            ISpecification<Banco> bancoNomeSpecification = new BancoNomeSpecification(bancoPrefix);
+            return PartialView("_PartialViews/_bancosInformation", _bancoApplicationService.GetAll(bancoNomeSpecification));
         }
     }
 }

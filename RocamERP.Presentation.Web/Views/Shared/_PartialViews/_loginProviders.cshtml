@@ -1,0 +1,7 @@
+﻿@foreach (var provider in HttpContext.Current.GetOwinContext().Authentication.GetAuthenticationTypes())
+{
+    if (provider.Caption != null)
+    {
+        @Html.ActionLink(provider.Caption, "ExternalLogin", new { @provider = provider.Caption }, new { @class = "btn btn-primary" })
+    }
+}

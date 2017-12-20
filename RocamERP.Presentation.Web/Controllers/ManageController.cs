@@ -5,7 +5,6 @@ using RocamERP.CrossCutting.Identity.Extensions;
 using RocamERP.CrossCutting.Identity.Managers;
 using RocamERP.CrossCutting.Identity.Models;
 using RocamERP.CrossCutting.Identity.ViewModels;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 

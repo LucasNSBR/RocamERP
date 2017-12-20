@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace RocamERP.Presentation.Web
 {
@@ -27,6 +26,9 @@ namespace RocamERP.Presentation.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/custom.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
+                      "~/Scripts/jquery.unobtrusive-ajax*"));
 
             BundleTable.EnableOptimizations = false;
         }

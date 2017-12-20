@@ -2,13 +2,19 @@
 
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-<div class="form-group">
-    @Html.LabelFor(model => model.BancoId, new { @class = "col-form-label" })
-    <div class="col-12">
-        @Html.DropDownListFor(model => model.BancoId, Model.BancosList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.BancoId, "", new { @class = "text-danger" })
-    </div>
+
+<div>
+    @Ajax.ActionLink("Pesquisar Bancos", "GetBancos", new AjaxOptions
+    {
+       HttpMethod = "GET",
+       AllowCache = true,
+       UpdateTargetId = "bancosTable",
+       InsertionMode = InsertionMode.Replace
+    })
+
+    <div id="bancosTable"></div>
 </div>
+
 
 <div class="form-group">
     @Html.LabelFor(model => model.Agencia, new { @class = "control-label col-form-label" })
@@ -34,13 +40,20 @@
     </div>
 </div>
 
-<div class="form-group">
-    @Html.LabelFor(model => model.PessoaId, new { @class = "col-form-label" })
-    <div class="col-12">
-        @Html.DropDownListFor(model => model.PessoaId, Model.PessoasList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.PessoaId, "", new { @class = "text-danger" })
-    </div>
+<div>
+    @Ajax.ActionLink("Pesquisar Cliente", "GetPessoas", new { prefix = "" }, new AjaxOptions
+    {
+        HttpMethod = "GET",
+        AllowCache = true,
+        UpdateTargetId = "pessoasTable",
+        InsertionMode = InsertionMode.Replace
+    })
+
+    <div id="pessoasTable"></div>
 </div>
+
+
+@Html.HiddenFor(model => model.PessoaId, new { id = "pessoaId" })
 
 <div class="form-group">
     @Html.LabelFor(model => model.Observacao, new { @class = "col-form-label" })
@@ -92,3 +105,4 @@
         @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
     </div>
 </div>
+

@@ -3,12 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RocamERP.CrossCutting.Identity.ViewModels
 {
-    public class RegisterViewModel
+    public class ExternalRegisterViewModel
     {
-        [Required]
-        [DisplayName("Endereço de e-mail")]
-        [EmailAddress(ErrorMessage = "O campo deve estar no formato de endereço de e-mail.")]
-        public string Email { get; set; }
+        [DisplayName("Provedor")]
+        public string ProviderName { get; set; }
 
         [Required]
         [DisplayName("Nome")]
@@ -26,13 +24,17 @@ namespace RocamERP.CrossCutting.Identity.ViewModels
         public int Age { get; set; }
 
         [Required]
-        [DisplayName("Senha")]
-        [StringLength(maximumLength: 24, MinimumLength = 6, ErrorMessage = "A senha deve ter entre 6 e 24 caracteres.")]
-        public string Password { get; set; }
+        public string Email { get; set; }
 
-        [Required]
-        [DisplayName("Confirmar senha")]
-        [Compare("Password", ErrorMessage = "As senhas não conferem.")]
-        public string ConfirmPassword { get; set; }
+        public ExternalRegisterViewModel()
+        {
+
+        }
+
+        public ExternalRegisterViewModel(string providerName, string email)
+        {
+            ProviderName = providerName;
+            Email = email;
+        }
     }
 }

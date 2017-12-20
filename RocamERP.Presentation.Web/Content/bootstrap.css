@@ -2127,6 +2127,7 @@ pre code {
 
 .table-hover tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.075);
+  cursor: pointer;
 }
 
 .table-active,
@@ -2137,6 +2138,7 @@ pre code {
 
 .table-hover .table-active:hover {
   background-color: rgba(0, 0, 0, 0.075);
+  cursor: pointer;
 }
 
 .table-hover .table-active:hover > td,

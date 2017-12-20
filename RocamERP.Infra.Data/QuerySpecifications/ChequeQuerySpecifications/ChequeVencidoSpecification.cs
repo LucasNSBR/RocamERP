@@ -15,7 +15,7 @@ namespace RocamERP.Infra.Data.QuerySpecifications.ChequeQuerySpecifications
 
         public override Expression<Func<Cheque, bool>> ToExpression()
         {
-            return cheque => _vencidos ? cheque.ChequeVencido() : !cheque.ChequeVencido();
+            return cheque => _vencidos ? cheque.ChequeVencido() : true;
         }
     }
 }

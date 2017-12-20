@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.AspNet.Identity;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace RocamERP.CrossCutting.Identity.ViewModels
 {
@@ -21,12 +21,12 @@ namespace RocamERP.CrossCutting.Identity.ViewModels
         public string PhoneNumber { get; set; }
 
         [DisplayName("Logins Externos")]
-        public ICollection<UserLoginInfo> Logins { get; set; }
+        public ICollection<IdentityUserLogin> Logins { get; set; }
 
 
         public OverviewViewModel()
         {
-            Logins = new List<UserLoginInfo>();
+            Logins = new List<IdentityUserLogin>();
         }
     }
 }

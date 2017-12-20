@@ -1,0 +1,34 @@
+﻿@model IEnumerable<RocamERP.Domain.Models.Banco>
+
+@if (Model.Any())
+{
+    <table class="table table-hover">
+        @foreach (var banco in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => banco.BancoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => banco.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => banco.CodigoCompensacao)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<script>
+    $(document).ready(function () {
+        $("tr").click(function () {
+            var id = $(this).children().first().text();
+            document.getElementById("bancoId").value = id.trim();
+
+            $(this).children().hide();
+        })
+    })
+</script>
+
+
