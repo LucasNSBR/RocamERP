@@ -289,6 +289,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="Areas\Plataforma\Views\Shared\_PartialViews\_pessoasInformation.cshtml" />
     <Content Include="Areas\Plataforma\Views\Shared\_PartialViews\_bancosInformation.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\_PartialViews\_cidadesInformation.cshtml" />
+    <Content Include="Areas\Plataforma\Views\Shared\_PartialViews\_estadosInformation.cshtml" />
     <None Include="Properties\PublishProfiles\RocamWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -302,6 +304,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main-1.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Plataforma\cheques.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">

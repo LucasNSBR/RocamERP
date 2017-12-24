@@ -23,10 +23,16 @@
 <script>
     $(document).ready(function () {
         $("tr").click(function () {
+            var rootElement = $("#bancosTable");
             var id = $(this).children().first().text();
+            var name = $(this).children().eq(1).text();
+            var compensationCode = $(this).children().eq(2).text();
             document.getElementById("bancoId").value = id.trim();
 
-            $(this).children().hide();
+            rootElement.children().fadeOut(100);
+            rootElement.append("<strong>" + name + "</strong>")
+            $("#bancosInput").fadeOut(300);
+            $("#pesquisaBancos").fadeIn(250);
         })
     })
 </script>

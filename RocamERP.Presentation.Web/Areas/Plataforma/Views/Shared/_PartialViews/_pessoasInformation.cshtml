@@ -24,8 +24,16 @@
     $(document).ready(function () {
         $(document).ready(function () {
             $("tr").click(function () {
+                var rootElement = $("#pessoasTable");
                 var id = $(this).children().first().text();
+                var name = $(this).children().eq(1).text();
+                var register = $(this).children().eq(2).text();
                 document.getElementById("pessoaId").value = id.trim();
+
+                rootElement.children().fadeOut(100);
+                rootElement.append("<strong>" + name + "</strong>")
+                $("#pessoasInput").fadeOut(300);
+                $("#pesquisaPessoas").fadeIn(250);
             })
         })
     })

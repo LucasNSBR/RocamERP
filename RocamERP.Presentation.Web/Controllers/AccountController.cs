@@ -8,6 +8,7 @@ using RocamERP.CrossCutting.Identity.Models;
 using RocamERP.CrossCutting.Identity.ViewModels;
 using RocamERP.Presentation.Web.Exceptions;
 using RocamERP.Presentation.Web.Filters;
+using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -54,7 +55,7 @@ namespace RocamERP.Presentation.Web.Controllers
             if (result.Succeeded)
             {
                 var claim = await _userManager.AddLoginAsync(user.Id, userInfo.Login);
-                //await SendConfirmationEmail(user.Email);
+                await SendConfirmationEmail(user.Email);
                 return RedirectToAction("Overview", "Manage");
             }
 
@@ -83,22 +84,23 @@ namespace RocamERP.Presentation.Web.Controllers
 
         [AllowAnonymous]
         [AuthenticatedRequestFilter]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl = "")
         {
+            ViewBag.returnUrl = returnUrl;
             return View();
         }
 
         [AllowAnonymous]
         [AuthenticatedRequestFilter]
-        public ActionResult ExternalLogin(string provider)
+        public ActionResult ExternalLogin(string provider, string returnUrl = "")
         {
-            string returnUrl = Url.Action("ExternalLoginCallback");
+            returnUrl = Url.Action("ExternalLoginCallback", new { returnUrl });
             return new ChallengeResult(_authManager, provider, returnUrl);
         }
 
         [AllowAnonymous]
         [AuthenticatedRequestFilter]
-        public async Task<ActionResult> ExternalLoginCallback()
+        public async Task<ActionResult> ExternalLoginCallback(string returnUrl = "")
         {
             var user = await _authManager.GetExternalLoginInfoAsync();
 
@@ -109,7 +111,12 @@ namespace RocamERP.Presentation.Web.Controllers
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        return RedirectToAction("Overview", "Manage");
+                        {
+                            if (Url.IsLocalUrl(returnUrl))
+                                return Redirect(returnUrl);
+
+                            return RedirectToAction("Overview", "Manage");
+                        }
                     case SignInStatus.RequiresVerification:
                         return Redirect("VerifyTwoFactorToken");
                     case SignInStatus.LockedOut:
@@ -139,7 +146,7 @@ namespace RocamERP.Presentation.Web.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [AuthenticatedRequestFilter]
-        public async Task<ActionResult> Login(LoginViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.IsPersistent, true);
 
@@ -148,7 +155,12 @@ namespace RocamERP.Presentation.Web.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("VerifyTwoFactorToken");
                 case SignInStatus.Success:
+                    { 
+                    if (Url.IsLocalUrl(returnUrl))
+                        return Redirect(returnUrl);
+
                     return RedirectToAction("Index", "Home");
+                    }
                 case SignInStatus.LockedOut:
                     return RedirectToAction("AccountLocked");
                 case SignInStatus.Failure:
@@ -284,7 +296,8 @@ namespace RocamERP.Presentation.Web.Controllers
             {
                 AuthenticationProperties properties = new AuthenticationProperties()
                 {
-                    RedirectUri = _returnUrl
+                    RedirectUri = _returnUrl,
+                    IsPersistent = false,
                 };
 
                 _manager.Challenge(properties, _provider);

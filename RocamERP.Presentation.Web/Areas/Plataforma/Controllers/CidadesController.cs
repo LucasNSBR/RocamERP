@@ -5,9 +5,7 @@ using RocamERP.Domain.Models;
 using RocamERP.Domain.QuerySpecificationInterfaces;
 using RocamERP.Infra.Data.QuerySpecifications.CidadeQuerySpecifications;
 using RocamERP.Presentation.Web.Exceptions;
-using RocamERP.Presentation.Web.ViewModels;
 using RocamERP.Presentation.Web.ViewModels.CidadeViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -25,28 +23,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
         private ISpecification<Cidade> _cidadeNomeSpecification;
         private ISpecification<Cidade> _cidadePessoasSpecification;
         private ISpecification<Cidade> _cidadeEstadoIdSpecification;
-         
-        private IEnumerable<SelectListItem> _estados
-        {
-            get
-            {
-                if (_estadoApplicationService != null)
-                    return _estadoApplicationService.GetAll().ToSelectItemList(e => e.Nome, e => e.EstadoId);
-
-                throw new Exception();
-            }
-        }
-
-        private IEnumerable<SelectListItem> _pessoas
-        {
-            get
-            {
-                if (_pessoaApplicationService != null)
-                    return _pessoaApplicationService.GetAll().ToSelectItemList(p => p.Nome, p => p.PessoaId);
-
-                throw new Exception();
-            }
-        }
 
         public CidadesController(ICidadeApplicationService cidadeApplicationService, IEstadoApplicationService estadoApplicationService, IPessoaApplicationService pessoaApplicationService)
         {
@@ -73,18 +49,13 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             return View(new IndexCidadeViewModel()
             {
                 Cidades = cidadesVM,
-                EstadosList = _estados,
+                EstadosList = _estadoApplicationService.GetAll().ToSelectItemList(e => e.Nome, e => e.EstadoId),
             });
         }
 
         public ActionResult Create()
         {
-            CidadeViewModel cidadeVM = new CidadeViewModel()
-            {
-                EstadosList = _estados,
-            };
-
-            return View(cidadeVM);
+            return View();
         }
 
         [HttpPost]
@@ -99,7 +70,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
-            model.EstadosList = _estados;
             return View(model);
         }
 
@@ -108,7 +78,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
             var cidade = _cidadeApplicationService.Get(id);
             var cidadeVM = Mapper.Map<Cidade, CidadeViewModel>(cidade);
 
-            cidadeVM.EstadosList = _estados;
             return View(cidadeVM);
         }
 
@@ -124,7 +93,6 @@ namespace RocamERP.Presentation.Web.Areas.Plataforma.Controllers
                 return RedirectToAction("Index");
             }
 
-            model.EstadosList = _estados;
             return View(model);
         }
 

@@ -1,20 +1,19 @@
 ﻿@model RocamERP.Presentation.Web.ViewModels.ChequeViewModel
 
-@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+<div class="form-group">
+    @Html.LabelFor(model => model.BancoId, new { @class = "col-form-label" })
 
-<div>
-    @Ajax.ActionLink("Pesquisar Bancos", "GetBancos", new AjaxOptions
-    {
-       HttpMethod = "GET",
-       AllowCache = true,
-       UpdateTargetId = "bancosTable",
-       InsertionMode = InsertionMode.Replace
-    })
+    <div class="col-12">
+        <a href="#" id="pesquisaBancos" class="small">Pesquisar banco</a>
+        @Html.Editor("bancosInput", new { htmlAttributes = new { @class = "form-control col-12", @id = "bancosInput", @placeholder = "Digite o nome do banco..." } })
 
-    <div id="bancosTable"></div>
+        <div id="bancosTable"></div>
+    </div>
 </div>
 
+@Html.HiddenFor(model => model.BancoId, new { id = "bancoId" })
 
 <div class="form-group">
     @Html.LabelFor(model => model.Agencia, new { @class = "control-label col-form-label" })
@@ -40,18 +39,17 @@
     </div>
 </div>
 
-<div>
-    @Ajax.ActionLink("Pesquisar Cliente", "GetPessoas", new { prefix = "" }, new AjaxOptions
-    {
-        HttpMethod = "GET",
-        AllowCache = true,
-        UpdateTargetId = "pessoasTable",
-        InsertionMode = InsertionMode.Replace
-    })
 
-    <div id="pessoasTable"></div>
+<div class="form-group">
+    @Html.LabelFor(model => model.PessoaId, new { @class = "col-form-label" })
+
+    <div class="col-12">
+        <a href="#" id="pesquisaPessoas" class="small">Pesquisar Pessoa</a>
+        @Html.Editor("pessoasInput", new { htmlAttributes = new { @class = "form-control col-12", @id = "pessoasInput", @placeholder = "Digite o nome da pessoa..." } })
+
+        <div id="pessoasTable"></div>
+    </div>
 </div>
-
 
 @Html.HiddenFor(model => model.PessoaId, new { id = "pessoaId" })
 

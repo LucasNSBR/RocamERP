@@ -13,7 +13,14 @@
 <div class="form-group">
     @Html.LabelFor(model => model.EstadoId, new { @class = "col-form-label" })
     <div class="col-12">
-        @Html.DropDownListFor(model => model.EstadoId, Model.EstadosList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })
+        @Ajax.ActionLink("Pesquisar Estados", "GetEstados", new AjaxOptions
+        {
+            AllowCache = true,
+            HttpMethod = "GET",
+            UpdateTargetId = "estadosTable",
+            InsertionMode = InsertionMode.Replace
+        })
+
+        <div id="estadosTable"></div>
     </div>
 </div>

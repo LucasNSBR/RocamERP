@@ -2,6 +2,6 @@
 {
     if (provider.Caption != null)
     {
-        @Html.ActionLink(provider.Caption, "ExternalLogin", new { @provider = provider.Caption }, new { @class = "btn btn-primary" })
+        @Html.ActionLink(provider.Caption, "ExternalLogin", new { @provider = provider.Caption, @returnUrl = ViewBag.returnUrl }, new { @class = "btn btn-primary" })
     }
 }
